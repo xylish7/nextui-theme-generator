@@ -14,7 +14,7 @@ export default function ShowcaseComponent({
   const [size, setSize] = useState<Size>("md");
 
   return (
-    <div className="p-4 border rounded-lg">
+    <div className="p-6 border rounded-lg">
       <span className="text-xl font-semibold">{name}</span>
       <div className="flex gap-2 mt-4">
         <Select
@@ -48,7 +48,7 @@ export default function ShowcaseComponent({
           ))}
         </Select>
       </div>
-      <div className="flex flex-wrap gap-2 mt-8">
+      <div className="flex flex-wrap gap-4 mt-8">
         {Children.map(children, (child) =>
           cloneElement(child, { size, variant })
         )}
