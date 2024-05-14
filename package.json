@@ -12,6 +12,7 @@
   "dependencies": {
     "@nextui-org/react": "2.3.6",
     "@phosphor-icons/react": "2.1.5",
+    "color2k": "2.0.3",
     "framer-motion": "11.1.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

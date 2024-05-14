@@ -1,63 +1,47 @@
-import { Button, Chip, Tooltip } from "@nextui-org/react";
+import { Button, Chip } from "@nextui-org/react";
 import ShowcaseComponent from "components/showcase-component";
 import ColorPicker from "components/color-picker";
-import { colors } from "shared/constants";
-import { cssVars } from "lib/cssVars";
-import { Copy, Moon, Sun } from "@phosphor-icons/react";
-import useTheme from "hooks/useTheme";
+import { useNextUIConfig } from "hooks/useNextUIConfig";
+import { Layout } from "shared/components/layout";
 
 function App() {
-  const { theme, toggleTheme } = useTheme();
+  const { nextUIConfig, setNextUIConfig } = useNextUIConfig();
+
+  function handleCopyConfig() {
+    navigator.clipboard.writeText(JSON.stringify(nextUIConfig, null, 2));
+  }
 
   return (
-    <main className="max-w-6xl mx-auto py-8">
-      <div className="flex gap-4 justify-end">
-        <Tooltip content="Copy configuration">
-          <Button isIconOnly size="lg" variant="flat">
-            <Copy size={24} />
-          </Button>
-        </Tooltip>
-        <Tooltip content="Toggle theme">
-          <Button isIconOnly size="lg" variant="flat" onClick={toggleTheme}>
-            {theme === "light" ? <Moon size={24} /> : <Sun size={24} />}
-          </Button>
-        </Tooltip>
-      </div>
-
-      <div className="flex gap-4">
+    <Layout>
+      <div className="flex flex-wrap gap-4">
         <ColorPicker
+          color="primary"
           label="Primary"
-          onSelect={(color) => {
-            cssVars.setPrimaryColor(colors[color]);
-          }}
+          onSelect={(color) => setNextUIConfig({ primary: color })}
         />
         <ColorPicker
+          color="secondary"
           label="Secondary"
-          onSelect={(color) => {
-            cssVars.setSecondaryColor(colors[color]);
-          }}
+          onSelect={(color) => setNextUIConfig({ secondary: color })}
         />
         <ColorPicker
+          color="success"
           label="Success"
-          onSelect={(color) => {
-            cssVars.setSuccessColor(colors[color]);
-          }}
+          onSelect={(color) => setNextUIConfig({ success: color })}
         />
         <ColorPicker
+          color="warning"
           label="Warning"
-          onSelect={(color) => {
-            cssVars.setWarningColor(colors[color]);
-          }}
+          onSelect={(color) => setNextUIConfig({ warning: color })}
         />
         <ColorPicker
+          color="danger"
           label="Danger"
-          onSelect={(color) => {
-            cssVars.setDangerColor(colors[color]);
-          }}
+          onSelect={(color) => setNextUIConfig({ danger: color })}
         />
       </div>
 
-      <div className="grid grid-cols-2 gap-4 py-8">
+      <div className="grid grid-cols-2 gap-4 pt-12">
         <ShowcaseComponent name="Button">
           <Button color="default">Default</Button>
           <Button color="primary">Primary</Button>
@@ -75,7 +59,7 @@ function App() {
           <Chip color="danger">Danger</Chip>
         </ShowcaseComponent>
       </div>
-    </main>
+    </Layout>
   );
 }
 
