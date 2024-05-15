@@ -51,3 +51,31 @@ export interface ThemeColor {
   foreground: string;
   DEFAULT: string;
 }
+
+export type ColorVariant =
+  | "default"
+  | "primary"
+  | "secondary"
+  | "success"
+  | "warning"
+  | "danger";
+
+export interface NextUIConfig {
+  primary: ColorName;
+  secondary: ColorName;
+  success: ColorName;
+  warning: ColorName;
+  danger: ColorName;
+}
+
+export type Size = "sm" | "md" | "lg";
+
+export type Variant =
+  | "dot"
+  | "solid"
+  | "faded"
+  | "bordered"
+  | "light"
+  | "flat"
+  | "ghost"
+  | "shadow";

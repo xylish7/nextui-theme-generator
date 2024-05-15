@@ -32,8 +32,8 @@ export default function ColorPicker({
     <div>
       <Popover isOpen={isOpen} placement="bottom" onOpenChange={setIsOpen}>
         <PopoverTrigger>
-          <Button color={color} size="lg" variant="solid">
-            <Drop size={24} weight="duotone" />
+          <Button color={color} fullWidth size="sm" variant="solid">
+            <Drop size={18} weight="duotone" />
             {label}
           </Button>
         </PopoverTrigger>

@@ -1,16 +1,23 @@
 import { Select, SelectItem } from "@nextui-org/react";
 import { Children, cloneElement, useState } from "react";
+import { Size, Variant } from "shared/types";
 
 interface ShowcaseComponentProps {
   children: React.ReactElement[];
+  defaultVariant: Variant;
   name: string;
+  sizes?: Size[];
+  variants?: Variant[];
 }
 
 export default function ShowcaseComponent({
   children,
+  defaultVariant,
   name,
+  sizes = [],
+  variants = [],
 }: ShowcaseComponentProps) {
-  const [variant, setVariant] = useState<Variant>("solid");
+  const [variant, setVariant] = useState<Variant>(defaultVariant);
   const [size, setSize] = useState<Size>("md");
 
   return (
@@ -26,11 +33,13 @@ export default function ShowcaseComponent({
           size="sm"
           onChange={(e) => setVariant((e.target.value as Variant) || "solid")}
         >
-          {variants.map((variant) => (
-            <SelectItem key={variant.value} value={variant.value}>
-              {variant.label}
-            </SelectItem>
-          ))}
+          {defaultVariants
+            .filter((variant) => variants.includes(variant.value))
+            .map((variant) => (
+              <SelectItem key={variant.value} value={variant.value}>
+                {variant.label}
+              </SelectItem>
+            ))}
         </Select>
         <Select
           className="w-32"
@@ -41,11 +50,13 @@ export default function ShowcaseComponent({
           size="sm"
           onChange={(e) => setSize((e.target.value as Size) || "md")}
         >
-          {sizes.map((size) => (
-            <SelectItem key={size.value} value={size.value}>
-              {size.label}
-            </SelectItem>
-          ))}
+          {defaultSizes
+            .filter((size) => sizes.includes(size.value))
+            .map((size) => (
+              <SelectItem key={size.value} value={size.value}>
+                {size.label}
+              </SelectItem>
+            ))}
         </Select>
       </div>
       <div className="flex flex-wrap gap-4 mt-8">
@@ -57,7 +68,8 @@ export default function ShowcaseComponent({
   );
 }
 
-const variants: { label: string; value: Variant }[] = [
+const defaultVariants: { label: string; value: Variant }[] = [
+  { label: "Dot", value: "dot" },
   { label: "Solid", value: "solid" },
   { label: "Faded", value: "faded" },
   { label: "Bordered", value: "bordered" },
@@ -67,19 +79,8 @@ const variants: { label: string; value: Variant }[] = [
   { label: "Shadow", value: "shadow" },
 ];
 
-const sizes: { label: string; value: Size }[] = [
+const defaultSizes: { label: string; value: Size }[] = [
   { label: "Small", value: "sm" },
   { label: "Medium", value: "md" },
   { label: "Large", value: "lg" },
 ];
-
-type Size = "sm" | "md" | "lg";
-
-type Variant =
-  | "solid"
-  | "faded"
-  | "bordered"
-  | "light"
-  | "flat"
-  | "ghost"
-  | "shadow";

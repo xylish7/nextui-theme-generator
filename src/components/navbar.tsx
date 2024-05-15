@@ -7,11 +7,12 @@ import {
 } from "@nextui-org/react";
 import { Moon, Sun } from "@phosphor-icons/react";
 
-import useTheme from "hooks/useTheme";
 import logo from "assets/logo.png";
+import { ThemeContext } from "providers/ThemeProvider";
+import { useContext } from "react";
 
 export default function Navbar() {
-  const { theme, toggleTheme } = useTheme();
+  const { theme, setTheme } = useContext(ThemeContext);
 
   return (
     <NextUINavbar maxWidth="xl">
@@ -28,10 +29,9 @@ export default function Navbar() {
       <NavbarContent justify="end">
         <NavbarItem>
           <Button
-            color="primary"
             isIconOnly
             variant="flat"
-            onClick={toggleTheme}
+            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
           >
             {theme === "light" ? <Moon size={24} /> : <Sun size={24} />}
           </Button>
