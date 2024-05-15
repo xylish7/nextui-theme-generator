@@ -19,6 +19,10 @@ export default function ThemeProvider({ children }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>("dark");
 
   useEffect(() => {
+    document.getElementsByTagName("html")[0].style.backgroundColor = "";
+  }, []);
+
+  useEffect(() => {
     const root = window.document.documentElement;
     root.classList.remove("light", "dark");
     root.classList.add(theme);
