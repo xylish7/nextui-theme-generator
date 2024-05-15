@@ -1,0 +1,27 @@
+import { Link } from "@nextui-org/react";
+import indieDevLogo from "assets/indie-dev-logo.png";
+import { colors } from "shared/colors";
+
+export default function Footer() {
+  return (
+    <footer className="container mx-auto max-w-7xl my-20 px-6 flex-grow">
+      <div className="flex items-center justify-center mt-8">
+        <img
+          alt="Indie Dev logo"
+          className="w-7 h-auto mr-3"
+          src={indieDevLogo}
+        />
+        <span className="text-default-600">
+          Made by{" "}
+          <Link
+            href="https://indiedev.pro"
+            style={{ color: colors.purple[500] }}
+            isExternal
+          >
+            IndieDev
+          </Link>
+        </span>
+      </div>
+    </footer>
+  );
+}

@@ -4,8 +4,9 @@ import {
   NavbarBrand,
   NavbarContent,
   NavbarItem,
+  Link,
 } from "@nextui-org/react";
-import { Moon, Sun } from "@phosphor-icons/react";
+import { GithubLogo, Moon, Sun, Tree } from "@phosphor-icons/react";
 
 import logo from "assets/logo.png";
 import { ThemeContext } from "providers/ThemeProvider";
@@ -29,8 +30,26 @@ export default function Navbar() {
       <NavbarContent justify="end">
         <NavbarItem>
           <Button
+            as={Link}
+            href="https://indiedev.pro"
+            isExternal
             isIconOnly
-            variant="flat"
+            variant="light"
+          >
+            <Tree size={24} />
+          </Button>
+          <Button
+            as={Link}
+            href="https://github.com/xylish7/nextui-theme-generator"
+            isExternal
+            isIconOnly
+            variant="light"
+          >
+            <GithubLogo size={24} />
+          </Button>
+          <Button
+            isIconOnly
+            variant="light"
             onClick={() => setTheme(theme === "light" ? "dark" : "light")}
           >
             {theme === "light" ? <Moon size={24} /> : <Sun size={24} />}

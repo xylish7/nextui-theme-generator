@@ -77,6 +77,7 @@ const defaultVariants: { label: string; value: Variant }[] = [
   { label: "Flat", value: "flat" },
   { label: "Ghost", value: "ghost" },
   { label: "Shadow", value: "shadow" },
+  { label: "Underlined", value: "underlined" },
 ];
 
 const defaultSizes: { label: string; value: Size }[] = [

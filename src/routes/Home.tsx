@@ -10,6 +10,7 @@ import { ThemeContext } from "providers/ThemeProvider";
 import ButtonShowCase from "components/nextui/ButtonShowcase";
 import ChipShowcase from "components/nextui/ChipShowcase";
 import { NextUIConfigContext } from "providers/NextUIConfigProvider";
+import InputShowcase from "components/nextui/InputShowcase";
 
 export default function Home() {
   const { nextUIConfig, setNextUIConfig } = useContext(NextUIConfigContext);
@@ -91,6 +92,7 @@ export default function Home() {
         <div className="grid grid-cols-1 gap-4 w-full">
           <ButtonShowCase />
           <ChipShowcase />
+          <InputShowcase />
         </div>
       </div>
     </Layout>

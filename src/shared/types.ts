@@ -78,4 +78,5 @@ export type Variant =
   | "light"
   | "flat"
   | "ghost"
-  | "shadow";
+  | "shadow"
+  | "underlined";
