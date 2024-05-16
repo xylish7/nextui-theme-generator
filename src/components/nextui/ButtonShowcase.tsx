@@ -3,7 +3,7 @@ import { Button } from "@nextui-org/react";
 import ShowcaseComponent from "components/ShowcaseComponent";
 import { Radius, Size, Variant } from "shared/types";
 
-export default function ButtonShowCase() {
+export default function ButtonShowcase() {
   return (
     <ShowcaseComponent
       defaultVariant="solid"

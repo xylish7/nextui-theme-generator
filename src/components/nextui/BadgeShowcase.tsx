@@ -3,7 +3,7 @@ import { Avatar, Badge } from "@nextui-org/react";
 import ShowcaseComponent from "components/ShowcaseComponent";
 import { Size, Variant } from "shared/types";
 
-export default function BadgeShowCase() {
+export default function BadgeShowcase() {
   return (
     <ShowcaseComponent
       defaultVariant="solid"

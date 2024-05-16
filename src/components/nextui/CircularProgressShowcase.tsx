@@ -3,7 +3,7 @@ import { CircularProgress } from "@nextui-org/react";
 import ShowcaseComponent from "components/ShowcaseComponent";
 import { Size } from "shared/types";
 
-export default function CircularProgressShowCase() {
+export default function CircularProgressShowcase() {
   return (
     <ShowcaseComponent
       defaultVariant="solid"

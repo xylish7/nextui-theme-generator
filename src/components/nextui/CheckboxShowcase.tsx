@@ -3,7 +3,7 @@ import { Checkbox } from "@nextui-org/react";
 import ShowcaseComponent from "components/ShowcaseComponent";
 import { Radius, Size } from "shared/types";
 
-export default function CheckboxShowCase() {
+export default function CheckboxShowcase() {
   return (
     <ShowcaseComponent
       defaultVariant="solid"

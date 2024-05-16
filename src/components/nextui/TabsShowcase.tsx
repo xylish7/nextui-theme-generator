@@ -1,9 +1,9 @@
-import { BreadcrumbItem, Breadcrumbs } from "@nextui-org/react";
+import { Tab, Tabs } from "@nextui-org/react";
 
 import ShowcaseComponent from "components/ShowcaseComponent";
 import { ColorVariant, Radius, Size, Variant } from "shared/types";
 
-export default function BreadcrumbsShowcase() {
+export default function TabsShowcase() {
   const colors: ColorVariant[] = [
     "default",
     "primary",
@@ -19,19 +19,14 @@ export default function BreadcrumbsShowcase() {
       radiuses={radiuses}
       sizes={sizes}
       variants={variants}
-      name="Breadcrumbs"
+      name="Tabs"
     >
       {colors.map((color) => (
-        <Breadcrumbs
-          key={color}
-          color={color === "default" ? "foreground" : color}
-        >
-          <BreadcrumbItem>Home</BreadcrumbItem>
-          <BreadcrumbItem>Music</BreadcrumbItem>
-          <BreadcrumbItem>Artist</BreadcrumbItem>
-          <BreadcrumbItem>Album</BreadcrumbItem>
-          <BreadcrumbItem>Song</BreadcrumbItem>
-        </Breadcrumbs>
+        <Tabs key={color} color={color} aria-label="Tabs colors" radius="full">
+          <Tab key="photos" title="Photos" />
+          <Tab key="music" title="Music" />
+          <Tab key="videos" title="Videos" />
+        </Tabs>
       ))}
     </ShowcaseComponent>
   );
@@ -39,4 +34,4 @@ export default function BreadcrumbsShowcase() {
 
 const radiuses: Radius[] = ["none", "sm", "md", "lg", "full"];
 const sizes: Size[] = ["sm", "md", "lg"];
-const variants: Variant[] = ["solid", "bordered", "light"];
+const variants: Variant[] = ["solid", "bordered", "light", "underlined"];

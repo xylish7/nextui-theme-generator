@@ -26,7 +26,7 @@ export default function ShowcaseComponent({
   return (
     <div className="p-6 border border-default rounded-lg">
       <span className="text-xl font-semibold">{name}</span>
-      <div className="flex gap-2 mt-4">
+      <div className="flex flex-wrap gap-2 mt-4">
         {variants.length ? (
           <Select
             className="w-32"

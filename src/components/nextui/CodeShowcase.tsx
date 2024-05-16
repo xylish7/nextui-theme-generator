@@ -3,7 +3,7 @@ import { Code } from "@nextui-org/react";
 import ShowcaseComponent from "components/ShowcaseComponent";
 import { Radius, Size } from "shared/types";
 
-export default function CodeShowCase() {
+export default function CodeShowcase() {
   return (
     <ShowcaseComponent
       defaultVariant="solid"
