@@ -1,12 +1,13 @@
 import { Button } from "@nextui-org/react";
 
 import ShowcaseComponent from "components/ShowcaseComponent";
-import { Size, Variant } from "shared/types";
+import { Radius, Size, Variant } from "shared/types";
 
 export default function ButtonShowCase() {
   return (
     <ShowcaseComponent
       defaultVariant="solid"
+      radiuses={radiuses}
       sizes={sizes}
       variants={variants}
       name="Button"
@@ -21,8 +22,8 @@ export default function ButtonShowCase() {
   );
 }
 
+const radiuses: Radius[] = ["none", "sm", "md", "lg", "full"];
 const sizes: Size[] = ["sm", "md", "lg"];
-
 const variants: Variant[] = [
   "solid",
   "faded",

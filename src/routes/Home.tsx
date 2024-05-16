@@ -11,6 +11,12 @@ import ButtonShowCase from "components/nextui/ButtonShowcase";
 import ChipShowcase from "components/nextui/ChipShowcase";
 import { NextUIConfigContext } from "providers/NextUIConfigProvider";
 import InputShowcase from "components/nextui/InputShowcase";
+import AvatarShowcase from "components/nextui/AvatarShowcase";
+import BadgeShowCase from "components/nextui/BadgeShowcase";
+import BreadcrumbsShowCase from "components/nextui/BreadcrumbsShowcase";
+import CheckboxShowCase from "components/nextui/CheckboxShowcase";
+import CodeShowCase from "components/nextui/CodeShowcase";
+import CircularProgressShowCase from "components/nextui/CircularProgressShowcase";
 
 export default function Home() {
   const { nextUIConfig, setNextUIConfig } = useContext(NextUIConfigContext);
@@ -51,8 +57,8 @@ export default function Home() {
 
   return (
     <Layout>
-      <div className="flex gap-6">
-        <Card className="max-w-xs w-full p-2 h-min sticky top-28">
+      <div className="flex flex-col md:flex-row gap-6">
+        <Card className="max-w-xs w-full p-2 h-min relative md:sticky md:top-28 z-30">
           <CardHeader className="flex justify-between">
             <span className="font-semibold text-lg">NextUI Configuration</span>
             <CopyButton data={generateConfig(nextUIConfig)} />
@@ -90,8 +96,14 @@ export default function Home() {
         </Card>
 
         <div className="grid grid-cols-1 gap-4 w-full">
+          <AvatarShowcase />
+          <BadgeShowCase />
+          <BreadcrumbsShowCase />
           <ButtonShowCase />
+          <CheckboxShowCase />
           <ChipShowcase />
+          <CodeShowCase />
+          <CircularProgressShowCase />
           <InputShowcase />
         </div>
       </div>

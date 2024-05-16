@@ -80,3 +80,5 @@ export type Variant =
   | "ghost"
   | "shadow"
   | "underlined";
+
+export type Radius = "none" | "sm" | "md" | "lg" | "full";
