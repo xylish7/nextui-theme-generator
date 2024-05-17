@@ -82,3 +82,10 @@ export type Variant =
   | "underlined";
 
 export type Radius = "none" | "sm" | "md" | "lg" | "full";
+
+export interface Repo {
+  name: string;
+  owner: string;
+  stars: number;
+  updatedAt: string;
+}

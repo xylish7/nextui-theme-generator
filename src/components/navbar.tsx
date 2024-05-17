@@ -9,11 +9,13 @@ import {
 import { GithubLogo, Moon, Sun, Tree } from "@phosphor-icons/react";
 
 import logo from "assets/logo.png";
+import useRepo from "hooks/useRepo";
 import { ThemeContext } from "providers/ThemeProvider";
 import { useContext } from "react";
 
 export default function Navbar() {
   const { theme, setTheme } = useContext(ThemeContext);
+  const stars = useRepo("xylish7", "nextui-theme-generator") ?? 0;
 
   return (
     <NextUINavbar maxWidth="xl">
@@ -31,6 +33,18 @@ export default function Navbar() {
         <NavbarItem>
           <Button
             as={Link}
+            href="https://github.com/xylish7/nextui-theme-generator"
+            isExternal
+            size="sm"
+            variant="bordered"
+          >
+            <GithubLogo size={18} />
+            {stars} {stars > 1 ? "Stars" : "Star"}
+          </Button>
+        </NavbarItem>
+        <NavbarItem>
+          <Button
+            as={Link}
             href="https://indiedev.pro"
             isExternal
             isIconOnly
@@ -38,15 +52,7 @@ export default function Navbar() {
           >
             <Tree size={24} />
           </Button>
-          <Button
-            as={Link}
-            href="https://github.com/xylish7/nextui-theme-generator"
-            isExternal
-            isIconOnly
-            variant="light"
-          >
-            <GithubLogo size={24} />
-          </Button>
+
           <Button
             isIconOnly
             variant="light"
