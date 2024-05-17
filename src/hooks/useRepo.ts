@@ -8,11 +8,13 @@ export default function useRepo(owner: string, repoName: string) {
 
   useEffect(() => {
     const stringifiedRepo = localStorage.getItem(repoKey);
-    const repo: Repo = stringifiedRepo ? JSON.parse(stringifiedRepo) : null;
+    const repo: Repo | null = stringifiedRepo
+      ? JSON.parse(stringifiedRepo)
+      : null;
     const updatedAt = repo ? new Date(repo.updatedAt) : null;
     const now = new Date();
 
-    if (updatedAt && now.getTime() - updatedAt.getTime() > 3600000) {
+    if (!repo || (updatedAt && now.getTime() - updatedAt.getTime() > 3600000)) {
       getRepoStars(owner, repoName).then((stars) => {
         setStars(stars ?? null);
         localStorage.setItem(
