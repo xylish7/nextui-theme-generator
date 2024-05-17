@@ -25,7 +25,8 @@ export default function Navbar() {
           src={logo}
         />
         <span className="font-bold text-inherit text-xl mb-0.5">
-          NextUI ThemeGen
+          NextUI <span className="hidden sm:inline">ThemeGen</span>
+          <span className="sm:hidden">TG</span>
         </span>
       </NavbarBrand>
 
