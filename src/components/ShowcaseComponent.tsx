@@ -1,14 +1,14 @@
 import { Select, SelectItem } from "@nextui-org/react";
 import { Children, cloneElement, useState } from "react";
-import { Radius, Size, Variant } from "shared/types";
+import { NextUIRadius, NextUISize, NextUIVariant } from "shared/types";
 
 interface ShowcaseComponentProps {
   children: React.ReactElement[];
-  defaultVariant: Variant;
+  defaultVariant: NextUIVariant;
   name: string;
-  radiuses?: Radius[];
-  sizes?: Size[];
-  variants?: Variant[];
+  radiuses?: NextUIRadius[];
+  sizes?: NextUISize[];
+  variants?: NextUIVariant[];
 }
 
 export default function ShowcaseComponent({
@@ -19,9 +19,9 @@ export default function ShowcaseComponent({
   sizes = [],
   variants = [],
 }: ShowcaseComponentProps) {
-  const [variant, setVariant] = useState<Variant>(defaultVariant);
-  const [size, setSize] = useState<Size>("md");
-  const [radius, setRadius] = useState<Radius>("md");
+  const [variant, setVariant] = useState<NextUIVariant>(defaultVariant);
+  const [size, setSize] = useState<NextUISize>("md");
+  const [radius, setRadius] = useState<NextUIRadius>("md");
 
   return (
     <div className="p-6 border border-default rounded-lg">
@@ -35,7 +35,9 @@ export default function ShowcaseComponent({
             labelPlacement="outside"
             selectedKeys={[variant]}
             size="sm"
-            onChange={(e) => setVariant((e.target.value as Variant) || "solid")}
+            onChange={(e) =>
+              setVariant((e.target.value as NextUIVariant) || "solid")
+            }
           >
             {defaultVariants
               .filter((variant) => variants.includes(variant.value))
@@ -54,7 +56,7 @@ export default function ShowcaseComponent({
             defaultSelectedKeys={[size]}
             selectedKeys={[size]}
             size="sm"
-            onChange={(e) => setSize((e.target.value as Size) || "md")}
+            onChange={(e) => setSize((e.target.value as NextUISize) || "md")}
           >
             {defaultSizes
               .filter((size) => sizes.includes(size.value))
@@ -73,7 +75,7 @@ export default function ShowcaseComponent({
             defaultSelectedKeys={[radius]}
             selectedKeys={[radius]}
             size="sm"
-            onChange={(e) => setRadius((e.target.value as Size) || "md")}
+            onChange={(e) => setRadius((e.target.value as NextUISize) || "md")}
           >
             {defaultRadiuses
               .filter((radius) => radiuses.includes(radius.value))
@@ -94,7 +96,7 @@ export default function ShowcaseComponent({
   );
 }
 
-const defaultRadiuses: { label: string; value: Radius }[] = [
+const defaultRadiuses: { label: string; value: NextUIRadius }[] = [
   { label: "None", value: "none" },
   { label: "Small", value: "sm" },
   { label: "Medium", value: "md" },
@@ -102,7 +104,7 @@ const defaultRadiuses: { label: string; value: Radius }[] = [
   { label: "Full", value: "full" },
 ];
 
-const defaultVariants: { label: string; value: Variant }[] = [
+const defaultVariants: { label: string; value: NextUIVariant }[] = [
   { label: "Dot", value: "dot" },
   { label: "Solid", value: "solid" },
   { label: "Faded", value: "faded" },
@@ -114,7 +116,7 @@ const defaultVariants: { label: string; value: Variant }[] = [
   { label: "Underlined", value: "underlined" },
 ];
 
-const defaultSizes: { label: string; value: Size }[] = [
+const defaultSizes: { label: string; value: NextUISize }[] = [
   { label: "Small", value: "sm" },
   { label: "Medium", value: "md" },
   { label: "Large", value: "lg" },

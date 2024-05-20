@@ -1,7 +1,7 @@
 import { Input } from "@nextui-org/react";
 
 import ShowcaseComponent from "components/ShowcaseComponent";
-import { ColorVariant, Size, Variant } from "shared/types";
+import { NextUIColor, NextUISize, NextUIVariant } from "shared/types";
 
 export default function InputShowcase() {
   return (
@@ -26,7 +26,7 @@ export default function InputShowcase() {
   );
 }
 
-const colors: ColorVariant[] = [
+const colors: NextUIColor[] = [
   "default",
   "primary",
   "secondary",
@@ -34,5 +34,5 @@ const colors: ColorVariant[] = [
   "warning",
   "danger",
 ];
-const sizes: Size[] = ["sm", "md", "lg"];
-const variants: Variant[] = ["flat", "bordered", "underlined", "faded"];
+const sizes: NextUISize[] = ["sm", "md", "lg"];
+const variants: NextUIVariant[] = ["flat", "bordered", "underlined", "faded"];

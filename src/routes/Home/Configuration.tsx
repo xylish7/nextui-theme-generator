@@ -3,43 +3,36 @@ import { Card, CardBody, CardHeader } from "@nextui-org/react";
 
 import ColorPicker from "components/ColorPicker";
 import { CopyButton } from "components/CopyButton";
-import { cssVars } from "lib/cssVars";
-import { darkThemeColors, lightThemeColors } from "shared/theme-colors";
-import { NextUIConfig } from "shared/types";
-import { ThemeContext } from "providers/ThemeProvider";
-import { NextUIConfigContext } from "providers/NextUIConfigProvider";
+import { ConfigContext } from "providers/ConfigProvider";
+import { generateThemeColor } from "lib/colors";
+import { setCssVars } from "lib/cssVars";
+import { Config } from "shared/types";
 
 export default function Configuration() {
-  const { nextUIConfig, setNextUIConfig } = useContext(NextUIConfigContext);
-  const { theme } = useContext(ThemeContext);
-
+  const { config, setBrandColor } = useContext(ConfigContext);
   useEffect(() => {
-    cssVars.set("primary", nextUIConfig.primary, theme);
-    cssVars.set("secondary", nextUIConfig.secondary, theme);
-    cssVars.set("success", nextUIConfig.success, theme);
-    cssVars.set("warning", nextUIConfig.warning, theme);
-    cssVars.set("danger", nextUIConfig.danger, theme);
-  }, [nextUIConfig, theme]);
+    setCssVars(config);
+  }, [config]);
 
-  function generateConfig(nextUIConfig: NextUIConfig) {
+  function generateConfig(config: Config) {
     return {
       themes: {
         light: {
           colors: {
-            primary: lightThemeColors[nextUIConfig.primary],
-            secondary: lightThemeColors[nextUIConfig.secondary],
-            success: lightThemeColors[nextUIConfig.success],
-            warning: lightThemeColors[nextUIConfig.warning],
-            danger: lightThemeColors[nextUIConfig.danger],
+            primary: generateThemeColor(config.brandColors.primary),
+            secondary: generateThemeColor(config.brandColors.secondary),
+            success: generateThemeColor(config.brandColors.success),
+            warning: generateThemeColor(config.brandColors.warning),
+            danger: generateThemeColor(config.brandColors.danger),
           },
         },
         dark: {
           colors: {
-            primary: darkThemeColors[nextUIConfig.primary],
-            secondary: darkThemeColors[nextUIConfig.secondary],
-            success: darkThemeColors[nextUIConfig.success],
-            warning: darkThemeColors[nextUIConfig.warning],
-            danger: darkThemeColors[nextUIConfig.danger],
+            primary: generateThemeColor(config.brandColors.primary),
+            secondary: generateThemeColor(config.brandColors.secondary),
+            success: generateThemeColor(config.brandColors.success),
+            warning: generateThemeColor(config.brandColors.warning),
+            danger: generateThemeColor(config.brandColors.danger),
           },
         },
       },
@@ -50,35 +43,40 @@ export default function Configuration() {
     <Card className="max-w-xs w-full p-2 h-min relative md:sticky md:top-28 z-30">
       <CardHeader className="flex justify-between">
         <span className="font-semibold text-lg">NextUI Configuration</span>
-        <CopyButton data={generateConfig(nextUIConfig)} />
+        <CopyButton data={generateConfig(config)} />
       </CardHeader>
       <CardBody>
-        <span className="font-semibold mb-2">Main colors</span>
+        <span className="font-semibold mb-2">Brand colors</span>
         <div className="grid grid-cols-2 flex-wrap gap-4">
           <ColorPicker
-            color="primary"
+            hexColor={config.brandColors.primary}
             label="Primary"
-            onSelect={(color) => setNextUIConfig({ primary: color })}
+            type="primary"
+            onChange={(hexColor) => setBrandColor({ primary: hexColor })}
           />
           <ColorPicker
-            color="secondary"
+            hexColor={config.brandColors.secondary}
             label="Secondary"
-            onSelect={(color) => setNextUIConfig({ secondary: color })}
+            type="secondary"
+            onChange={(hexColor) => setBrandColor({ secondary: hexColor })}
           />
           <ColorPicker
-            color="success"
+            hexColor={config.brandColors.success}
             label="Success"
-            onSelect={(color) => setNextUIConfig({ success: color })}
+            type="success"
+            onChange={(hexColor) => setBrandColor({ success: hexColor })}
           />
           <ColorPicker
-            color="warning"
+            hexColor={config.brandColors.warning}
             label="Warning"
-            onSelect={(color) => setNextUIConfig({ warning: color })}
+            type="warning"
+            onChange={(hexColor) => setBrandColor({ warning: hexColor })}
           />
           <ColorPicker
-            color="danger"
+            hexColor={config.brandColors.danger}
             label="Danger"
-            onSelect={(color) => setNextUIConfig({ danger: color })}
+            type="danger"
+            onChange={(hexColor) => setBrandColor({ danger: hexColor })}
           />
         </div>
       </CardBody>

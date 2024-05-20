@@ -6,10 +6,10 @@ import {
   Button,
 } from "@nextui-org/react";
 import ShowcaseComponent from "components/ShowcaseComponent";
-import { ColorVariant, Variant } from "shared/types";
+import { NextUIColor, NextUIVariant } from "shared/types";
 
 export default function DropdownShowcase() {
-  const colors: ColorVariant[] = [
+  const colors: NextUIColor[] = [
     "default",
     "primary",
     "secondary",
@@ -31,7 +31,7 @@ export default function DropdownShowcase() {
   );
 }
 
-const variants: Variant[] = [
+const variants: NextUIVariant[] = [
   "solid",
   "faded",
   "bordered",
@@ -41,9 +41,9 @@ const variants: Variant[] = [
 ];
 
 interface DropdownContentProps {
-  color: ColorVariant;
+  color: NextUIColor;
   variant?: Extract<
-    Variant,
+    NextUIVariant,
     "solid" | "faded" | "bordered" | "light" | "flat" | "shadow"
   >;
 }

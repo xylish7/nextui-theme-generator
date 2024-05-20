@@ -1,7 +1,7 @@
 import { Chip } from "@nextui-org/react";
 
 import ShowcaseComponent from "components/ShowcaseComponent";
-import { Size, Variant } from "shared/types";
+import { NextUISize, NextUIVariant } from "shared/types";
 
 export default function ChipShowcase() {
   return (
@@ -21,9 +21,9 @@ export default function ChipShowcase() {
   );
 }
 
-const sizes: Size[] = ["sm", "md", "lg"];
+const sizes: NextUISize[] = ["sm", "md", "lg"];
 
-const variants: Variant[] = [
+const variants: NextUIVariant[] = [
   "solid",
   "bordered",
   "light",

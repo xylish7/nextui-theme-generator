@@ -1,7 +1,7 @@
 import { Avatar, Badge } from "@nextui-org/react";
 
 import ShowcaseComponent from "components/ShowcaseComponent";
-import { Size, Variant } from "shared/types";
+import { NextUISize, NextUIVariant } from "shared/types";
 
 export default function BadgeShowcase() {
   return (
@@ -33,5 +33,5 @@ export default function BadgeShowcase() {
   );
 }
 
-const sizes: Size[] = ["sm", "md", "lg"];
-const variants: Variant[] = ["solid", "faded", "flat", "shadow"];
+const sizes: NextUISize[] = ["sm", "md", "lg"];
+const variants: NextUIVariant[] = ["solid", "faded", "flat", "shadow"];

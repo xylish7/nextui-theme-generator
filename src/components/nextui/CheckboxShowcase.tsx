@@ -1,7 +1,7 @@
 import { Checkbox } from "@nextui-org/react";
 
 import ShowcaseComponent from "components/ShowcaseComponent";
-import { Radius, Size } from "shared/types";
+import { NextUIRadius, NextUISize } from "shared/types";
 
 export default function CheckboxShowcase() {
   return (
@@ -33,5 +33,5 @@ export default function CheckboxShowcase() {
   );
 }
 
-const radiuses: Radius[] = ["none", "sm", "md", "lg", "full"];
-const sizes: Size[] = ["sm", "md", "lg"];
+const radiuses: NextUIRadius[] = ["none", "sm", "md", "lg", "full"];
+const sizes: NextUISize[] = ["sm", "md", "lg"];

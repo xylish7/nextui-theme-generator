@@ -1,7 +1,7 @@
 import { Button } from "@nextui-org/react";
 
 import ShowcaseComponent from "components/ShowcaseComponent";
-import { Radius, Size, Variant } from "shared/types";
+import { NextUIRadius, NextUISize, NextUIVariant } from "shared/types";
 
 export default function ButtonShowcase() {
   return (
@@ -22,9 +22,9 @@ export default function ButtonShowcase() {
   );
 }
 
-const radiuses: Radius[] = ["none", "sm", "md", "lg", "full"];
-const sizes: Size[] = ["sm", "md", "lg"];
-const variants: Variant[] = [
+const radiuses: NextUIRadius[] = ["none", "sm", "md", "lg", "full"];
+const sizes: NextUISize[] = ["sm", "md", "lg"];
+const variants: NextUIVariant[] = [
   "solid",
   "faded",
   "bordered",

@@ -1,7 +1,7 @@
 import { CircularProgress } from "@nextui-org/react";
 
 import ShowcaseComponent from "components/ShowcaseComponent";
-import { Size } from "shared/types";
+import { NextUISize } from "shared/types";
 
 export default function CircularProgressShowcase() {
   return (
@@ -20,4 +20,4 @@ export default function CircularProgressShowcase() {
   );
 }
 
-const sizes: Size[] = ["sm", "md", "lg"];
+const sizes: NextUISize[] = ["sm", "md", "lg"];

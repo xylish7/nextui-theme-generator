@@ -1,7 +1,7 @@
 import { Avatar } from "@nextui-org/react";
 
 import ShowcaseComponent from "components/ShowcaseComponent";
-import { Radius, Size } from "shared/types";
+import { NextUIRadius, NextUISize } from "shared/types";
 
 export default function AvatarShowcase() {
   return (
@@ -57,5 +57,5 @@ export default function AvatarShowcase() {
   );
 }
 
-const radiuses: Radius[] = ["sm", "md", "lg", "full"];
-const sizes: Size[] = ["sm", "md", "lg"];
+const radiuses: NextUIRadius[] = ["sm", "md", "lg", "full"];
+const sizes: NextUISize[] = ["sm", "md", "lg"];

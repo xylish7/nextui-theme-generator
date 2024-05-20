@@ -1,4 +1,4 @@
-import NextUIConfigProvider from "./NextUIConfigProvider";
+import ConfigProvider from "./ConfigProvider";
 import ThemeProvider from "./ThemeProvider";
 
 interface ProvidersProps {
@@ -7,8 +7,8 @@ interface ProvidersProps {
 
 export default function Providers({ children }: ProvidersProps) {
   return (
-    <NextUIConfigProvider>
+    <ConfigProvider>
       <ThemeProvider>{children}</ThemeProvider>
-    </NextUIConfigProvider>
+    </ConfigProvider>
   );
 }

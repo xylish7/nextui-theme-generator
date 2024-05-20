@@ -1,10 +1,15 @@
 import { Select, SelectItem } from "@nextui-org/react";
 
 import ShowcaseComponent from "components/ShowcaseComponent";
-import { ColorVariant, Radius, Size, Variant } from "shared/types";
+import {
+  NextUIColor,
+  NextUIRadius,
+  NextUISize,
+  NextUIVariant,
+} from "shared/types";
 
 export default function SelectShowcase() {
-  const colors: ColorVariant[] = [
+  const colors: NextUIColor[] = [
     "default",
     "primary",
     "secondary",
@@ -62,6 +67,6 @@ const animals = [
     value: "rabbit",
   },
 ];
-const radiuses: Radius[] = ["none", "sm", "md", "lg", "full"];
-const sizes: Size[] = ["sm", "md", "lg"];
-const variants: Variant[] = ["faded", "bordered", "flat", "underlined"];
+const radiuses: NextUIRadius[] = ["none", "sm", "md", "lg", "full"];
+const sizes: NextUISize[] = ["sm", "md", "lg"];
+const variants: NextUIVariant[] = ["faded", "bordered", "flat", "underlined"];

@@ -1,27 +1,3 @@
-export type ColorName =
-  | "slate"
-  | "gray"
-  | "zinc"
-  | "neutral"
-  | "stone"
-  | "red"
-  | "orange"
-  | "amber"
-  | "yellow"
-  | "lime"
-  | "green"
-  | "emerald"
-  | "teal"
-  | "cyan"
-  | "sky"
-  | "blue"
-  | "indigo"
-  | "violet"
-  | "purple"
-  | "fuchsia"
-  | "pink"
-  | "rose";
-
 export interface ColorShades {
   50: string;
   100: string;
@@ -37,22 +13,12 @@ export interface ColorShades {
 
 export type Theme = "light" | "dark";
 
-export interface ThemeColor {
-  50: string;
-  100: string;
-  200: string;
-  300: string;
-  400: string;
-  500: string;
-  600: string;
-  700: string;
-  800: string;
-  900: string;
+export interface ThemeColor extends ColorShades {
   foreground: string;
   DEFAULT: string;
 }
 
-export type ColorVariant =
+export type NextUIColor =
   | "default"
   | "primary"
   | "secondary"
@@ -60,17 +26,9 @@ export type ColorVariant =
   | "warning"
   | "danger";
 
-export interface NextUIConfig {
-  primary: ColorName;
-  secondary: ColorName;
-  success: ColorName;
-  warning: ColorName;
-  danger: ColorName;
-}
+export type NextUISize = "sm" | "md" | "lg";
 
-export type Size = "sm" | "md" | "lg";
-
-export type Variant =
+export type NextUIVariant =
   | "dot"
   | "solid"
   | "faded"
@@ -81,11 +39,31 @@ export type Variant =
   | "shadow"
   | "underlined";
 
-export type Radius = "none" | "sm" | "md" | "lg" | "full";
+export type NextUIRadius = "none" | "sm" | "md" | "lg" | "full";
 
 export interface Repo {
   name: string;
   owner: string;
   stars: number;
   updatedAt: string;
+}
+
+export type ColorType =
+  | "default"
+  | "primary"
+  | "secondary"
+  | "success"
+  | "warning"
+  | "danger";
+
+export interface Config {
+  brandColors: BrandColors;
+}
+
+export interface BrandColors {
+  primary: string;
+  secondary: string;
+  success: string;
+  warning: string;
+  danger: string;
 }
