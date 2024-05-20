@@ -3,7 +3,7 @@ import { Info as InfoIcon } from "@phosphor-icons/react";
 
 export default function Info() {
   return (
-    <Card className="mb-12 w-max mx-auto">
+    <Card className="mb-12 max-w-max mx-auto">
       <CardBody className="flex items-center p-6">
         <InfoIcon className="text-primary" size={28} />
         <p className="mt-3">
