@@ -57,11 +57,12 @@ export type ColorType =
   | "danger";
 
 export interface Config {
-  brandColors: BrandColors;
-  fontSizes: FontSizes;
+  brandColor: BrandColor;
+  fontSize: FontSize;
+  lineHeight: LineHeight;
 }
 
-export interface BrandColors {
+export interface BrandColor {
   primary: string;
   secondary: string;
   success: string;
@@ -69,7 +70,14 @@ export interface BrandColors {
   danger: string;
 }
 
-export interface FontSizes {
+export interface FontSize {
+  tiny: string;
+  small: string;
+  medium: string;
+  large: string;
+}
+
+export interface LineHeight {
   tiny: string;
   small: string;
   medium: string;

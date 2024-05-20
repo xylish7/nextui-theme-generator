@@ -17,7 +17,8 @@ import NumberInput from "components/NumberInput";
 import { BRAND_COLORS_ID } from "shared/constants";
 
 export default function Configuration() {
-  const { config, setBrandColor, setFontSize } = useContext(ConfigContext);
+  const { config, setBrandColor, setLineHeight, setFontSize } =
+    useContext(ConfigContext);
   useEffect(() => {
     setCssVars(config);
   }, [config]);
@@ -31,31 +32,31 @@ export default function Configuration() {
       <CardBody className="flex flex-col gap-8">
         <ConfigurationSection id={BRAND_COLORS_ID} title="Brand colors">
           <ColorPicker
-            hexColor={config.brandColors.primary}
+            hexColor={config.brandColor.primary}
             label="Primary"
             type="primary"
             onChange={(hexColor) => setBrandColor({ primary: hexColor })}
           />
           <ColorPicker
-            hexColor={config.brandColors.secondary}
+            hexColor={config.brandColor.secondary}
             label="Secondary"
             type="secondary"
             onChange={(hexColor) => setBrandColor({ secondary: hexColor })}
           />
           <ColorPicker
-            hexColor={config.brandColors.success}
+            hexColor={config.brandColor.success}
             label="Success"
             type="success"
             onChange={(hexColor) => setBrandColor({ success: hexColor })}
           />
           <ColorPicker
-            hexColor={config.brandColors.warning}
+            hexColor={config.brandColor.warning}
             label="Warning"
             type="warning"
             onChange={(hexColor) => setBrandColor({ warning: hexColor })}
           />
           <ColorPicker
-            hexColor={config.brandColors.danger}
+            hexColor={config.brandColor.danger}
             label="Danger"
             type="danger"
             onChange={(hexColor) => setBrandColor({ danger: hexColor })}
@@ -65,23 +66,46 @@ export default function Configuration() {
         <ConfigurationSection title="Font size (rem)">
           <NumberInput
             label="Tiny"
-            value={config.fontSizes.tiny}
+            value={config.fontSize.tiny}
             onChange={(value) => setFontSize({ tiny: value })}
           />
           <NumberInput
             label="Small"
-            value={config.fontSizes.small}
+            value={config.fontSize.small}
             onChange={(value) => setFontSize({ small: value })}
           />
           <NumberInput
             label="Medium"
-            value={config.fontSizes.medium}
+            value={config.fontSize.medium}
             onChange={(value) => setFontSize({ medium: value })}
           />
           <NumberInput
             label="Large"
-            value={config.fontSizes.large}
+            value={config.fontSize.large}
             onChange={(value) => setFontSize({ large: value })}
+          />
+        </ConfigurationSection>
+
+        <ConfigurationSection title="Line height (rem)">
+          <NumberInput
+            label="Tiny"
+            value={config.lineHeight.tiny}
+            onChange={(value) => setLineHeight({ tiny: value })}
+          />
+          <NumberInput
+            label="Small"
+            value={config.lineHeight.small}
+            onChange={(value) => setLineHeight({ small: value })}
+          />
+          <NumberInput
+            label="Medium"
+            value={config.lineHeight.medium}
+            onChange={(value) => setLineHeight({ medium: value })}
+          />
+          <NumberInput
+            label="Large"
+            value={config.lineHeight.large}
+            onChange={(value) => setLineHeight({ large: value })}
           />
         </ConfigurationSection>
       </CardBody>
@@ -94,35 +118,35 @@ function generateConfig(config: Config): NextUIPluginConfig {
     themes: {
       light: {
         colors: {
-          primary: generateThemeColor(config.brandColors.primary),
-          secondary: generateThemeColor(config.brandColors.secondary),
-          success: generateThemeColor(config.brandColors.success),
-          warning: generateThemeColor(config.brandColors.warning),
-          danger: generateThemeColor(config.brandColors.danger),
+          primary: generateThemeColor(config.brandColor.primary),
+          secondary: generateThemeColor(config.brandColor.secondary),
+          success: generateThemeColor(config.brandColor.success),
+          warning: generateThemeColor(config.brandColor.warning),
+          danger: generateThemeColor(config.brandColor.danger),
         },
         layout: {
           fontSize: {
-            tiny: `${config.fontSizes.tiny}rem`,
-            small: `${config.fontSizes.small}rem`,
-            medium: `${config.fontSizes.medium}rem`,
-            large: `${config.fontSizes.large}rem`,
+            tiny: `${config.fontSize.tiny}rem`,
+            small: `${config.fontSize.small}rem`,
+            medium: `${config.fontSize.medium}rem`,
+            large: `${config.fontSize.large}rem`,
           },
         },
       },
       dark: {
         colors: {
-          primary: generateThemeColor(config.brandColors.primary),
-          secondary: generateThemeColor(config.brandColors.secondary),
-          success: generateThemeColor(config.brandColors.success),
-          warning: generateThemeColor(config.brandColors.warning),
-          danger: generateThemeColor(config.brandColors.danger),
+          primary: generateThemeColor(config.brandColor.primary),
+          secondary: generateThemeColor(config.brandColor.secondary),
+          success: generateThemeColor(config.brandColor.success),
+          warning: generateThemeColor(config.brandColor.warning),
+          danger: generateThemeColor(config.brandColor.danger),
         },
         layout: {
           fontSize: {
-            tiny: `${config.fontSizes.tiny}rem`,
-            small: `${config.fontSizes.small}rem`,
-            medium: `${config.fontSizes.medium}rem`,
-            large: `${config.fontSizes.large}rem`,
+            tiny: `${config.fontSize.tiny}rem`,
+            small: `${config.fontSize.small}rem`,
+            medium: `${config.fontSize.medium}rem`,
+            large: `${config.fontSize.large}rem`,
           },
         },
       },

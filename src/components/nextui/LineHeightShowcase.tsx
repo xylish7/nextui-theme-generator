@@ -2,7 +2,7 @@ import ShowcaseComponent from "components/ShowcaseComponent";
 
 export default function FontSizeShowcase() {
   return (
-    <ShowcaseComponent name="Font size / Line height (rem)">
+    <ShowcaseComponent name="Line height (rem)">
       <div className="flex flex-col gap-2">
         <p className="text-tiny">Tiny</p>
         <p className="text-small">Small</p>

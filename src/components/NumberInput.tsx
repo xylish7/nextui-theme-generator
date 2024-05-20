@@ -21,6 +21,11 @@ export default function NumberInput({
   }
 
   return (
-    <Input label={label} value={value.toString()} onChange={handleChange} />
+    <Input
+      label={label}
+      size="sm"
+      value={value.toString()}
+      onChange={handleChange}
+    />
   );
 }

@@ -1,4 +1,10 @@
-import { ColorType, Config, FontSizes, ThemeColor } from "shared/types";
+import {
+  ColorType,
+  Config,
+  FontSize,
+  LineHeight,
+  ThemeColor,
+} from "shared/types";
 import hexToHsl from "utils/colors";
 import { generateThemeColor } from "./colors";
 import { BRAND_COLORS_ID, SHOWCASE_ID } from "shared/constants";
@@ -25,7 +31,7 @@ function setColor(colorType: ColorType, themeColor: ThemeColor) {
   });
 }
 
-function setFontSize(type: keyof FontSizes, value: string) {
+function setFontSize(type: keyof FontSize, value: string) {
   const el = document.getElementById(SHOWCASE_ID);
 
   if (!el) {
@@ -35,14 +41,28 @@ function setFontSize(type: keyof FontSizes, value: string) {
   el.style.setProperty(`--nextui-font-size-${type}`, `${value}rem`);
 }
 
+function setLineHeight(type: keyof LineHeight, value: string) {
+  const el = document.getElementById(SHOWCASE_ID);
+
+  if (!el) {
+    return;
+  }
+
+  el.style.setProperty(`--nextui-line-height-${type}`, value);
+}
+
 export function setCssVars(config: Config) {
-  setColor("primary", generateThemeColor(config.brandColors.primary));
-  setColor("secondary", generateThemeColor(config.brandColors.secondary));
-  setColor("success", generateThemeColor(config.brandColors.success));
-  setColor("warning", generateThemeColor(config.brandColors.warning));
-  setColor("danger", generateThemeColor(config.brandColors.danger));
-  setFontSize("tiny", config.fontSizes.tiny);
-  setFontSize("small", config.fontSizes.small);
-  setFontSize("medium", config.fontSizes.medium);
-  setFontSize("large", config.fontSizes.large);
+  setColor("primary", generateThemeColor(config.brandColor.primary));
+  setColor("secondary", generateThemeColor(config.brandColor.secondary));
+  setColor("success", generateThemeColor(config.brandColor.success));
+  setColor("warning", generateThemeColor(config.brandColor.warning));
+  setColor("danger", generateThemeColor(config.brandColor.danger));
+  setFontSize("tiny", config.fontSize.tiny);
+  setFontSize("small", config.fontSize.small);
+  setFontSize("medium", config.fontSize.medium);
+  setFontSize("large", config.fontSize.large);
+  setLineHeight("tiny", config.lineHeight.tiny);
+  setLineHeight("small", config.lineHeight.small);
+  setLineHeight("medium", config.lineHeight.medium);
+  setLineHeight("large", config.lineHeight.large);
 }

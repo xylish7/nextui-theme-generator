@@ -1,32 +1,40 @@
 import { colors } from "@nextui-org/react";
 import { useState, createContext, useMemo, useCallback } from "react";
-import { BrandColors, Config, FontSizes } from "shared/types";
+import { BrandColor, Config, FontSize, LineHeight } from "shared/types";
 
 export interface ConfigProviderI {
   config: Config;
-  setBrandColor: (newConfig: Partial<BrandColors>) => void;
-  setFontSize: (newConfig: Partial<FontSizes>) => void;
+  setBrandColor: (newConfig: Partial<BrandColor>) => void;
+  setLineHeight: (newConfig: Partial<LineHeight>) => void;
+  setFontSize: (newConfig: Partial<FontSize>) => void;
 }
 
 const initialConfig: Config = {
-  brandColors: {
+  brandColor: {
     primary: colors.blue[500],
     secondary: colors.purple[500],
     success: colors.green[500],
     warning: colors.yellow[500],
     danger: colors.red[500],
   },
-  fontSizes: {
+  fontSize: {
     tiny: "0.75",
     small: "0.875",
     medium: "1",
-    large: "1.25",
+    large: "1.125",
+  },
+  lineHeight: {
+    tiny: "1",
+    small: "1.25",
+    medium: "1.5",
+    large: "1.75",
   },
 };
 
 export const ConfigContext = createContext<ConfigProviderI>({
   config: initialConfig,
   setBrandColor: () => {},
+  setLineHeight: () => {},
   setFontSize: () => {},
 });
 
@@ -38,23 +46,35 @@ export default function ConfigProvider({ children }: ConfigProviderProps) {
   const [config, setConfig] = useState<Config>(initialConfig);
 
   const setBrandColor = useCallback(
-    (newBrandColors: Partial<BrandColors>) =>
+    (newBrandColors: Partial<BrandColor>) =>
       setConfig((prev) => ({
         ...prev,
-        brandColors: {
-          ...prev.brandColors,
+        brandColor: {
+          ...prev.brandColor,
           ...newBrandColors,
         },
       })),
     []
   );
 
-  const setFontSize = useCallback(
-    (newFontSizes: Partial<Config["fontSizes"]>) =>
+  const setLineHeight = useCallback(
+    (newLineHeights: Partial<LineHeight>) =>
       setConfig((prev) => ({
         ...prev,
-        fontSizes: {
-          ...prev.fontSizes,
+        lineHeight: {
+          ...prev.lineHeight,
+          ...newLineHeights,
+        },
+      })),
+    []
+  );
+
+  const setFontSize = useCallback(
+    (newFontSizes: Partial<FontSize>) =>
+      setConfig((prev) => ({
+        ...prev,
+        fontSize: {
+          ...prev.fontSize,
           ...newFontSizes,
         },
       })),
@@ -65,9 +85,10 @@ export default function ConfigProvider({ children }: ConfigProviderProps) {
     () => ({
       config,
       setBrandColor,
+      setLineHeight,
       setFontSize,
     }),
-    [config, setBrandColor, setFontSize]
+    [config, setBrandColor, setLineHeight, setFontSize]
   );
 
   return (
