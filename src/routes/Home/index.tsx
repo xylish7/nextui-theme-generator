@@ -1,4 +1,4 @@
-import { Layout } from "components/Layout";
+import { Layout } from "components/CLayout";
 import Configuration from "./Configuration";
 import Showcase from "./Showcase";
 import Info from "./Info";
