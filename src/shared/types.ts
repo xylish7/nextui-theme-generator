@@ -58,6 +58,7 @@ export type ColorType =
 
 export interface Config {
   brandColors: BrandColors;
+  fontSizes: FontSizes;
 }
 
 export interface BrandColors {
@@ -66,4 +67,11 @@ export interface BrandColors {
   success: string;
   warning: string;
   danger: string;
+}
+
+export interface FontSizes {
+  tiny: string;
+  small: string;
+  medium: string;
+  large: string;
 }

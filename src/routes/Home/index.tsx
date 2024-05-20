@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <Layout>
       <Info />
-      <div id="theme-generator" className="flex flex-col md:flex-row gap-6">
+      <div className="flex flex-col md:flex-row gap-6">
         <Configuration />
         <Showcase />
       </div>

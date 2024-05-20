@@ -14,6 +14,7 @@ import SelectShowcase from "components/nextui/SelectShowcase";
 import SwitchShowcase from "components/nextui/SwitchShowcase";
 import SliderShowcase from "components/nextui/SliderShowcases";
 import TabsShowcase from "components/nextui/TabsShowcase";
+import FontSizeShowcase from "components/nextui/FontSizeShowcase";
 
 export default function Showcase() {
   return (
@@ -34,6 +35,7 @@ export default function Showcase() {
       <SwitchShowcase />
       <SliderShowcase />
       <TabsShowcase />
+      <FontSizeShowcase />
     </div>
   );
 }

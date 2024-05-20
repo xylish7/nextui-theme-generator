@@ -3,8 +3,9 @@ import { Children, cloneElement, useState } from "react";
 import { NextUIRadius, NextUISize, NextUIVariant } from "shared/types";
 
 interface ShowcaseComponentProps {
-  children: React.ReactElement[];
-  defaultVariant: NextUIVariant;
+  children: React.ReactElement | React.ReactElement[];
+  defaultVariant?: NextUIVariant;
+  id?: string;
   name: string;
   radiuses?: NextUIRadius[];
   sizes?: NextUISize[];
@@ -14,26 +15,29 @@ interface ShowcaseComponentProps {
 export default function ShowcaseComponent({
   children,
   defaultVariant,
+  id,
   name,
   radiuses = [],
   sizes = [],
   variants = [],
 }: ShowcaseComponentProps) {
-  const [variant, setVariant] = useState<NextUIVariant>(defaultVariant);
+  const [variant, setVariant] = useState<NextUIVariant | undefined>(
+    defaultVariant
+  );
   const [size, setSize] = useState<NextUISize>("md");
   const [radius, setRadius] = useState<NextUIRadius>("md");
 
   return (
-    <div className="p-6 border border-default rounded-lg">
+    <div id={id} className="p-6 border border-default rounded-lg">
       <span className="text-xl font-semibold">{name}</span>
       <div className="flex flex-wrap gap-2 mt-4">
         {variants.length ? (
           <Select
             className="w-32"
-            defaultSelectedKeys={[variant]}
+            defaultSelectedKeys={variant ? [variant] : variant}
             label="Variant"
             labelPlacement="outside"
-            selectedKeys={[variant]}
+            selectedKeys={variant ? [variant] : variant}
             size="sm"
             onChange={(e) =>
               setVariant((e.target.value as NextUIVariant) || "solid")
