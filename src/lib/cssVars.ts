@@ -3,14 +3,20 @@ import hexToHsl from "utils/colors";
 import { generateThemeColor } from "./colors";
 
 function setColor(colorType: ColorType, themeColor: ThemeColor) {
+  const el = document.getElementById("theme-generator");
+
+  if (!el) {
+    return;
+  }
+
   Object.keys(themeColor).forEach((key) => {
     if (key === "DEFAULT") {
-      document.documentElement.style.setProperty(
+      el.style.setProperty(
         `--nextui-${colorType}`,
         hexToHsl(themeColor[key as keyof ThemeColor])
       );
     } else {
-      document.documentElement.style.setProperty(
+      el.style.setProperty(
         `--nextui-${colorType}-${key}`,
         hexToHsl(themeColor[key as keyof ThemeColor])
       );
