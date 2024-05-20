@@ -15,10 +15,11 @@ import SwitchShowcase from "components/nextui/SwitchShowcase";
 import SliderShowcase from "components/nextui/SliderShowcases";
 import TabsShowcase from "components/nextui/TabsShowcase";
 import FontSizeShowcase from "components/nextui/FontSizeShowcase";
+import { SHOWCASE_ID } from "shared/constants";
 
 export default function Showcase() {
   return (
-    <div className="grid grid-cols-1 gap-4 w-full">
+    <div id={SHOWCASE_ID} className="grid grid-cols-1 gap-4 w-full">
       <AvatarShowcase />
       <BadgeShowcase />
       <BreadcrumbsShowcase />

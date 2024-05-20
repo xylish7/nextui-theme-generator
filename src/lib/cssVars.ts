@@ -1,7 +1,7 @@
 import { ColorType, Config, FontSizes, ThemeColor } from "shared/types";
 import hexToHsl from "utils/colors";
 import { generateThemeColor } from "./colors";
-import { BRAND_COLORS_ID, FONT_SIZES_ID } from "shared/constants";
+import { BRAND_COLORS_ID, SHOWCASE_ID } from "shared/constants";
 
 function setColor(colorType: ColorType, themeColor: ThemeColor) {
   const el = document.getElementById(BRAND_COLORS_ID);
@@ -26,7 +26,7 @@ function setColor(colorType: ColorType, themeColor: ThemeColor) {
 }
 
 function setFontSize(type: keyof FontSizes, value: string) {
-  const el = document.getElementById(FONT_SIZES_ID);
+  const el = document.getElementById(SHOWCASE_ID);
 
   if (!el) {
     return;

@@ -5,4 +5,4 @@ export const FLOAT_NUMBER_REGEX = /^\d+(\.\d*)?$/;
 
 // Element ids
 export const BRAND_COLORS_ID = "th-brand-colors";
-export const FONT_SIZES_ID = "th-font-sizes";
+export const SHOWCASE_ID = "th-showcase";
