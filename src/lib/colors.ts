@@ -1,13 +1,14 @@
 import { readableColor } from "color2k";
 import { COLOR_WEIGHT } from "shared/constants";
-import { ColorShades, ThemeColor } from "shared/types";
+import { ColorShades, Theme, ThemeColor } from "shared/types";
+import { swapColorValues } from "utils/colors";
 import Values from "values.js";
 
 export function colorValuesToRgb(value: Values) {
   return `rgba(${value.rgb.join(", ")}, ${value.alpha})`;
 }
 
-export function generateThemeColor(color: string): ThemeColor {
+export function generateThemeColor(color: string, theme: Theme): ThemeColor {
   const values = new Values(color);
   const colorValues = values.all(COLOR_WEIGHT);
   const shades = colorValues
@@ -19,7 +20,7 @@ export function generateThemeColor(color: string): ThemeColor {
     }, {} as ColorShades);
 
   return {
-    ...shades,
+    ...(theme === "light" ? shades : swapColorValues(shades)),
     foreground: readableColor(shades[500]),
     DEFAULT: shades[500],
   };

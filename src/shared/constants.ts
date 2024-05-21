@@ -4,5 +4,6 @@ export const COLOR_WEIGHT = 17.5;
 export const FLOAT_NUMBER_REGEX = /^\d+(\.\d*)?$/;
 
 // Element ids
-export const BRAND_COLORS_ID = "th-brand-colors";
+export const COLORS_ID = "th-colors";
+export const BASE_COLOR_ID = "th-base-colors";
 export const SHOWCASE_ID = "th-showcase";

@@ -14,11 +14,15 @@ import { setCssVars } from "lib/cssVars";
 import { Config } from "shared/types";
 import ConfigurationSection from "components/ConfigurationSection";
 import NumberInput from "components/NumberInput";
-import { BRAND_COLORS_ID } from "shared/constants";
+import { COLORS_ID, BASE_COLOR_ID } from "shared/constants";
+import { ThemeContext } from "providers/ThemeProvider";
 
 export default function Configuration() {
+  const { theme } = useContext(ThemeContext);
+
   const {
     config,
+    setBaseColor,
     setBorderWidth,
     setBrandColor,
     setLineHeight,
@@ -26,8 +30,8 @@ export default function Configuration() {
     setRadius,
   } = useContext(ConfigContext);
   useEffect(() => {
-    setCssVars(config);
-  }, [config]);
+    setCssVars(config, theme);
+  }, [config, theme]);
 
   return (
     <Card className="max-w-xs w-full p-2 h-min relative md:sticky md:top-28 z-30 md:h-[calc(100vh-10rem)]">
@@ -36,58 +40,85 @@ export default function Configuration() {
         <CopyButton getData={() => generateConfig(config)} />
       </CardHeader>
       <CardBody className="flex flex-col gap-8">
-        <ConfigurationSection id={BRAND_COLORS_ID} title="Brand colors">
+        <ConfigurationSection id={COLORS_ID} title="Brand colors">
           <ColorPicker
-            hexColor={config.brandColor.primary}
+            hexColor={config[theme].brandColor.default}
+            label="Default"
+            type="default"
+            onChange={(hexColor) => setBrandColor({ default: hexColor }, theme)}
+          />
+          <ColorPicker
+            hexColor={config[theme].brandColor.primary}
             label="Primary"
             type="primary"
-            onChange={(hexColor) => setBrandColor({ primary: hexColor })}
+            onChange={(hexColor) => setBrandColor({ primary: hexColor }, theme)}
           />
           <ColorPicker
-            hexColor={config.brandColor.secondary}
+            hexColor={config[theme].brandColor.secondary}
             label="Secondary"
             type="secondary"
-            onChange={(hexColor) => setBrandColor({ secondary: hexColor })}
+            onChange={(hexColor) =>
+              setBrandColor({ secondary: hexColor }, theme)
+            }
           />
           <ColorPicker
-            hexColor={config.brandColor.success}
+            hexColor={config[theme].brandColor.success}
             label="Success"
             type="success"
-            onChange={(hexColor) => setBrandColor({ success: hexColor })}
+            onChange={(hexColor) => setBrandColor({ success: hexColor }, theme)}
           />
           <ColorPicker
-            hexColor={config.brandColor.warning}
+            hexColor={config[theme].brandColor.warning}
             label="Warning"
             type="warning"
-            onChange={(hexColor) => setBrandColor({ warning: hexColor })}
+            onChange={(hexColor) => setBrandColor({ warning: hexColor }, theme)}
           />
           <ColorPicker
-            hexColor={config.brandColor.danger}
+            hexColor={config[theme].brandColor.danger}
             label="Danger"
             type="danger"
-            onChange={(hexColor) => setBrandColor({ danger: hexColor })}
+            onChange={(hexColor) => setBrandColor({ danger: hexColor }, theme)}
+          />
+        </ConfigurationSection>
+
+        <ConfigurationSection id={BASE_COLOR_ID} title="Base colors">
+          <ColorPicker
+            hexColor={config[theme].baseColor.background}
+            label="Background"
+            type="background"
+            onChange={(hexColor) =>
+              setBaseColor({ background: hexColor }, theme)
+            }
+          />
+          <ColorPicker
+            hexColor={config[theme].baseColor.foreground}
+            label="Foreground"
+            type="foreground"
+            onChange={(hexColor) =>
+              setBaseColor({ foreground: hexColor }, theme)
+            }
           />
         </ConfigurationSection>
 
         <ConfigurationSection title="Font size (rem)">
           <NumberInput
             label="Tiny"
-            value={config.fontSize.tiny}
+            value={config.layout.fontSize.tiny}
             onChange={(value) => setFontSize({ tiny: value })}
           />
           <NumberInput
             label="Small"
-            value={config.fontSize.small}
+            value={config.layout.fontSize.small}
             onChange={(value) => setFontSize({ small: value })}
           />
           <NumberInput
             label="Medium"
-            value={config.fontSize.medium}
+            value={config.layout.fontSize.medium}
             onChange={(value) => setFontSize({ medium: value })}
           />
           <NumberInput
             label="Large"
-            value={config.fontSize.large}
+            value={config.layout.fontSize.large}
             onChange={(value) => setFontSize({ large: value })}
           />
         </ConfigurationSection>
@@ -95,22 +126,22 @@ export default function Configuration() {
         <ConfigurationSection title="Line height (rem)">
           <NumberInput
             label="Tiny"
-            value={config.lineHeight.tiny}
+            value={config.layout.lineHeight.tiny}
             onChange={(value) => setLineHeight({ tiny: value })}
           />
           <NumberInput
             label="Small"
-            value={config.lineHeight.small}
+            value={config.layout.lineHeight.small}
             onChange={(value) => setLineHeight({ small: value })}
           />
           <NumberInput
             label="Medium"
-            value={config.lineHeight.medium}
+            value={config.layout.lineHeight.medium}
             onChange={(value) => setLineHeight({ medium: value })}
           />
           <NumberInput
             label="Large"
-            value={config.lineHeight.large}
+            value={config.layout.lineHeight.large}
             onChange={(value) => setLineHeight({ large: value })}
           />
         </ConfigurationSection>
@@ -118,17 +149,17 @@ export default function Configuration() {
         <ConfigurationSection cols={3} title="Radius (rem)">
           <NumberInput
             label="Small"
-            value={config.radius.small}
+            value={config.layout.radius.small}
             onChange={(value) => setRadius({ small: value })}
           />
           <NumberInput
             label="Medium"
-            value={config.radius.medium}
+            value={config.layout.radius.medium}
             onChange={(value) => setRadius({ medium: value })}
           />
           <NumberInput
             label="Large"
-            value={config.radius.large}
+            value={config.layout.radius.large}
             onChange={(value) => setRadius({ large: value })}
           />
         </ConfigurationSection>
@@ -136,17 +167,17 @@ export default function Configuration() {
         <ConfigurationSection cols={3} title="Border width (px)">
           <NumberInput
             label="Small"
-            value={config.borderWidth.small}
+            value={config.layout.borderWidth.small}
             onChange={(value) => setBorderWidth({ small: value })}
           />
           <NumberInput
             label="Medium"
-            value={config.borderWidth.medium}
+            value={config.layout.borderWidth.medium}
             onChange={(value) => setBorderWidth({ medium: value })}
           />
           <NumberInput
             label="Large"
-            value={config.borderWidth.large}
+            value={config.layout.borderWidth.large}
             onChange={(value) => setBorderWidth({ large: value })}
           />
         </ConfigurationSection>
@@ -156,73 +187,60 @@ export default function Configuration() {
 }
 
 function generateConfig(config: Config): NextUIPluginConfig {
+  const layout = {
+    fontSize: {
+      tiny: `${config.layout.fontSize.tiny}rem`,
+      small: `${config.layout.fontSize.small}rem`,
+      medium: `${config.layout.fontSize.medium}rem`,
+      large: `${config.layout.fontSize.large}rem`,
+    },
+    lineHeight: {
+      tiny: `${config.layout.lineHeight.tiny}rem`,
+      small: `${config.layout.lineHeight.small}rem`,
+      medium: `${config.layout.lineHeight.medium}rem`,
+      large: `${config.layout.lineHeight.large}rem`,
+    },
+    radius: {
+      small: `${config.layout.radius.small}rem`,
+      medium: `${config.layout.radius.medium}rem`,
+      large: `${config.layout.radius.large}rem`,
+    },
+    borderWidth: {
+      small: `${config.layout.borderWidth.small}px`,
+      medium: `${config.layout.borderWidth.medium}px`,
+      large: `${config.layout.borderWidth.large}px`,
+    },
+  };
+
   return {
     themes: {
       light: {
         colors: {
-          primary: generateThemeColor(config.brandColor.primary),
-          secondary: generateThemeColor(config.brandColor.secondary),
-          success: generateThemeColor(config.brandColor.success),
-          warning: generateThemeColor(config.brandColor.warning),
-          danger: generateThemeColor(config.brandColor.danger),
+          default: generateThemeColor(config.light.brandColor.default, "light"),
+          primary: generateThemeColor(config.light.brandColor.primary, "light"),
+          secondary: generateThemeColor(
+            config.light.brandColor.secondary,
+            "light"
+          ),
+          success: generateThemeColor(config.light.brandColor.success, "light"),
+          warning: generateThemeColor(config.light.brandColor.warning, "light"),
+          danger: generateThemeColor(config.light.brandColor.danger, "light"),
         },
-        layout: {
-          fontSize: {
-            tiny: `${config.fontSize.tiny}rem`,
-            small: `${config.fontSize.small}rem`,
-            medium: `${config.fontSize.medium}rem`,
-            large: `${config.fontSize.large}rem`,
-          },
-          lineHeight: {
-            tiny: `${config.lineHeight.tiny}rem`,
-            small: `${config.lineHeight.small}rem`,
-            medium: `${config.lineHeight.medium}rem`,
-            large: `${config.lineHeight.large}rem`,
-          },
-          radius: {
-            small: `${config.radius.small}rem`,
-            medium: `${config.radius.medium}rem`,
-            large: `${config.radius.large}rem`,
-          },
-          borderWidth: {
-            small: `${config.borderWidth.small}px`,
-            medium: `${config.borderWidth.medium}px`,
-            large: `${config.borderWidth.large}px`,
-          },
-        },
+        layout,
       },
       dark: {
         colors: {
-          primary: generateThemeColor(config.brandColor.primary),
-          secondary: generateThemeColor(config.brandColor.secondary),
-          success: generateThemeColor(config.brandColor.success),
-          warning: generateThemeColor(config.brandColor.warning),
-          danger: generateThemeColor(config.brandColor.danger),
+          default: generateThemeColor(config.dark.brandColor.default, "dark"),
+          primary: generateThemeColor(config.dark.brandColor.primary, "dark"),
+          secondary: generateThemeColor(
+            config.dark.brandColor.secondary,
+            "dark"
+          ),
+          success: generateThemeColor(config.dark.brandColor.success, "dark"),
+          warning: generateThemeColor(config.dark.brandColor.warning, "dark"),
+          danger: generateThemeColor(config.dark.brandColor.danger, "dark"),
         },
-        layout: {
-          fontSize: {
-            tiny: `${config.fontSize.tiny}rem`,
-            small: `${config.fontSize.small}rem`,
-            medium: `${config.fontSize.medium}rem`,
-            large: `${config.fontSize.large}rem`,
-          },
-          lineHeight: {
-            tiny: `${config.lineHeight.tiny}rem`,
-            small: `${config.lineHeight.small}rem`,
-            medium: `${config.lineHeight.medium}rem`,
-            large: `${config.lineHeight.large}rem`,
-          },
-          radius: {
-            small: `${config.radius.small}rem`,
-            medium: `${config.radius.medium}rem`,
-            large: `${config.radius.large}rem`,
-          },
-          borderWidth: {
-            small: `${config.borderWidth.small}px`,
-            medium: `${config.borderWidth.medium}px`,
-            large: `${config.borderWidth.large}px`,
-          },
-        },
+        layout,
       },
     },
   };

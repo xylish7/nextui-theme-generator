@@ -1,50 +1,81 @@
 import { colors } from "@nextui-org/react";
 import { useState, createContext, useMemo, useCallback } from "react";
-import { Config } from "shared/types";
+import { ColorsConfig, Config, LayoutConfig, Theme } from "shared/types";
 
 export interface ConfigProviderI {
   config: Config;
-  setBorderWidth: (newConfig: Partial<Config["borderWidth"]>) => void;
-  setBrandColor: (newConfig: Partial<Config["brandColor"]>) => void;
-  setLineHeight: (newConfig: Partial<Config["lineHeight"]>) => void;
-  setFontSize: (newConfig: Partial<Config["fontSize"]>) => void;
-  setRadius: (newConfig: Partial<Config["radius"]>) => void;
+  setBaseColor: (
+    newConfig: Partial<ColorsConfig["baseColor"]>,
+    theme: Theme
+  ) => void;
+  setBorderWidth: (newConfig: Partial<LayoutConfig["borderWidth"]>) => void;
+  setBrandColor: (
+    newConfig: Partial<ColorsConfig["brandColor"]>,
+    theme: Theme
+  ) => void;
+  setLineHeight: (newConfig: Partial<LayoutConfig["lineHeight"]>) => void;
+  setFontSize: (newConfig: Partial<LayoutConfig["fontSize"]>) => void;
+  setRadius: (newConfig: Partial<LayoutConfig["radius"]>) => void;
 }
 
 const initialConfig: Config = {
-  brandColor: {
-    primary: colors.blue[500],
-    secondary: colors.purple[500],
-    success: colors.green[500],
-    warning: colors.yellow[500],
-    danger: colors.red[500],
+  light: {
+    brandColor: {
+      default: colors.zinc[300],
+      primary: colors.blue[500],
+      secondary: colors.purple[500],
+      success: colors.green[500],
+      warning: colors.yellow[500],
+      danger: colors.red[500],
+    },
+    baseColor: {
+      foreground: colors.black,
+      background: colors.white,
+    },
   },
-  fontSize: {
-    tiny: "0.75",
-    small: "0.875",
-    medium: "1",
-    large: "1.125",
+  dark: {
+    brandColor: {
+      default: colors.zinc[700],
+      primary: colors.blue[500],
+      secondary: colors.purple[500],
+      success: colors.green[500],
+      warning: colors.yellow[500],
+      danger: colors.red[500],
+    },
+    baseColor: {
+      foreground: colors.white,
+      background: colors.black,
+    },
   },
-  lineHeight: {
-    tiny: "1",
-    small: "1.25",
-    medium: "1.5",
-    large: "1.75",
-  },
-  radius: {
-    small: "0.5",
-    medium: "0.75",
-    large: "0.875",
-  },
-  borderWidth: {
-    small: "1",
-    medium: "2",
-    large: "3",
+  layout: {
+    fontSize: {
+      tiny: "0.75",
+      small: "0.875",
+      medium: "1",
+      large: "1.125",
+    },
+    lineHeight: {
+      tiny: "1",
+      small: "1.25",
+      medium: "1.5",
+      large: "1.75",
+    },
+    radius: {
+      small: "0.5",
+      medium: "0.75",
+      large: "0.875",
+    },
+    borderWidth: {
+      small: "1",
+      medium: "2",
+      large: "3",
+    },
   },
 };
 
 export const ConfigContext = createContext<ConfigProviderI>({
   config: initialConfig,
+  setBaseColor: () => {},
   setBorderWidth: () => {},
   setBrandColor: () => {},
   setLineHeight: () => {},
@@ -59,61 +90,93 @@ interface ConfigProviderProps {
 export default function ConfigProvider({ children }: ConfigProviderProps) {
   const [config, setConfig] = useState<Config>(initialConfig);
 
-  const setBorderWidth = useCallback(
-    (newBorderWidths: Partial<Config["borderWidth"]>) =>
+  const setBrandColor = useCallback(
+    (newConfig: Partial<ColorsConfig["brandColor"]>, theme: Theme) => {
       setConfig((prev) => ({
         ...prev,
-        borderWidth: {
-          ...prev.borderWidth,
-          ...newBorderWidths,
+        [theme]: {
+          ...prev[theme],
+          brandColor: {
+            ...prev[theme].brandColor,
+            ...newConfig,
+          },
         },
-      })),
+      }));
+    },
     []
   );
 
-  const setBrandColor = useCallback(
-    (newBrandColors: Partial<Config["brandColor"]>) =>
+  const setBaseColor = useCallback(
+    (newConfig: Partial<ColorsConfig["baseColor"]>, theme: Theme) => {
       setConfig((prev) => ({
         ...prev,
-        brandColor: {
-          ...prev.brandColor,
-          ...newBrandColors,
+        [theme]: {
+          ...prev[theme],
+          baseColor: {
+            ...prev[theme].baseColor,
+            ...newConfig,
+          },
+        },
+      }));
+    },
+    []
+  );
+
+  const setBorderWidth = useCallback(
+    (newBorderWidths: Partial<LayoutConfig["borderWidth"]>) =>
+      setConfig((prev) => ({
+        ...prev,
+        layout: {
+          ...prev.layout,
+          borderWidth: {
+            ...prev.layout.borderWidth,
+            ...newBorderWidths,
+          },
         },
       })),
     []
   );
 
   const setLineHeight = useCallback(
-    (newLineHeights: Partial<Config["lineHeight"]>) =>
+    (newLineHeights: Partial<LayoutConfig["lineHeight"]>) =>
       setConfig((prev) => ({
         ...prev,
-        lineHeight: {
-          ...prev.lineHeight,
-          ...newLineHeights,
+        layout: {
+          ...prev.layout,
+          lineHeight: {
+            ...prev.layout.lineHeight,
+            ...newLineHeights,
+          },
         },
       })),
     []
   );
 
   const setFontSize = useCallback(
-    (newFontSizes: Partial<Config["fontSize"]>) =>
+    (newFontSizes: Partial<LayoutConfig["fontSize"]>) =>
       setConfig((prev) => ({
         ...prev,
-        fontSize: {
-          ...prev.fontSize,
-          ...newFontSizes,
+        layout: {
+          ...prev.layout,
+          fontSize: {
+            ...prev.layout.fontSize,
+            ...newFontSizes,
+          },
         },
       })),
     []
   );
 
   const setRadius = useCallback(
-    (newRadius: Partial<Config["radius"]>) =>
+    (newRadius: Partial<LayoutConfig["radius"]>) =>
       setConfig((prev) => ({
         ...prev,
-        radius: {
-          ...prev.radius,
-          ...newRadius,
+        layout: {
+          ...prev.layout,
+          radius: {
+            ...prev.layout.radius,
+            ...newRadius,
+          },
         },
       })),
     []
@@ -122,6 +185,7 @@ export default function ConfigProvider({ children }: ConfigProviderProps) {
   const contextValue = useMemo(
     () => ({
       config,
+      setBaseColor,
       setBorderWidth,
       setBrandColor,
       setLineHeight,
@@ -130,6 +194,7 @@ export default function ConfigProvider({ children }: ConfigProviderProps) {
     }),
     [
       config,
+      setBaseColor,
       setBorderWidth,
       setBrandColor,
       setLineHeight,

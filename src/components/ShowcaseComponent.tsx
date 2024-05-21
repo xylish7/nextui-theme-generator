@@ -28,7 +28,10 @@ export default function ShowcaseComponent({
   const [radius, setRadius] = useState<NextUIRadius>("md");
 
   return (
-    <div id={id} className="p-6 border border-default rounded-lg">
+    <div
+      id={id}
+      className="bg-background text-foreground p-6 border border-default rounded-lg"
+    >
       <span className="text-xl font-semibold">{name}</span>
       <div className="flex flex-wrap gap-2 mt-4">
         {variants.length ? (

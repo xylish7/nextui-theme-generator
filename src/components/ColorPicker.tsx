@@ -8,14 +8,15 @@ import {
 import { Drop } from "@phosphor-icons/react";
 import { HexColorInput, HexColorPicker } from "react-colorful";
 import Values from "values.js";
-import { ColorType } from "shared/types";
+import { ColorPickerType } from "shared/types";
 import { colorValuesToRgb } from "lib/colors";
 import { COLOR_WEIGHT } from "shared/constants";
+import { readableColor } from "color2k";
 
 interface ColorPickerProps {
   hexColor: string;
   label: string;
-  type: ColorType;
+  type: ColorPickerType;
   onChange: (hexColor: string) => void;
 }
 
@@ -40,7 +41,16 @@ export default function ColorPicker({
     <div>
       <Popover isOpen={isOpen} placement="bottom" onOpenChange={setIsOpen}>
         <PopoverTrigger>
-          <Button className={getColor(type)} fullWidth size="sm">
+          <Button
+            style={{
+              color: ["background", "foreground"].includes(type)
+                ? readableColor(hexColor)
+                : undefined,
+            }}
+            className={getColor(type)}
+            fullWidth
+            size="sm"
+          >
             <Drop size={18} weight="duotone" />
             {label}
           </Button>
@@ -80,7 +90,7 @@ export default function ColorPicker({
   );
 }
 
-function getColor(type: ColorType) {
+function getColor(type: ColorPickerType) {
   switch (type) {
     case "primary":
       return "bg-primary text-primary-foreground";
@@ -92,6 +102,12 @@ function getColor(type: ColorType) {
       return "bg-warning text-warning-foreground";
     case "danger":
       return "bg-danger text-danger-foreground";
+    case "background":
+      return "bg-background text-foreground";
+    case "foreground":
+      return "bg-foreground text-black";
+    case "default":
+      return "bg-default";
     default:
       return undefined;
   }

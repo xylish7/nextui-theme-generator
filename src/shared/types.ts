@@ -48,22 +48,38 @@ export interface Repo {
   updatedAt: string;
 }
 
-export type ColorType =
+export type ColorPickerType =
+  | "background"
+  | "danger"
   | "default"
+  | "foreground"
   | "primary"
   | "secondary"
   | "success"
-  | "warning"
-  | "danger";
+  | "warning";
 
 export interface Config {
+  light: ColorsConfig;
+  dark: ColorsConfig;
+  layout: LayoutConfig;
+}
+
+export interface ColorsConfig {
   brandColor: {
+    default: string;
     primary: string;
     secondary: string;
     success: string;
     warning: string;
     danger: string;
   };
+  baseColor: {
+    foreground: string;
+    background: string;
+  };
+}
+
+export interface LayoutConfig {
   fontSize: {
     tiny: string;
     small: string;
