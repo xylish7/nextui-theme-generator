@@ -17,14 +17,20 @@ import NumberInput from "components/NumberInput";
 import { BRAND_COLORS_ID } from "shared/constants";
 
 export default function Configuration() {
-  const { config, setBrandColor, setLineHeight, setFontSize, setRadius } =
-    useContext(ConfigContext);
+  const {
+    config,
+    setBorderWidth,
+    setBrandColor,
+    setLineHeight,
+    setFontSize,
+    setRadius,
+  } = useContext(ConfigContext);
   useEffect(() => {
     setCssVars(config);
   }, [config]);
 
   return (
-    <Card className="max-w-xs w-full p-2 h-min relative md:sticky md:top-28 z-30">
+    <Card className="max-w-xs w-full p-2 h-min relative md:sticky md:top-28 z-30 md:h-[calc(100vh-10rem)]">
       <CardHeader className="flex justify-between">
         <span className="font-semibold text-lg">NextUI Configuration</span>
         <CopyButton getData={() => generateConfig(config)} />
@@ -126,6 +132,24 @@ export default function Configuration() {
             onChange={(value) => setRadius({ large: value })}
           />
         </ConfigurationSection>
+
+        <ConfigurationSection cols={3} title="Border width (px)">
+          <NumberInput
+            label="Small"
+            value={config.borderWidth.small}
+            onChange={(value) => setBorderWidth({ small: value })}
+          />
+          <NumberInput
+            label="Medium"
+            value={config.borderWidth.medium}
+            onChange={(value) => setBorderWidth({ medium: value })}
+          />
+          <NumberInput
+            label="Large"
+            value={config.borderWidth.large}
+            onChange={(value) => setBorderWidth({ large: value })}
+          />
+        </ConfigurationSection>
       </CardBody>
     </Card>
   );
@@ -160,6 +184,11 @@ function generateConfig(config: Config): NextUIPluginConfig {
             medium: `${config.radius.medium}rem`,
             large: `${config.radius.large}rem`,
           },
+          borderWidth: {
+            small: `${config.borderWidth.small}px`,
+            medium: `${config.borderWidth.medium}px`,
+            large: `${config.borderWidth.large}px`,
+          },
         },
       },
       dark: {
@@ -187,6 +216,11 @@ function generateConfig(config: Config): NextUIPluginConfig {
             small: `${config.radius.small}rem`,
             medium: `${config.radius.medium}rem`,
             large: `${config.radius.large}rem`,
+          },
+          borderWidth: {
+            small: `${config.borderWidth.small}px`,
+            medium: `${config.borderWidth.medium}px`,
+            large: `${config.borderWidth.large}px`,
           },
         },
       },

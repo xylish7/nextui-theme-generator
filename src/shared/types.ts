@@ -81,4 +81,9 @@ export interface Config {
     medium: string;
     large: string;
   };
+  borderWidth: {
+    small: string;
+    medium: string;
+    large: string;
+  };
 }

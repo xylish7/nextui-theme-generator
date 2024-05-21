@@ -4,6 +4,7 @@ import { Config } from "shared/types";
 
 export interface ConfigProviderI {
   config: Config;
+  setBorderWidth: (newConfig: Partial<Config["borderWidth"]>) => void;
   setBrandColor: (newConfig: Partial<Config["brandColor"]>) => void;
   setLineHeight: (newConfig: Partial<Config["lineHeight"]>) => void;
   setFontSize: (newConfig: Partial<Config["fontSize"]>) => void;
@@ -35,10 +36,16 @@ const initialConfig: Config = {
     medium: "0.75",
     large: "0.875",
   },
+  borderWidth: {
+    small: "1",
+    medium: "2",
+    large: "3",
+  },
 };
 
 export const ConfigContext = createContext<ConfigProviderI>({
   config: initialConfig,
+  setBorderWidth: () => {},
   setBrandColor: () => {},
   setLineHeight: () => {},
   setFontSize: () => {},
@@ -51,6 +58,18 @@ interface ConfigProviderProps {
 
 export default function ConfigProvider({ children }: ConfigProviderProps) {
   const [config, setConfig] = useState<Config>(initialConfig);
+
+  const setBorderWidth = useCallback(
+    (newBorderWidths: Partial<Config["borderWidth"]>) =>
+      setConfig((prev) => ({
+        ...prev,
+        borderWidth: {
+          ...prev.borderWidth,
+          ...newBorderWidths,
+        },
+      })),
+    []
+  );
 
   const setBrandColor = useCallback(
     (newBrandColors: Partial<Config["brandColor"]>) =>
@@ -103,12 +122,20 @@ export default function ConfigProvider({ children }: ConfigProviderProps) {
   const contextValue = useMemo(
     () => ({
       config,
+      setBorderWidth,
       setBrandColor,
       setLineHeight,
       setFontSize,
       setRadius,
     }),
-    [config, setBrandColor, setLineHeight, setFontSize, setRadius]
+    [
+      config,
+      setBorderWidth,
+      setBrandColor,
+      setLineHeight,
+      setFontSize,
+      setRadius,
+    ]
   );
 
   return (

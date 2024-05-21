@@ -3,6 +3,16 @@ import hexToHsl from "utils/colors";
 import { generateThemeColor } from "./colors";
 import { BRAND_COLORS_ID, SHOWCASE_ID } from "shared/constants";
 
+function setBorderWidth(type: keyof Config["borderWidth"], value: string) {
+  const el = document.getElementById(SHOWCASE_ID);
+
+  if (!el) {
+    return;
+  }
+
+  el.style.setProperty(`--nextui-border-width-${type}`, `${value}px`);
+}
+
 function setColor(colorType: ColorType, themeColor: ThemeColor) {
   const brandColorsEl = document.getElementById(BRAND_COLORS_ID);
   const showcaseEl = document.getElementById(SHOWCASE_ID);
@@ -66,4 +76,7 @@ export function setCssVars(config: Config) {
   setRadius("small", config.radius.small);
   setRadius("medium", config.radius.medium);
   setRadius("large", config.radius.large);
+  setBorderWidth("small", config.borderWidth.small);
+  setBorderWidth("medium", config.borderWidth.medium);
+  setBorderWidth("large", config.borderWidth.large);
 }
