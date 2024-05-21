@@ -1,12 +1,13 @@
 import { colors } from "@nextui-org/react";
 import { useState, createContext, useMemo, useCallback } from "react";
-import { BrandColor, Config, FontSize, LineHeight } from "shared/types";
+import { Config } from "shared/types";
 
 export interface ConfigProviderI {
   config: Config;
-  setBrandColor: (newConfig: Partial<BrandColor>) => void;
-  setLineHeight: (newConfig: Partial<LineHeight>) => void;
-  setFontSize: (newConfig: Partial<FontSize>) => void;
+  setBrandColor: (newConfig: Partial<Config["brandColor"]>) => void;
+  setLineHeight: (newConfig: Partial<Config["lineHeight"]>) => void;
+  setFontSize: (newConfig: Partial<Config["fontSize"]>) => void;
+  setRadius: (newConfig: Partial<Config["radius"]>) => void;
 }
 
 const initialConfig: Config = {
@@ -29,6 +30,11 @@ const initialConfig: Config = {
     medium: "1.5",
     large: "1.75",
   },
+  radius: {
+    small: "0.5",
+    medium: "0.75",
+    large: "0.875",
+  },
 };
 
 export const ConfigContext = createContext<ConfigProviderI>({
@@ -36,6 +42,7 @@ export const ConfigContext = createContext<ConfigProviderI>({
   setBrandColor: () => {},
   setLineHeight: () => {},
   setFontSize: () => {},
+  setRadius: () => {},
 });
 
 interface ConfigProviderProps {
@@ -46,7 +53,7 @@ export default function ConfigProvider({ children }: ConfigProviderProps) {
   const [config, setConfig] = useState<Config>(initialConfig);
 
   const setBrandColor = useCallback(
-    (newBrandColors: Partial<BrandColor>) =>
+    (newBrandColors: Partial<Config["brandColor"]>) =>
       setConfig((prev) => ({
         ...prev,
         brandColor: {
@@ -58,7 +65,7 @@ export default function ConfigProvider({ children }: ConfigProviderProps) {
   );
 
   const setLineHeight = useCallback(
-    (newLineHeights: Partial<LineHeight>) =>
+    (newLineHeights: Partial<Config["lineHeight"]>) =>
       setConfig((prev) => ({
         ...prev,
         lineHeight: {
@@ -70,12 +77,24 @@ export default function ConfigProvider({ children }: ConfigProviderProps) {
   );
 
   const setFontSize = useCallback(
-    (newFontSizes: Partial<FontSize>) =>
+    (newFontSizes: Partial<Config["fontSize"]>) =>
       setConfig((prev) => ({
         ...prev,
         fontSize: {
           ...prev.fontSize,
           ...newFontSizes,
+        },
+      })),
+    []
+  );
+
+  const setRadius = useCallback(
+    (newRadius: Partial<Config["radius"]>) =>
+      setConfig((prev) => ({
+        ...prev,
+        radius: {
+          ...prev.radius,
+          ...newRadius,
         },
       })),
     []
@@ -87,8 +106,9 @@ export default function ConfigProvider({ children }: ConfigProviderProps) {
       setBrandColor,
       setLineHeight,
       setFontSize,
+      setRadius,
     }),
-    [config, setBrandColor, setLineHeight, setFontSize]
+    [config, setBrandColor, setLineHeight, setFontSize, setRadius]
   );
 
   return (

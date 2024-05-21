@@ -57,29 +57,28 @@ export type ColorType =
   | "danger";
 
 export interface Config {
-  brandColor: BrandColor;
-  fontSize: FontSize;
-  lineHeight: LineHeight;
-}
-
-export interface BrandColor {
-  primary: string;
-  secondary: string;
-  success: string;
-  warning: string;
-  danger: string;
-}
-
-export interface FontSize {
-  tiny: string;
-  small: string;
-  medium: string;
-  large: string;
-}
-
-export interface LineHeight {
-  tiny: string;
-  small: string;
-  medium: string;
-  large: string;
+  brandColor: {
+    primary: string;
+    secondary: string;
+    success: string;
+    warning: string;
+    danger: string;
+  };
+  fontSize: {
+    tiny: string;
+    small: string;
+    medium: string;
+    large: string;
+  };
+  lineHeight: {
+    tiny: string;
+    small: string;
+    medium: string;
+    large: string;
+  };
+  radius: {
+    small: string;
+    medium: string;
+    large: string;
+  };
 }

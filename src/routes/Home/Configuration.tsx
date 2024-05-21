@@ -17,7 +17,7 @@ import NumberInput from "components/NumberInput";
 import { BRAND_COLORS_ID } from "shared/constants";
 
 export default function Configuration() {
-  const { config, setBrandColor, setLineHeight, setFontSize } =
+  const { config, setBrandColor, setLineHeight, setFontSize, setRadius } =
     useContext(ConfigContext);
   useEffect(() => {
     setCssVars(config);
@@ -108,13 +108,30 @@ export default function Configuration() {
             onChange={(value) => setLineHeight({ large: value })}
           />
         </ConfigurationSection>
+
+        <ConfigurationSection cols={3} title="Radius (rem)">
+          <NumberInput
+            label="Small"
+            value={config.radius.small}
+            onChange={(value) => setRadius({ small: value })}
+          />
+          <NumberInput
+            label="Medium"
+            value={config.radius.medium}
+            onChange={(value) => setRadius({ medium: value })}
+          />
+          <NumberInput
+            label="Large"
+            value={config.radius.large}
+            onChange={(value) => setRadius({ large: value })}
+          />
+        </ConfigurationSection>
       </CardBody>
     </Card>
   );
 }
 
 function generateConfig(config: Config): NextUIPluginConfig {
-  console.log("🚀 ~ generateConfig ~ config:", config);
   return {
     themes: {
       light: {
@@ -132,6 +149,17 @@ function generateConfig(config: Config): NextUIPluginConfig {
             medium: `${config.fontSize.medium}rem`,
             large: `${config.fontSize.large}rem`,
           },
+          lineHeight: {
+            tiny: `${config.lineHeight.tiny}rem`,
+            small: `${config.lineHeight.small}rem`,
+            medium: `${config.lineHeight.medium}rem`,
+            large: `${config.lineHeight.large}rem`,
+          },
+          radius: {
+            small: `${config.radius.small}rem`,
+            medium: `${config.radius.medium}rem`,
+            large: `${config.radius.large}rem`,
+          },
         },
       },
       dark: {
@@ -148,6 +176,17 @@ function generateConfig(config: Config): NextUIPluginConfig {
             small: `${config.fontSize.small}rem`,
             medium: `${config.fontSize.medium}rem`,
             large: `${config.fontSize.large}rem`,
+          },
+          lineHeight: {
+            tiny: `${config.lineHeight.tiny}rem`,
+            small: `${config.lineHeight.small}rem`,
+            medium: `${config.lineHeight.medium}rem`,
+            large: `${config.lineHeight.large}rem`,
+          },
+          radius: {
+            small: `${config.radius.small}rem`,
+            medium: `${config.radius.medium}rem`,
+            large: `${config.radius.large}rem`,
           },
         },
       },

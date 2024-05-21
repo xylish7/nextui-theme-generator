@@ -1,10 +1,4 @@
-import {
-  ColorType,
-  Config,
-  FontSize,
-  LineHeight,
-  ThemeColor,
-} from "shared/types";
+import { ColorType, Config, ThemeColor } from "shared/types";
 import hexToHsl from "utils/colors";
 import { generateThemeColor } from "./colors";
 import { BRAND_COLORS_ID, SHOWCASE_ID } from "shared/constants";
@@ -25,7 +19,7 @@ function setColor(colorType: ColorType, themeColor: ThemeColor) {
   });
 }
 
-function setFontSize(type: keyof FontSize, value: string) {
+function setFontSize(type: keyof Config["fontSize"], value: string) {
   const el = document.getElementById(SHOWCASE_ID);
 
   if (!el) {
@@ -35,14 +29,24 @@ function setFontSize(type: keyof FontSize, value: string) {
   el.style.setProperty(`--nextui-font-size-${type}`, `${value}rem`);
 }
 
-function setLineHeight(type: keyof LineHeight, value: string) {
+function setLineHeight(type: keyof Config["lineHeight"], value: string) {
   const el = document.getElementById(SHOWCASE_ID);
 
   if (!el) {
     return;
   }
 
-  el.style.setProperty(`--nextui-line-height-${type}`, value);
+  el.style.setProperty(`--nextui-line-height-${type}`, `${value}rem`);
+}
+
+function setRadius(type: keyof Config["radius"], value: string) {
+  const el = document.getElementById(SHOWCASE_ID);
+
+  if (!el) {
+    return;
+  }
+
+  el.style.setProperty(`--nextui-radius-${type}`, `${value}rem`);
 }
 
 export function setCssVars(config: Config) {
@@ -59,4 +63,7 @@ export function setCssVars(config: Config) {
   setLineHeight("small", config.lineHeight.small);
   setLineHeight("medium", config.lineHeight.medium);
   setLineHeight("large", config.lineHeight.large);
+  setRadius("small", config.radius.small);
+  setRadius("medium", config.radius.medium);
+  setRadius("large", config.radius.large);
 }
