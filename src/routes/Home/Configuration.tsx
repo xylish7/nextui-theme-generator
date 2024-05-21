@@ -27,7 +27,7 @@ export default function Configuration() {
     <Card className="max-w-xs w-full p-2 h-min relative md:sticky md:top-28 z-30">
       <CardHeader className="flex justify-between">
         <span className="font-semibold text-lg">NextUI Configuration</span>
-        <CopyButton data={generateConfig(config)} />
+        <CopyButton getData={() => generateConfig(config)} />
       </CardHeader>
       <CardBody className="flex flex-col gap-8">
         <ConfigurationSection id={BRAND_COLORS_ID} title="Brand colors">
@@ -114,6 +114,7 @@ export default function Configuration() {
 }
 
 function generateConfig(config: Config): NextUIPluginConfig {
+  console.log("🚀 ~ generateConfig ~ config:", config);
   return {
     themes: {
       light: {

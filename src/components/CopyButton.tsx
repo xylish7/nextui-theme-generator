@@ -3,14 +3,14 @@ import { Check, Copy } from "@phosphor-icons/react";
 import { useState } from "react";
 
 interface CopyButtonProps {
-  data: unknown;
+  getData: () => unknown;
 }
 
-export function CopyButton({ data }: CopyButtonProps) {
+export function CopyButton({ getData }: CopyButtonProps) {
   const [copied, setCopied] = useState(false);
 
   function handleCopyConfig() {
-    navigator.clipboard.writeText(JSON.stringify(data, null, 2));
+    navigator.clipboard.writeText(JSON.stringify(getData(), null, 2));
 
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);

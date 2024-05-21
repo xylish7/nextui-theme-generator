@@ -51,9 +51,8 @@ export default function ColorPicker({
               {colorValues
                 ?.slice(0, colorValues.length - 1)
                 .map((color, index: number) => (
-                  <div className="flex flex-col items-center">
+                  <div key={index} className="flex flex-col items-center">
                     <div
-                      key={index}
                       className="h-6 w-6 rounded"
                       style={{ backgroundColor: colorValuesToRgb(color) }}
                     />

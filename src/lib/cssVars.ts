@@ -10,23 +10,17 @@ import { generateThemeColor } from "./colors";
 import { BRAND_COLORS_ID, SHOWCASE_ID } from "shared/constants";
 
 function setColor(colorType: ColorType, themeColor: ThemeColor) {
-  const el = document.getElementById(BRAND_COLORS_ID);
-
-  if (!el) {
-    return;
-  }
+  const brandColorsEl = document.getElementById(BRAND_COLORS_ID);
+  const showcaseEl = document.getElementById(SHOWCASE_ID);
 
   Object.keys(themeColor).forEach((key) => {
+    const value = hexToHsl(themeColor[key as keyof ThemeColor]);
     if (key === "DEFAULT") {
-      el.style.setProperty(
-        `--nextui-${colorType}`,
-        hexToHsl(themeColor[key as keyof ThemeColor])
-      );
+      brandColorsEl?.style.setProperty(`--nextui-${colorType}`, value);
+      showcaseEl?.style.setProperty(`--nextui-${colorType}`, value);
     } else {
-      el.style.setProperty(
-        `--nextui-${colorType}-${key}`,
-        hexToHsl(themeColor[key as keyof ThemeColor])
-      );
+      brandColorsEl?.style.setProperty(`--nextui-${colorType}-${key}`, value);
+      showcaseEl?.style.setProperty(`--nextui-${colorType}-${key}`, value);
     }
   });
 }
