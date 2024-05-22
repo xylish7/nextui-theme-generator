@@ -225,6 +225,11 @@ function generateConfig(config: Config): NextUIPluginConfig {
           success: generateThemeColor(config.light.brandColor.success, "light"),
           warning: generateThemeColor(config.light.brandColor.warning, "light"),
           danger: generateThemeColor(config.light.brandColor.danger, "light"),
+          background: config.light.baseColor.background,
+          foreground: generateThemeColor(
+            config.light.baseColor.foreground,
+            "light"
+          ),
         },
         layout,
       },
@@ -239,6 +244,11 @@ function generateConfig(config: Config): NextUIPluginConfig {
           success: generateThemeColor(config.dark.brandColor.success, "dark"),
           warning: generateThemeColor(config.dark.brandColor.warning, "dark"),
           danger: generateThemeColor(config.dark.brandColor.danger, "dark"),
+          background: config.dark.baseColor.background,
+          foreground: generateThemeColor(
+            config.dark.baseColor.foreground,
+            "dark"
+          ),
         },
         layout,
       },
