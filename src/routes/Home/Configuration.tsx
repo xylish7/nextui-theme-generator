@@ -1,12 +1,12 @@
 import { useContext, useEffect } from "react";
-import { Card, CardBody, CardHeader } from "@nextui-org/react";
+import { Button, Card, CardBody, CardHeader, Tooltip } from "@nextui-org/react";
 
 import ColorPicker from "components/ColorPicker";
 import { CopyButton } from "components/CopyButton";
 import ConfigurationSection from "components/ConfigurationSection";
 import NumberInput from "components/NumberInput";
 import { ConfigContext } from "providers/ConfigProvider";
-import { generateConfig } from "lib/configuration";
+import { getNextUIPluginConfig } from "lib/configuration";
 import {
   setCssColor,
   setAllCssVars,
@@ -19,6 +19,8 @@ import {
 import { COLORS_ID, BASE_COLOR_ID } from "shared/constants";
 import { ThemeContext } from "providers/ThemeProvider";
 import usePrevious from "hooks/usePrevious";
+import { storage } from "lib/local-storage";
+import { ArrowsClockwise } from "@phosphor-icons/react";
 
 export default function Configuration() {
   const { theme } = useContext(ThemeContext);
@@ -26,6 +28,7 @@ export default function Configuration() {
 
   const {
     config,
+    resetConfig,
     setBaseColor,
     setBorderWidth,
     setBrandColor,
@@ -38,13 +41,31 @@ export default function Configuration() {
     if (prevTheme !== theme) {
       setAllCssVars(config, theme);
     }
+
+    if (prevTheme === theme) {
+      storage.setConfiguration(config);
+    }
   }, [config, theme, prevTheme]);
 
   return (
     <Card className="max-w-xs w-full p-2 h-min relative md:sticky md:top-28 z-30 md:h-[calc(100vh-10rem)]">
       <CardHeader className="flex justify-between">
         <span className="font-semibold text-lg">NextUI Configuration</span>
-        <CopyButton getData={() => generateConfig(config)} />
+        <div className="flex gap-2">
+          <Tooltip content="Reset theme">
+            <Button color="secondary" isIconOnly size="sm" variant="bordered">
+              <ArrowsClockwise
+                size={18}
+                onClick={() => {
+                  const newConfig = resetConfig(theme);
+                  setAllCssVars(newConfig, theme);
+                  storage.setConfiguration(newConfig);
+                }}
+              />
+            </Button>
+          </Tooltip>
+          <CopyButton getData={() => getNextUIPluginConfig(config)} />
+        </div>
       </CardHeader>
       <CardBody className="flex flex-col gap-8">
         <ConfigurationSection id={COLORS_ID} title="Brand colors">

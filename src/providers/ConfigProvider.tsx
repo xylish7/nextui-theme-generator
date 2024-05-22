@@ -1,5 +1,5 @@
-import { colors } from "@nextui-org/react";
-import { getConfiguration } from "lib/local-storage";
+import { getConfig, initialConfig } from "lib/configuration";
+import { storage } from "lib/local-storage";
 import {
   useState,
   createContext,
@@ -11,6 +11,7 @@ import { ColorsConfig, Config, LayoutConfig, Theme } from "shared/types";
 
 export interface ConfigProviderI {
   config: Config;
+  resetConfig: (theme: Theme) => Config;
   setBaseColor: (
     newConfig: Partial<ColorsConfig["baseColor"]>,
     theme: Theme
@@ -25,63 +26,9 @@ export interface ConfigProviderI {
   setRadius: (newConfig: Partial<LayoutConfig["radius"]>) => void;
 }
 
-const initialConfig: Config = {
-  light: {
-    brandColor: {
-      default: colors.zinc[300],
-      primary: colors.blue[500],
-      secondary: colors.purple[500],
-      success: colors.green[500],
-      warning: colors.yellow[500],
-      danger: colors.red[500],
-    },
-    baseColor: {
-      foreground: colors.black,
-      background: colors.white,
-    },
-  },
-  dark: {
-    brandColor: {
-      default: colors.zinc[700],
-      primary: colors.blue[500],
-      secondary: colors.purple[500],
-      success: colors.green[500],
-      warning: colors.yellow[500],
-      danger: colors.red[500],
-    },
-    baseColor: {
-      foreground: colors.white,
-      background: colors.black,
-    },
-  },
-  layout: {
-    fontSize: {
-      tiny: "0.75",
-      small: "0.875",
-      medium: "1",
-      large: "1.125",
-    },
-    lineHeight: {
-      tiny: "1",
-      small: "1.25",
-      medium: "1.5",
-      large: "1.75",
-    },
-    radius: {
-      small: "0.5",
-      medium: "0.75",
-      large: "0.875",
-    },
-    borderWidth: {
-      small: "1",
-      medium: "2",
-      large: "3",
-    },
-  },
-};
-
 export const ConfigContext = createContext<ConfigProviderI>({
-  config: initialConfig,
+  config: getConfig(),
+  resetConfig: () => initialConfig,
   setBaseColor: () => {},
   setBorderWidth: () => {},
   setBrandColor: () => {},
@@ -95,14 +42,25 @@ interface ConfigProviderProps {
 }
 
 export default function ConfigProvider({ children }: ConfigProviderProps) {
-  const [config, setConfig] = useState<Config>(initialConfig);
-  console.log("🚀 ~ ConfigProvider ~ config:", config);
+  const [config, setConfig] = useState<Config>(getConfig());
 
   useEffect(() => {
-    const savedConfig = getConfiguration();
+    const savedConfig = storage.getConfiguration();
     if (savedConfig) {
       setConfig(savedConfig);
     }
+  }, []);
+
+  const resetConfig = useCallback((theme: Theme) => {
+    let newConfig = initialConfig;
+    setConfig((prev) => {
+      newConfig = {
+        ...prev,
+        [theme]: initialConfig[theme],
+      };
+      return newConfig;
+    });
+    return newConfig;
   }, []);
 
   const setBrandColor = useCallback(
@@ -199,6 +157,7 @@ export default function ConfigProvider({ children }: ConfigProviderProps) {
 
   const contextValue = useMemo(
     () => ({
+      resetConfig,
       config,
       setBaseColor,
       setBorderWidth,
@@ -208,6 +167,7 @@ export default function ConfigProvider({ children }: ConfigProviderProps) {
       setRadius,
     }),
     [
+      resetConfig,
       config,
       setBaseColor,
       setBorderWidth,

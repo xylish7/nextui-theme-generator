@@ -19,10 +19,10 @@ export function CopyButton({ getData }: CopyButtonProps) {
   return (
     <Tooltip content="Copy">
       <Button
-        color="primary"
+        color="secondary"
         isIconOnly
         size="sm"
-        variant="flat"
+        variant="bordered"
         onClick={handleCopyConfig}
       >
         {copied ? <Check size={18} /> : <Copy size={18} />}
