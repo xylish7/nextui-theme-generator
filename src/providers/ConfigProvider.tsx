@@ -1,5 +1,12 @@
 import { colors } from "@nextui-org/react";
-import { useState, createContext, useMemo, useCallback } from "react";
+import { getConfiguration } from "lib/local-storage";
+import {
+  useState,
+  createContext,
+  useMemo,
+  useCallback,
+  useEffect,
+} from "react";
 import { ColorsConfig, Config, LayoutConfig, Theme } from "shared/types";
 
 export interface ConfigProviderI {
@@ -89,6 +96,14 @@ interface ConfigProviderProps {
 
 export default function ConfigProvider({ children }: ConfigProviderProps) {
   const [config, setConfig] = useState<Config>(initialConfig);
+  console.log("🚀 ~ ConfigProvider ~ config:", config);
+
+  useEffect(() => {
+    const savedConfig = getConfiguration();
+    if (savedConfig) {
+      setConfig(savedConfig);
+    }
+  }, []);
 
   const setBrandColor = useCallback(
     (newConfig: Partial<ColorsConfig["brandColor"]>, theme: Theme) => {
