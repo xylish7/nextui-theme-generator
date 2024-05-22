@@ -22,7 +22,7 @@ export function CopyButton({ getData }: CopyButtonProps) {
         color="secondary"
         isIconOnly
         size="sm"
-        variant="bordered"
+        variant="flat"
         onClick={handleCopyConfig}
       >
         {copied ? <Check size={18} /> : <Copy size={18} />}

@@ -53,15 +53,18 @@ export default function Configuration() {
         <span className="font-semibold text-lg">NextUI Configuration</span>
         <div className="flex gap-2">
           <Tooltip content="Reset theme">
-            <Button color="secondary" isIconOnly size="sm" variant="bordered">
-              <ArrowsClockwise
-                size={18}
-                onClick={() => {
-                  const newConfig = resetConfig(theme);
-                  setAllCssVars(newConfig, theme);
-                  storage.setConfiguration(newConfig);
-                }}
-              />
+            <Button
+              color="secondary"
+              isIconOnly
+              size="sm"
+              variant="flat"
+              onClick={() => {
+                const newConfig = resetConfig(theme);
+                setAllCssVars(newConfig, theme);
+                storage.setConfiguration(newConfig);
+              }}
+            >
+              <ArrowsClockwise size={18} />
             </Button>
           </Tooltip>
           <CopyButton getData={() => getNextUIPluginConfig(config)} />
