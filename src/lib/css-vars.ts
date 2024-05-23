@@ -25,16 +25,18 @@ export function setCssColor(
   const showcaseEl = document.getElementById(SHOWCASE_ID);
   const themeColor = generateThemeColor(value, theme);
 
+  if (!brandColorsEl || !commonColorsEl || !showcaseEl) return;
+
   Object.keys(themeColor).forEach((key) => {
     const value = hexToHsl(themeColor[key as keyof ThemeColor]);
     if (key === "DEFAULT") {
-      brandColorsEl?.style.setProperty(`--nextui-${colorType}`, value);
-      commonColorsEl?.style.setProperty(`--nextui-${colorType}`, value);
-      showcaseEl?.style.setProperty(`--nextui-${colorType}`, value);
+      brandColorsEl.style.setProperty(`--nextui-${colorType}`, value);
+      commonColorsEl.style.setProperty(`--nextui-${colorType}`, value);
+      showcaseEl.style.setProperty(`--nextui-${colorType}`, value);
     } else {
-      brandColorsEl?.style.setProperty(`--nextui-${colorType}-${key}`, value);
-      commonColorsEl?.style.setProperty(`--nextui-${colorType}-${key}`, value);
-      showcaseEl?.style.setProperty(`--nextui-${colorType}-${key}`, value);
+      brandColorsEl.style.setProperty(`--nextui-${colorType}-${key}`, value);
+      commonColorsEl.style.setProperty(`--nextui-${colorType}-${key}`, value);
+      showcaseEl.style.setProperty(`--nextui-${colorType}-${key}`, value);
     }
   });
 }
@@ -109,6 +111,26 @@ export function setCssOtherColor(
   showcaseEl?.style.setProperty(`--nextui-${type}`, hslValue);
 }
 
+export function setOtherCssParams(
+  type: keyof LayoutConfig["otherParams"],
+  value: string
+) {
+  const el = document.getElementById(SHOWCASE_ID);
+  if (!el) return;
+
+  switch (type) {
+    case "disabledOpacity":
+      el.style.setProperty("--nextui-disabled-opacity", value);
+      break;
+    case "dividerWeight":
+      el.style.setProperty("--nextui-divider-weight", `${value}px`);
+      break;
+    case "hoverOpacity":
+      el.style.setProperty("--nextui-hover-opacity", value);
+      break;
+  }
+}
+
 export function setAllCssVars(config: Config, theme: Theme) {
   setCssColor("default", config[theme].brandColor.default, theme);
   setCssColor("primary", config[theme].brandColor.primary, theme);
@@ -139,4 +161,10 @@ export function setAllCssVars(config: Config, theme: Theme) {
   setCssOtherColor("divider", config[theme].otherColor.divider);
   setCssOtherColor("focus", config[theme].otherColor.focus);
   setCssOtherColor("overlay", config[theme].otherColor.overlay);
+  setOtherCssParams(
+    "disabledOpacity",
+    config.layout.otherParams.disabledOpacity
+  );
+  setOtherCssParams("dividerWeight", config.layout.otherParams.dividerWeight);
+  setOtherCssParams("hoverOpacity", config.layout.otherParams.hoverOpacity);
 }

@@ -27,6 +27,7 @@ export interface ConfigProviderI {
     newConfig: Partial<ColorsConfig["otherColor"]>,
     theme: Theme
   ) => void;
+  setOtherParams: (newConfig: Partial<LayoutConfig["otherParams"]>) => void;
   setRadius: (newConfig: Partial<LayoutConfig["radius"]>) => void;
 }
 
@@ -39,6 +40,7 @@ export const ConfigContext = createContext<ConfigProviderI>({
   setLineHeight: () => {},
   setFontSize: () => {},
   setOtherColor: () => {},
+  setOtherParams: () => {},
   setRadius: () => {},
 });
 
@@ -62,6 +64,7 @@ export default function ConfigProvider({ children }: ConfigProviderProps) {
       newConfig = {
         ...prev,
         [theme]: initialConfig[theme],
+        layout: initialConfig.layout,
       };
       return newConfig;
     });
@@ -176,6 +179,21 @@ export default function ConfigProvider({ children }: ConfigProviderProps) {
     []
   );
 
+  const setOtherParams = useCallback(
+    (newOtherParams: Partial<LayoutConfig["otherParams"]>) =>
+      setConfig((prev) => ({
+        ...prev,
+        layout: {
+          ...prev.layout,
+          otherParams: {
+            ...prev.layout.otherParams,
+            ...newOtherParams,
+          },
+        },
+      })),
+    []
+  );
+
   const contextValue = useMemo(
     () => ({
       resetConfig,
@@ -186,6 +204,7 @@ export default function ConfigProvider({ children }: ConfigProviderProps) {
       setLineHeight,
       setFontSize,
       setOtherColor,
+      setOtherParams,
       setRadius,
     }),
     [
@@ -197,6 +216,7 @@ export default function ConfigProvider({ children }: ConfigProviderProps) {
       setLineHeight,
       setFontSize,
       setOtherColor,
+      setOtherParams,
       setRadius,
     ]
   );

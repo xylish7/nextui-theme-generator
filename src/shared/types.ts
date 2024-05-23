@@ -118,4 +118,9 @@ export interface LayoutConfig {
     medium: string;
     large: string;
   };
+  otherParams: {
+    disabledOpacity: string;
+    dividerWeight: string;
+    hoverOpacity: string;
+  };
 }

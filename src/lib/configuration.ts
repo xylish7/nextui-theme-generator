@@ -75,6 +75,11 @@ export const initialConfig: Config = {
       medium: "2",
       large: "3",
     },
+    otherParams: {
+      disabledOpacity: "0.5",
+      dividerWeight: "1",
+      hoverOpacity: "0.9",
+    },
   },
 };
 
@@ -83,7 +88,7 @@ export function getConfig(): Config {
 }
 
 export function getNextUIPluginConfig(config: Config): NextUIPluginConfig {
-  const layout = {
+  const layout: NextUIPluginConfig["layout"] = {
     fontSize: {
       tiny: `${config.layout.fontSize.tiny}rem`,
       small: `${config.layout.fontSize.small}rem`,
@@ -106,6 +111,9 @@ export function getNextUIPluginConfig(config: Config): NextUIPluginConfig {
       medium: `${config.layout.borderWidth.medium}px`,
       large: `${config.layout.borderWidth.large}px`,
     },
+    disabledOpacity: config.layout.otherParams.disabledOpacity,
+    dividerWeight: config.layout.otherParams.dividerWeight,
+    hoverOpacity: config.layout.otherParams.hoverOpacity,
   };
 
   return {
@@ -146,7 +154,6 @@ export function getNextUIPluginConfig(config: Config): NextUIPluginConfig {
           overlay: config.light.otherColor.overlay,
           divider: config.light.otherColor.divider,
         },
-        layout,
       },
       dark: {
         colors: {
@@ -184,8 +191,8 @@ export function getNextUIPluginConfig(config: Config): NextUIPluginConfig {
           overlay: config.dark.otherColor.overlay,
           divider: config.dark.otherColor.divider,
         },
-        layout,
       },
     },
+    layout,
   };
 }

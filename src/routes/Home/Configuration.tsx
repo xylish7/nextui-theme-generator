@@ -17,6 +17,7 @@ import {
   setCssBorderWidth,
   setCssContentColor,
   setCssOtherColor,
+  setOtherCssParams,
 } from "lib/css-vars";
 import { COLORS_ID, BASE_COLORS_ID, OTHER_COLORS_ID } from "shared/constants";
 import { ThemeContext } from "providers/ThemeProvider";
@@ -37,6 +38,7 @@ export default function Configuration() {
     setLineHeight,
     setFontSize,
     setOtherColor,
+    setOtherParams,
     setRadius,
   } = useContext(ConfigContext);
 
@@ -51,7 +53,7 @@ export default function Configuration() {
   }, [config, theme, prevTheme]);
 
   return (
-    <Card className="max-w-xs w-full p-2 h-min relative md:sticky md:top-28 z-30 md:h-[calc(100vh-10rem)]">
+    <Card className="max-w-xs w-full p-2 h-min relative mx-auto md:sticky md:top-28 z-30 md:h-[calc(100vh-10rem)]">
       <CardHeader className="flex justify-between">
         <span className="font-semibold text-lg">NextUI Configuration</span>
         <div className="flex gap-2">
@@ -338,6 +340,33 @@ export default function Configuration() {
             onChange={(value) => {
               setBorderWidth({ large: value });
               setCssBorderWidth("large", value);
+            }}
+          />
+        </ConfigurationSection>
+
+        <ConfigurationSection cols={1} title="Other params">
+          <NumberInput
+            label="Disabled opacity (0-1)"
+            value={config.layout.otherParams.disabledOpacity}
+            onChange={(value) => {
+              setOtherParams({ disabledOpacity: value });
+              setOtherCssParams("disabledOpacity", value);
+            }}
+          />
+          <NumberInput
+            label="Divider weight (px)"
+            value={config.layout.otherParams.dividerWeight}
+            onChange={(value) => {
+              setOtherParams({ dividerWeight: value });
+              setOtherCssParams("dividerWeight", value);
+            }}
+          />
+          <NumberInput
+            label="Hover opacity (0-1)"
+            value={config.layout.otherParams.hoverOpacity}
+            onChange={(value) => {
+              setOtherParams({ hoverOpacity: value });
+              setOtherCssParams("hoverOpacity", value);
             }}
           />
         </ConfigurationSection>
