@@ -3,6 +3,7 @@ import { NextUIPluginConfig, colors } from "@nextui-org/react";
 import { Config } from "shared/types";
 import { generateThemeColor } from "./colors";
 import { storage } from "./local-storage";
+import { readableColor } from "color2k";
 
 export const initialConfig: Config = {
   light: {
@@ -17,6 +18,10 @@ export const initialConfig: Config = {
     baseColor: {
       foreground: colors.black,
       background: colors.white,
+      content1: colors.white,
+      content2: colors.zinc[100],
+      content3: colors.zinc[200],
+      content4: colors.zinc[300],
     },
   },
   dark: {
@@ -31,6 +36,10 @@ export const initialConfig: Config = {
     baseColor: {
       foreground: colors.white,
       background: colors.black,
+      content1: colors.zinc[900],
+      content2: colors.zinc[800],
+      content3: colors.zinc[700],
+      content4: colors.zinc[600],
     },
   },
   layout: {
@@ -107,6 +116,22 @@ export function getNextUIPluginConfig(config: Config): NextUIPluginConfig {
             config.light.baseColor.foreground,
             "light"
           ),
+          content1: {
+            DEFAULT: config.light.baseColor.content1,
+            foreground: readableColor(config.light.baseColor.content1),
+          },
+          content2: {
+            DEFAULT: config.light.baseColor.content2,
+            foreground: readableColor(config.light.baseColor.content2),
+          },
+          content3: {
+            DEFAULT: config.light.baseColor.content3,
+            foreground: readableColor(config.light.baseColor.content3),
+          },
+          content4: {
+            DEFAULT: config.light.baseColor.content4,
+            foreground: readableColor(config.light.baseColor.content4),
+          },
         },
         layout,
       },
@@ -126,6 +151,22 @@ export function getNextUIPluginConfig(config: Config): NextUIPluginConfig {
             config.dark.baseColor.foreground,
             "dark"
           ),
+          content1: {
+            DEFAULT: config.dark.baseColor.content1,
+            foreground: readableColor(config.dark.baseColor.content1),
+          },
+          content2: {
+            DEFAULT: config.dark.baseColor.content2,
+            foreground: readableColor(config.dark.baseColor.content2),
+          },
+          content3: {
+            DEFAULT: config.dark.baseColor.content3,
+            foreground: readableColor(config.dark.baseColor.content3),
+          },
+          content4: {
+            DEFAULT: config.dark.baseColor.content4,
+            foreground: readableColor(config.dark.baseColor.content4),
+          },
         },
         layout,
       },

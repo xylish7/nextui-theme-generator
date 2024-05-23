@@ -108,6 +108,14 @@ function getColor(type: ColorPickerType) {
       return "bg-foreground text-black";
     case "default":
       return "bg-default";
+    case "content1":
+      return "bg-content1 text-content1-foreground";
+    case "content2":
+      return "bg-content2 text-content2-foreground";
+    case "content3":
+      return "bg-content3 text-content3-foreground";
+    case "content4":
+      return "bg-content4 text-content4-foreground";
     default:
       return undefined;
   }

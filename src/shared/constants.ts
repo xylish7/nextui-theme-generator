@@ -7,3 +7,4 @@ export const FLOAT_NUMBER_REGEX = /^\d+(\.\d*)?$/;
 export const COLORS_ID = "th-colors";
 export const BASE_COLOR_ID = "th-base-colors";
 export const SHOWCASE_ID = "th-showcase";
+export const CONTENT_SHOWCASE_ID = "th-content-showcase";

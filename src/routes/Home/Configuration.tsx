@@ -15,6 +15,7 @@ import {
   setCssRadius,
   setCssFontSize,
   setCssBorderWidth,
+  setCssContentColor,
 } from "lib/css-vars";
 import { COLORS_ID, BASE_COLOR_ID } from "shared/constants";
 import { ThemeContext } from "providers/ThemeProvider";
@@ -145,6 +146,42 @@ export default function Configuration() {
             onChange={(hexColor) => {
               setBaseColor({ foreground: hexColor }, theme);
               setCssColor("foreground", hexColor, theme);
+            }}
+          />
+          <ColorPicker
+            hexColor={config[theme].baseColor.content1}
+            label="Content 1"
+            type="content1"
+            onChange={(hexColor) => {
+              setBaseColor({ content1: hexColor }, theme);
+              setCssContentColor(1, hexColor);
+            }}
+          />
+          <ColorPicker
+            hexColor={config[theme].baseColor.content2}
+            label="Content 2"
+            type="content2"
+            onChange={(hexColor) => {
+              setBaseColor({ content2: hexColor }, theme);
+              setCssContentColor(2, hexColor);
+            }}
+          />
+          <ColorPicker
+            hexColor={config[theme].baseColor.content3}
+            label="Content 3"
+            type="content3"
+            onChange={(hexColor) => {
+              setBaseColor({ content3: hexColor }, theme);
+              setCssContentColor(3, hexColor);
+            }}
+          />
+          <ColorPicker
+            hexColor={config[theme].baseColor.content4}
+            label="Content 4"
+            type="content4"
+            onChange={(hexColor) => {
+              setBaseColor({ content4: hexColor }, theme);
+              setCssContentColor(4, hexColor);
             }}
           />
         </ConfigurationSection>

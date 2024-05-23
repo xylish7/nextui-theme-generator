@@ -50,6 +50,10 @@ export interface Repo {
 
 export type ColorPickerType =
   | "background"
+  | "content1"
+  | "content2"
+  | "content3"
+  | "content4"
   | "danger"
   | "default"
   | "foreground"
@@ -76,6 +80,10 @@ export interface ColorsConfig {
   baseColor: {
     foreground: string;
     background: string;
+    content1: string;
+    content2: string;
+    content3: string;
+    content4: string;
   };
 }
 

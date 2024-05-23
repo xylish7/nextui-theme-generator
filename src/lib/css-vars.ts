@@ -8,6 +8,7 @@ import {
 import hexToHsl from "utils/colors";
 import { generateThemeColor } from "./colors";
 import { COLORS_ID, BASE_COLOR_ID, SHOWCASE_ID } from "shared/constants";
+import { readableColor } from "color2k";
 
 export function setCssColor(
   colorType: ColorPickerType,
@@ -36,8 +37,10 @@ export function setCssColor(
 export function setCssBackground(value: string) {
   const showcaseEl = document.getElementById(SHOWCASE_ID);
   const baseColor = document.getElementById(BASE_COLOR_ID);
-  baseColor?.style.setProperty("--nextui-background", hexToHsl(value));
-  showcaseEl?.style.setProperty("--nextui-background", hexToHsl(value));
+  const hslValue = hexToHsl(value);
+
+  baseColor?.style.setProperty("--nextui-background", hslValue);
+  showcaseEl?.style.setProperty("--nextui-background", hslValue);
 }
 
 export function setCssFontSize(
@@ -72,6 +75,23 @@ export function setCssBorderWidth(
   el?.style.setProperty(`--nextui-border-width-${type}`, `${value}px`);
 }
 
+export function setCssContentColor(level: 1 | 2 | 3 | 4, value: string) {
+  const showcaseEl = document.getElementById(SHOWCASE_ID);
+  const baseColorEl = document.getElementById(BASE_COLOR_ID);
+  const hslValue = hexToHsl(value);
+
+  showcaseEl?.style.setProperty(`--nextui-content${level}`, hslValue);
+  showcaseEl?.style.setProperty(
+    `--nextui-content${level}-foreground`,
+    hexToHsl(readableColor(value))
+  );
+  baseColorEl?.style.setProperty(`--nextui-content${level}`, hslValue);
+  baseColorEl?.style.setProperty(
+    `--nextui-content${level}-foreground`,
+    hexToHsl(readableColor(value))
+  );
+}
+
 export function setAllCssVars(config: Config, theme: Theme) {
   setCssColor("default", config[theme].brandColor.default, theme);
   setCssColor("primary", config[theme].brandColor.primary, theme);
@@ -80,6 +100,10 @@ export function setAllCssVars(config: Config, theme: Theme) {
   setCssColor("warning", config[theme].brandColor.warning, theme);
   setCssColor("danger", config[theme].brandColor.danger, theme);
   setCssColor("foreground", config[theme].baseColor.foreground, theme);
+  setCssContentColor(1, config[theme].baseColor.content1);
+  setCssContentColor(2, config[theme].baseColor.content2);
+  setCssContentColor(3, config[theme].baseColor.content3);
+  setCssContentColor(4, config[theme].baseColor.content4);
   setCssBackground(config[theme].baseColor.background);
   setCssFontSize("tiny", config.layout.fontSize.tiny);
   setCssFontSize("small", config.layout.fontSize.small);
