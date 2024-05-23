@@ -6,3 +6,5 @@
 </h1>
 
 A theme generator for [NextUI](https://nextui.org/) components.
+
+Check web app [here](https://nextui-themegen.netlify.app/).
