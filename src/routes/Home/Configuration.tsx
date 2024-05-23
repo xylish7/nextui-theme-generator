@@ -16,8 +16,9 @@ import {
   setCssFontSize,
   setCssBorderWidth,
   setCssContentColor,
+  setCssOtherColor,
 } from "lib/css-vars";
-import { COLORS_ID, BASE_COLOR_ID } from "shared/constants";
+import { COLORS_ID, BASE_COLORS_ID, OTHER_COLORS_ID } from "shared/constants";
 import { ThemeContext } from "providers/ThemeProvider";
 import usePrevious from "hooks/usePrevious";
 import { storage } from "lib/local-storage";
@@ -35,6 +36,7 @@ export default function Configuration() {
     setBrandColor,
     setLineHeight,
     setFontSize,
+    setOtherColor,
     setRadius,
   } = useContext(ConfigContext);
 
@@ -129,7 +131,7 @@ export default function Configuration() {
           />
         </ConfigurationSection>
 
-        <ConfigurationSection id={BASE_COLOR_ID} title="Base colors">
+        <ConfigurationSection id={BASE_COLORS_ID} title="Base colors">
           <ColorPicker
             hexColor={config[theme].baseColor.background}
             label="Background"
@@ -182,6 +184,36 @@ export default function Configuration() {
             onChange={(hexColor) => {
               setBaseColor({ content4: hexColor }, theme);
               setCssContentColor(4, hexColor);
+            }}
+          />
+        </ConfigurationSection>
+
+        <ConfigurationSection id={OTHER_COLORS_ID} title="Other colors">
+          <ColorPicker
+            hexColor={config[theme].otherColor.focus}
+            label="Focus"
+            type="focus"
+            onChange={(hexColor) => {
+              setOtherColor({ focus: hexColor }, theme);
+              setCssOtherColor("focus", hexColor);
+            }}
+          />
+          <ColorPicker
+            hexColor={config[theme].otherColor.overlay}
+            label="Overlay"
+            type="overlay"
+            onChange={(hexColor) => {
+              setOtherColor({ overlay: hexColor }, theme);
+              setCssOtherColor("overlay", hexColor);
+            }}
+          />
+          <ColorPicker
+            hexColor={config[theme].otherColor.divider}
+            label="Divider"
+            type="divider"
+            onChange={(hexColor) => {
+              setOtherColor({ divider: hexColor }, theme);
+              setCssOtherColor("divider", hexColor);
             }}
           />
         </ConfigurationSection>

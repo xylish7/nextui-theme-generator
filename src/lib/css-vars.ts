@@ -7,7 +7,12 @@ import {
 } from "shared/types";
 import hexToHsl from "utils/colors";
 import { generateThemeColor } from "./colors";
-import { COLORS_ID, BASE_COLOR_ID, SHOWCASE_ID } from "shared/constants";
+import {
+  COLORS_ID,
+  BASE_COLORS_ID,
+  SHOWCASE_ID,
+  OTHER_COLORS_ID,
+} from "shared/constants";
 import { readableColor } from "color2k";
 
 export function setCssColor(
@@ -16,7 +21,7 @@ export function setCssColor(
   theme: Theme
 ) {
   const brandColorsEl = document.getElementById(COLORS_ID);
-  const commonColorsEl = document.getElementById(BASE_COLOR_ID);
+  const commonColorsEl = document.getElementById(BASE_COLORS_ID);
   const showcaseEl = document.getElementById(SHOWCASE_ID);
   const themeColor = generateThemeColor(value, theme);
 
@@ -36,7 +41,7 @@ export function setCssColor(
 
 export function setCssBackground(value: string) {
   const showcaseEl = document.getElementById(SHOWCASE_ID);
-  const baseColor = document.getElementById(BASE_COLOR_ID);
+  const baseColor = document.getElementById(BASE_COLORS_ID);
   const hslValue = hexToHsl(value);
 
   baseColor?.style.setProperty("--nextui-background", hslValue);
@@ -77,7 +82,7 @@ export function setCssBorderWidth(
 
 export function setCssContentColor(level: 1 | 2 | 3 | 4, value: string) {
   const showcaseEl = document.getElementById(SHOWCASE_ID);
-  const baseColorEl = document.getElementById(BASE_COLOR_ID);
+  const baseColorEl = document.getElementById(BASE_COLORS_ID);
   const hslValue = hexToHsl(value);
 
   showcaseEl?.style.setProperty(`--nextui-content${level}`, hslValue);
@@ -90,6 +95,18 @@ export function setCssContentColor(level: 1 | 2 | 3 | 4, value: string) {
     `--nextui-content${level}-foreground`,
     hexToHsl(readableColor(value))
   );
+}
+
+export function setCssOtherColor(
+  type: "divider" | "focus" | "overlay",
+  value: string
+) {
+  const showcaseEl = document.getElementById(SHOWCASE_ID);
+  const otherColors = document.getElementById(OTHER_COLORS_ID);
+  const hslValue = hexToHsl(value);
+
+  otherColors?.style.setProperty(`--nextui-${type}`, hslValue);
+  showcaseEl?.style.setProperty(`--nextui-${type}`, hslValue);
 }
 
 export function setAllCssVars(config: Config, theme: Theme) {
@@ -119,4 +136,7 @@ export function setAllCssVars(config: Config, theme: Theme) {
   setCssBorderWidth("small", config.layout.borderWidth.small);
   setCssBorderWidth("medium", config.layout.borderWidth.medium);
   setCssBorderWidth("large", config.layout.borderWidth.large);
+  setCssOtherColor("divider", config[theme].otherColor.divider);
+  setCssOtherColor("focus", config[theme].otherColor.focus);
+  setCssOtherColor("overlay", config[theme].otherColor.overlay);
 }

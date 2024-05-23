@@ -23,6 +23,11 @@ export const initialConfig: Config = {
       content3: colors.zinc[200],
       content4: colors.zinc[300],
     },
+    otherColor: {
+      divider: "#111111",
+      focus: colors.blue[500],
+      overlay: colors.black,
+    },
   },
   dark: {
     brandColor: {
@@ -40,6 +45,11 @@ export const initialConfig: Config = {
       content2: colors.zinc[800],
       content3: colors.zinc[700],
       content4: colors.zinc[600],
+    },
+    otherColor: {
+      divider: colors.white,
+      focus: colors.blue[500],
+      overlay: colors.white,
     },
   },
   layout: {
@@ -132,6 +142,9 @@ export function getNextUIPluginConfig(config: Config): NextUIPluginConfig {
             DEFAULT: config.light.baseColor.content4,
             foreground: readableColor(config.light.baseColor.content4),
           },
+          focus: config.light.otherColor.focus,
+          overlay: config.light.otherColor.overlay,
+          divider: config.light.otherColor.divider,
         },
         layout,
       },
@@ -167,6 +180,9 @@ export function getNextUIPluginConfig(config: Config): NextUIPluginConfig {
             DEFAULT: config.dark.baseColor.content4,
             foreground: readableColor(config.dark.baseColor.content4),
           },
+          focus: config.dark.otherColor.focus,
+          overlay: config.dark.otherColor.overlay,
+          divider: config.dark.otherColor.divider,
         },
         layout,
       },

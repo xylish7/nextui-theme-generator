@@ -43,7 +43,9 @@ export default function ColorPicker({
         <PopoverTrigger>
           <Button
             style={{
-              color: ["background", "foreground"].includes(type)
+              color: ["background", "foreground", "focus", "overlay"].includes(
+                type
+              )
                 ? readableColor(hexColor)
                 : undefined,
             }}
@@ -116,6 +118,12 @@ function getColor(type: ColorPickerType) {
       return "bg-content3 text-content3-foreground";
     case "content4":
       return "bg-content4 text-content4-foreground";
+    case "divider":
+      return "bg-divider";
+    case "focus":
+      return "bg-focus";
+    case "overlay":
+      return "bg-overlay";
     default:
       return undefined;
   }

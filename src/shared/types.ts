@@ -56,7 +56,10 @@ export type ColorPickerType =
   | "content4"
   | "danger"
   | "default"
+  | "divider"
+  | "focus"
   | "foreground"
+  | "overlay"
   | "primary"
   | "secondary"
   | "success"
@@ -84,6 +87,11 @@ export interface ColorsConfig {
     content2: string;
     content3: string;
     content4: string;
+  };
+  otherColor: {
+    focus: string;
+    overlay: string;
+    divider: string;
   };
 }
 

@@ -16,6 +16,7 @@ import SliderShowcase from "components/nextui/SliderShowcases";
 import TabsShowcase from "components/nextui/TabsShowcase";
 import FontSizeShowcase from "components/nextui/FontSizeShowcase";
 import ContentShowcase from "components/nextui/ContentShowcase";
+import DividerShowcase from "components/nextui/DividerShowcase";
 import { SHOWCASE_ID } from "shared/constants";
 
 export default function Showcase() {
@@ -26,6 +27,7 @@ export default function Showcase() {
       <BadgeShowcase />
       <BreadcrumbsShowcase />
       <ButtonShowcase />
+      <DividerShowcase />
       <CheckboxShowcase />
       <ChipShowcase />
       <CodeShowcase />
