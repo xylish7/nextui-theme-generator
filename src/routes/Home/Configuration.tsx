@@ -81,55 +81,45 @@ export default function Configuration() {
             hexColor={config[theme].brandColor.default}
             label="Default"
             type="default"
-            onChange={(hexColor) => {
-              setBrandColor({ default: hexColor }, theme);
-              setCssColor("default", hexColor, theme);
-            }}
+            onChange={(hexColor) => setCssColor("default", hexColor, theme)}
+            onClose={(hexColor) => setBrandColor({ default: hexColor }, theme)}
           />
           <ColorPicker
             hexColor={config[theme].brandColor.primary}
             label="Primary"
             type="primary"
-            onChange={(hexColor) => {
-              setBrandColor({ primary: hexColor }, theme);
-              setCssColor("primary", hexColor, theme);
-            }}
+            onChange={(hexColor) => setCssColor("primary", hexColor, theme)}
+            onClose={(hexColor) => setBrandColor({ primary: hexColor }, theme)}
           />
           <ColorPicker
             hexColor={config[theme].brandColor.secondary}
             label="Secondary"
             type="secondary"
-            onChange={(hexColor) => {
-              setBrandColor({ secondary: hexColor }, theme);
-              setCssColor("secondary", hexColor, theme);
-            }}
+            onChange={(hexColor) => setCssColor("secondary", hexColor, theme)}
+            onClose={(hexColor) =>
+              setBrandColor({ secondary: hexColor }, theme)
+            }
           />
           <ColorPicker
             hexColor={config[theme].brandColor.success}
             label="Success"
             type="success"
-            onChange={(hexColor) => {
-              setBrandColor({ success: hexColor }, theme);
-              setCssColor("success", hexColor, theme);
-            }}
+            onChange={(hexColor) => setCssColor("success", hexColor, theme)}
+            onClose={(hexColor) => setBrandColor({ success: hexColor }, theme)}
           />
           <ColorPicker
             hexColor={config[theme].brandColor.warning}
             label="Warning"
             type="warning"
-            onChange={(hexColor) => {
-              setBrandColor({ warning: hexColor }, theme);
-              setCssColor("warning", hexColor, theme);
-            }}
+            onChange={(hexColor) => setCssColor("warning", hexColor, theme)}
+            onClose={(hexColor) => setBrandColor({ warning: hexColor }, theme)}
           />
           <ColorPicker
             hexColor={config[theme].brandColor.danger}
             label="Danger"
             type="danger"
-            onChange={(hexColor) => {
-              setBrandColor({ danger: hexColor }, theme);
-              setCssColor("danger", hexColor, theme);
-            }}
+            onChange={(hexColor) => setCssColor("danger", hexColor, theme)}
+            onClose={(hexColor) => setBrandColor({ danger: hexColor }, theme)}
           />
         </ConfigurationSection>
 
@@ -138,55 +128,47 @@ export default function Configuration() {
             hexColor={config[theme].baseColor.background}
             label="Background"
             type="background"
-            onChange={(hexColor) => {
-              setBaseColor({ background: hexColor }, theme);
-              setCssBackground(hexColor);
-            }}
+            onChange={(hexColor) => setCssBackground(hexColor)}
+            onClose={(hexColor) =>
+              setBaseColor({ background: hexColor }, theme)
+            }
           />
           <ColorPicker
             hexColor={config[theme].baseColor.foreground}
             label="Foreground"
             type="foreground"
-            onChange={(hexColor) => {
-              setBaseColor({ foreground: hexColor }, theme);
-              setCssColor("foreground", hexColor, theme);
-            }}
+            onChange={(hexColor) => setCssColor("foreground", hexColor, theme)}
+            onClose={(hexColor) =>
+              setBaseColor({ foreground: hexColor }, theme)
+            }
           />
           <ColorPicker
             hexColor={config[theme].baseColor.content1}
             label="Content 1"
             type="content1"
-            onChange={(hexColor) => {
-              setBaseColor({ content1: hexColor }, theme);
-              setCssContentColor(1, hexColor);
-            }}
+            onChange={(hexColor) => setCssContentColor(1, hexColor)}
+            onClose={(hexColor) => setBaseColor({ content1: hexColor }, theme)}
           />
           <ColorPicker
             hexColor={config[theme].baseColor.content2}
             label="Content 2"
             type="content2"
-            onChange={(hexColor) => {
-              setBaseColor({ content2: hexColor }, theme);
-              setCssContentColor(2, hexColor);
-            }}
+            onChange={(hexColor) => setCssContentColor(2, hexColor)}
+            onClose={(hexColor) => setBaseColor({ content2: hexColor }, theme)}
           />
           <ColorPicker
             hexColor={config[theme].baseColor.content3}
             label="Content 3"
             type="content3"
-            onChange={(hexColor) => {
-              setBaseColor({ content3: hexColor }, theme);
-              setCssContentColor(3, hexColor);
-            }}
+            onChange={(hexColor) => setCssContentColor(3, hexColor)}
+            onClose={(hexColor) => setBaseColor({ content3: hexColor }, theme)}
           />
           <ColorPicker
             hexColor={config[theme].baseColor.content4}
             label="Content 4"
             type="content4"
-            onChange={(hexColor) => {
-              setBaseColor({ content4: hexColor }, theme);
-              setCssContentColor(4, hexColor);
-            }}
+            onChange={(hexColor) => setCssContentColor(4, hexColor)}
+            onClose={(hexColor) => setBaseColor({ content4: hexColor }, theme)}
           />
         </ConfigurationSection>
 
@@ -195,28 +177,22 @@ export default function Configuration() {
             hexColor={config[theme].otherColor.focus}
             label="Focus"
             type="focus"
-            onChange={(hexColor) => {
-              setOtherColor({ focus: hexColor }, theme);
-              setCssOtherColor("focus", hexColor);
-            }}
+            onChange={(hexColor) => setCssOtherColor("focus", hexColor)}
+            onClose={(hexColor) => setOtherColor({ focus: hexColor }, theme)}
           />
           <ColorPicker
             hexColor={config[theme].otherColor.overlay}
             label="Overlay"
             type="overlay"
-            onChange={(hexColor) => {
-              setOtherColor({ overlay: hexColor }, theme);
-              setCssOtherColor("overlay", hexColor);
-            }}
+            onChange={(hexColor) => setCssOtherColor("overlay", hexColor)}
+            onClose={(hexColor) => setOtherColor({ overlay: hexColor }, theme)}
           />
           <ColorPicker
             hexColor={config[theme].otherColor.divider}
             label="Divider"
             type="divider"
-            onChange={(hexColor) => {
-              setOtherColor({ divider: hexColor }, theme);
-              setCssOtherColor("divider", hexColor);
-            }}
+            onChange={(hexColor) => setCssOtherColor("divider", hexColor)}
+            onClose={(hexColor) => setOtherColor({ divider: hexColor }, theme)}
           />
         </ConfigurationSection>
 

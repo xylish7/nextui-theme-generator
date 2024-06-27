@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Button,
   Popover,
@@ -18,6 +18,7 @@ interface ColorPickerProps {
   label: string;
   type: ColorPickerType;
   onChange: (hexColor: string) => void;
+  onClose: (hexColor: string) => void;
 }
 
 export default function ColorPicker({
@@ -25,17 +26,32 @@ export default function ColorPicker({
   label,
   type,
   onChange,
+  onClose,
 }: ColorPickerProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [colorValues, setColorValues] = useState<Values[]>(
     new Values(hexColor).all(COLOR_WEIGHT)
   );
+  const initialized = useRef(false);
+  const selectedColor = useRef(hexColor);
 
   function handleChange(hexColor: string) {
     const values = new Values(hexColor);
     onChange(hexColor);
+    selectedColor.current = hexColor;
     setColorValues(values.all(COLOR_WEIGHT));
   }
+
+  useEffect(() => {
+    if (isOpen && !initialized.current) {
+      setColorValues(new Values(hexColor).all(COLOR_WEIGHT));
+      initialized.current = true;
+    }
+    if (!isOpen && initialized.current) {
+      onClose(selectedColor.current);
+      initialized.current = false;
+    }
+  }, [isOpen, hexColor, onClose]);
 
   return (
     <div>
