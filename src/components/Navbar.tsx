@@ -6,15 +6,12 @@ import {
   NavbarItem,
   Link,
 } from "@nextui-org/react";
-import { GithubLogo, Moon, Sun, Tree } from "@phosphor-icons/react";
+import { GithubLogo, Tree } from "@phosphor-icons/react";
 
 import logo from "assets/logo.png";
 import useRepo from "hooks/useRepo";
-import { ThemeContext } from "providers/ThemeProvider";
-import { useContext } from "react";
 
 export default function Navbar() {
-  const { theme, setTheme } = useContext(ThemeContext);
   const stars = useRepo("xylish7", "nextui-theme-generator") ?? 0;
 
   return (
@@ -52,14 +49,6 @@ export default function Navbar() {
             variant="light"
           >
             <Tree size={24} />
-          </Button>
-
-          <Button
-            isIconOnly
-            variant="light"
-            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-          >
-            {theme === "light" ? <Moon size={24} /> : <Sun size={24} />}
           </Button>
         </NavbarItem>
       </NavbarContent>

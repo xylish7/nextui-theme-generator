@@ -11,7 +11,7 @@ import { ColorsConfig, Config, LayoutConfig, Theme } from "shared/types";
 
 export interface ConfigProviderI {
   config: Config;
-  resetConfig: (theme: Theme) => Config;
+  resetConfig: (theme: Theme, sync: boolean) => Config;
   setBaseColor: (
     newConfig: Partial<ColorsConfig["baseColor"]>,
     theme: Theme
@@ -19,13 +19,15 @@ export interface ConfigProviderI {
   setBorderWidth: (newConfig: Partial<LayoutConfig["borderWidth"]>) => void;
   setBrandColor: (
     newConfig: Partial<ColorsConfig["brandColor"]>,
-    theme: Theme
+    theme: Theme,
+    sync: boolean
   ) => void;
   setLineHeight: (newConfig: Partial<LayoutConfig["lineHeight"]>) => void;
   setFontSize: (newConfig: Partial<LayoutConfig["fontSize"]>) => void;
   setOtherColor: (
     newConfig: Partial<ColorsConfig["otherColor"]>,
-    theme: Theme
+    theme: Theme,
+    sync: boolean
   ) => void;
   setOtherParams: (newConfig: Partial<LayoutConfig["otherParams"]>) => void;
   setRadius: (newConfig: Partial<LayoutConfig["radius"]>) => void;
@@ -58,31 +60,57 @@ export default function ConfigProvider({ children }: ConfigProviderProps) {
     }
   }, []);
 
-  const resetConfig = useCallback((theme: Theme) => {
+  const resetConfig = useCallback((theme: Theme, sync: boolean) => {
     let newConfig = initialConfig;
     setConfig((prev) => {
-      newConfig = {
-        ...prev,
-        [theme]: initialConfig[theme],
-        layout: initialConfig.layout,
-      };
+      newConfig = sync
+        ? newConfig
+        : {
+            ...prev,
+            [theme]: newConfig[theme],
+            layout: newConfig.layout,
+          };
       return newConfig;
     });
     return newConfig;
   }, []);
 
   const setBrandColor = useCallback(
-    (newConfig: Partial<ColorsConfig["brandColor"]>, theme: Theme) => {
-      setConfig((prev) => ({
-        ...prev,
-        [theme]: {
-          ...prev[theme],
-          brandColor: {
-            ...prev[theme].brandColor,
-            ...newConfig,
-          },
-        },
-      }));
+    (
+      newConfig: Partial<ColorsConfig["brandColor"]>,
+      theme: Theme,
+      sync: boolean
+    ) => {
+      setConfig((prev) =>
+        sync
+          ? {
+              ...prev,
+              light: {
+                ...prev.light,
+                brandColor: {
+                  ...prev.light.brandColor,
+                  ...newConfig,
+                },
+              },
+              dark: {
+                ...prev.dark,
+                brandColor: {
+                  ...prev.dark.brandColor,
+                  ...newConfig,
+                },
+              },
+            }
+          : {
+              ...prev,
+              [theme]: {
+                ...prev[theme],
+                brandColor: {
+                  ...prev[theme].brandColor,
+                  ...newConfig,
+                },
+              },
+            }
+      );
     },
     []
   );
@@ -104,17 +132,41 @@ export default function ConfigProvider({ children }: ConfigProviderProps) {
   );
 
   const setOtherColor = useCallback(
-    (newConfig: Partial<ColorsConfig["otherColor"]>, theme: Theme) => {
-      setConfig((prev) => ({
-        ...prev,
-        [theme]: {
-          ...prev[theme],
-          otherColor: {
-            ...prev[theme].otherColor,
-            ...newConfig,
-          },
-        },
-      }));
+    (
+      newConfig: Partial<ColorsConfig["otherColor"]>,
+      theme: Theme,
+      sync: boolean
+    ) => {
+      setConfig((prev) =>
+        sync
+          ? {
+              ...prev,
+              light: {
+                ...prev.light,
+                otherColor: {
+                  ...prev.light.otherColor,
+                  ...newConfig,
+                },
+              },
+              dark: {
+                ...prev.dark,
+                otherColor: {
+                  ...prev.dark.otherColor,
+                  ...newConfig,
+                },
+              },
+            }
+          : {
+              ...prev,
+              [theme]: {
+                ...prev[theme],
+                otherColor: {
+                  ...prev[theme].otherColor,
+                  ...newConfig,
+                },
+              },
+            }
+      );
     },
     []
   );

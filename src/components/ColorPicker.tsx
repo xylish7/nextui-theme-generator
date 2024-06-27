@@ -15,6 +15,7 @@ import { readableColor } from "color2k";
 
 interface ColorPickerProps {
   hexColor: string;
+  icon?: React.ReactNode;
   label: string;
   type: ColorPickerType;
   onChange: (hexColor: string) => void;
@@ -23,6 +24,7 @@ interface ColorPickerProps {
 
 export default function ColorPicker({
   hexColor,
+  icon,
   label,
   type,
   onChange,
@@ -70,7 +72,7 @@ export default function ColorPicker({
             size="sm"
           >
             <Drop size={18} weight="duotone" />
-            {label}
+            {label} {icon}
           </Button>
         </PopoverTrigger>
         <PopoverContent>

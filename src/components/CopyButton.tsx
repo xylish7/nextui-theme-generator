@@ -17,7 +17,7 @@ export function CopyButton({ getData }: CopyButtonProps) {
   }
 
   return (
-    <Tooltip content="Copy">
+    <Tooltip content="Copy configuration">
       <Button
         color="secondary"
         isIconOnly
