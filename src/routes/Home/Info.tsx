@@ -11,11 +11,7 @@ export default function Info() {
           <Link href="https://nextui.org/" isExternal>
             NextUI
           </Link>{" "}
-          component library, which also integrates seamlessly with{" "}
-          <Link href="https://shipnextsaas.com/" isExternal>
-            NextSaaS
-          </Link>
-          .
+          component library.
         </p>
       </CardBody>
     </Card>
