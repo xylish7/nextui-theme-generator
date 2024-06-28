@@ -36,6 +36,7 @@ import {
   Moon,
   Sun,
 } from "@phosphor-icons/react";
+import { Templates } from "./Templates";
 
 export default function Configuration() {
   const [syncThemes, setSyncThemes] = useState(true);
@@ -50,6 +51,7 @@ export default function Configuration() {
     setBaseColor,
     setBorderWidth,
     setBrandColor,
+    setConfiguration,
     setLineHeight,
     setFontSize,
     setOtherColor,
@@ -126,6 +128,15 @@ export default function Configuration() {
           >
             Sync dark and light themes
           </Switch>
+        </div>
+
+        <div className="mt-4">
+          <Templates
+            onChange={(config) => {
+              setConfiguration(config, theme, syncThemes);
+              setAllCssVars(config, theme);
+            }}
+          />
         </div>
 
         <div className="flex flex-col gap-8 mt-6">

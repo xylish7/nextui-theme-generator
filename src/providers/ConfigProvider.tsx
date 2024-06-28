@@ -22,6 +22,7 @@ export interface ConfigProviderI {
     theme: Theme,
     sync: boolean
   ) => void;
+  setConfiguration: (newConfig: Config, theme: Theme, sync: boolean) => void;
   setLineHeight: (newConfig: Partial<LayoutConfig["lineHeight"]>) => void;
   setFontSize: (newConfig: Partial<LayoutConfig["fontSize"]>) => void;
   setOtherColor: (
@@ -39,6 +40,7 @@ export const ConfigContext = createContext<ConfigProviderI>({
   setBaseColor: () => {},
   setBorderWidth: () => {},
   setBrandColor: () => {},
+  setConfiguration: () => {},
   setLineHeight: () => {},
   setFontSize: () => {},
   setOtherColor: () => {},
@@ -59,6 +61,20 @@ export default function ConfigProvider({ children }: ConfigProviderProps) {
       setConfig(savedConfig);
     }
   }, []);
+
+  const setConfiguration = useCallback(
+    (newConfig: Config, theme: Theme, sync: boolean) => {
+      setConfig((prev) =>
+        sync
+          ? newConfig
+          : {
+              ...prev,
+              [theme]: newConfig[theme],
+            }
+      );
+    },
+    []
+  );
 
   const resetConfig = useCallback((theme: Theme, sync: boolean) => {
     let newConfig = initialConfig;
@@ -253,6 +269,7 @@ export default function ConfigProvider({ children }: ConfigProviderProps) {
       setBaseColor,
       setBorderWidth,
       setBrandColor,
+      setConfiguration,
       setLineHeight,
       setFontSize,
       setOtherColor,
@@ -265,6 +282,7 @@ export default function ConfigProvider({ children }: ConfigProviderProps) {
       setBaseColor,
       setBorderWidth,
       setBrandColor,
+      setConfiguration,
       setLineHeight,
       setFontSize,
       setOtherColor,
