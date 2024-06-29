@@ -1,23 +1,33 @@
 import { Select, SelectItem } from "@nextui-org/react";
-import { templates } from "shared/templates";
-import { ColorsConfig, Config } from "shared/types";
+import { Template, ThemeTemplate, templates } from "shared/templates";
+import { ColorsConfig } from "shared/types";
 
 interface Templates {
-  onChange: (value: Config) => void;
+  name: ThemeTemplate | null;
+  onChange: (template: Template) => void;
 }
 
-export function Templates({ onChange }: Templates) {
+export function Templates({ name, onChange }: Templates) {
+  function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
+    const value = e.target.value as ThemeTemplate;
+    const template = templates.find((template) => template.name === value);
+    if (template) {
+      onChange(template);
+    }
+  }
+
   return (
     <Select
       label="Theme templates"
       labelPlacement="outside"
       placeholder="Select a theme"
-      onChange={(e) => onChange(templates[parseInt(e.target.value)].value)}
+      selectedKeys={name === null ? [] : [name]}
+      onChange={handleChange}
     >
       {templates.map((template, index) => (
         <SelectItem
           value={index}
-          key={index}
+          key={template.name}
           startContent={<Swatch colors={template.value.light.brandColor} />}
         >
           {template.label}

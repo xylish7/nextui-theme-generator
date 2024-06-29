@@ -4,10 +4,11 @@ import { ColorsConfig, Config, LayoutConfig } from "shared/types";
 import { generateThemeColor } from "./colors";
 import { storage } from "./local-storage";
 import { readableColor } from "color2k";
+import { DEFAULT_COLOR_WEIGHT } from "shared/constants";
 
 export const initialLightTheme: ColorsConfig = {
   brandColor: {
-    default: colors.zinc[300],
+    default: colors.zinc[500],
     primary: colors.blue[500],
     secondary: colors.purple[500],
     success: colors.green[500],
@@ -126,7 +127,11 @@ export function getNextUIPluginConfig(config: Config): NextUIPluginConfig {
     themes: {
       light: {
         colors: {
-          default: generateThemeColor(config.light.brandColor.default, "light"),
+          default: generateThemeColor(
+            config.light.brandColor.default,
+            "light",
+            DEFAULT_COLOR_WEIGHT
+          ),
           primary: generateThemeColor(config.light.brandColor.primary, "light"),
           secondary: generateThemeColor(
             config.light.brandColor.secondary,

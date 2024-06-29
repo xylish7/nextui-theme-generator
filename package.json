@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@nextui-org/react": "2.3.6",
+    "@nextui-org/react": "2.4.2",
     "@phosphor-icons/react": "2.1.5",
     "classnames": "2.5.1",
     "color2k": "2.0.3",

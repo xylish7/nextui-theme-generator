@@ -1,3 +1,4 @@
+export const DEFAULT_COLOR_WEIGHT = 17.5;
 export const COLOR_WEIGHT = 17.5;
 
 // Regex

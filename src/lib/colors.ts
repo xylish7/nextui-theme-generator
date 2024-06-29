@@ -8,9 +8,13 @@ export function colorValuesToRgb(value: Values) {
   return `rgba(${value.rgb.join(", ")}, ${value.alpha})`;
 }
 
-export function generateThemeColor(color: string, theme: Theme): ThemeColor {
+export function generateThemeColor(
+  color: string,
+  theme: Theme,
+  weight?: number
+): ThemeColor {
   const values = new Values(color);
-  const colorValues = values.all(COLOR_WEIGHT);
+  const colorValues = values.all(weight ?? COLOR_WEIGHT);
   const shades = colorValues
     .slice(0, colorValues.length - 1)
     .reduce((acc, shadeValue, index) => {

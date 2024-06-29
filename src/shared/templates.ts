@@ -6,13 +6,13 @@ import {
   initialLightTheme,
 } from "lib/configuration";
 
-export const nextui: Config = {
+const nextui: Config = {
   light: initialLightTheme,
   dark: initialDarkTheme,
   layout: initialLayout,
 };
 
-export const coffee: Config = {
+const coffee: Config = {
   light: {
     brandColor: {
       default: "#f3d7b2",
@@ -62,12 +62,44 @@ export const coffee: Config = {
   layout: initialLayout,
 };
 
+const emerald: Config = {
+  light: {
+    brandColor: {
+      default: "#66cc8a",
+      primary: "#66cc8a",
+      secondary: "#377cfb",
+      success: "#00a96e",
+      warning: "#ffbe00",
+      danger: "#ff5861",
+    },
+    baseColor: initialLightTheme.baseColor,
+    otherColor: { ...initialLightTheme.otherColor, focus: "#66cc8a" },
+  },
+  dark: {
+    brandColor: {
+      default: "#485248",
+      primary: "#66cc8a",
+      secondary: "#377cfb",
+      success: "#00a96e",
+      warning: "#ffbe00",
+      danger: "#ff5861",
+    },
+    baseColor: initialDarkTheme.baseColor,
+    otherColor: { ...initialDarkTheme.otherColor, focus: "#66cc8a" },
+  },
+  layout: initialLayout,
+};
+
 export const templates: Array<Template> = [
-  { label: "Coffee", value: coffee },
-  { label: "NextUI", value: nextui },
+  { label: "Coffee", name: "coffee", value: coffee },
+  { label: "Emerald", name: "emerald", value: emerald },
+  { label: "NextUI", name: "nextui", value: nextui },
 ];
 
-interface Template {
+export interface Template {
   label: string;
+  name: ThemeTemplate;
   value: Config;
 }
+
+export type ThemeTemplate = "coffee" | "emerald" | "nextui";

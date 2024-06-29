@@ -37,9 +37,13 @@ import {
   Sun,
 } from "@phosphor-icons/react";
 import { Templates } from "./Templates";
+import { Template } from "shared/templates";
 
 export default function Configuration() {
   const [syncThemes, setSyncThemes] = useState(true);
+  const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(
+    null
+  );
   const { theme, setTheme } = useContext(ThemeContext);
   const prevTheme = usePrevious(theme);
   const isLight = theme === "light";
@@ -107,9 +111,15 @@ export default function Configuration() {
               size="sm"
               variant="flat"
               onClick={() => {
-                const newConfig = resetConfig(theme, syncThemes);
-                setAllCssVars(newConfig, theme);
-                storage.setConfiguration(newConfig);
+                if (selectedTemplate) {
+                  setConfiguration(selectedTemplate.value, theme, syncThemes);
+                  setAllCssVars(selectedTemplate.value, theme);
+                  storage.setConfiguration(selectedTemplate.value);
+                } else {
+                  const config = resetConfig(theme, syncThemes);
+                  setAllCssVars(config, theme);
+                  storage.setConfiguration(config);
+                }
               }}
             >
               <ArrowCounterClockwise size={18} />
@@ -132,9 +142,11 @@ export default function Configuration() {
 
         <div className="mt-4">
           <Templates
-            onChange={(config) => {
-              setConfiguration(config, theme, syncThemes);
-              setAllCssVars(config, theme);
+            name={selectedTemplate?.name ?? null}
+            onChange={(template) => {
+              setConfiguration(template.value, theme, syncThemes);
+              setAllCssVars(template.value, theme);
+              setSelectedTemplate(template);
             }}
           />
         </div>

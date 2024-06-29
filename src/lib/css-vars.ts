@@ -12,6 +12,7 @@ import {
   BASE_COLORS_ID,
   SHOWCASE_ID,
   OTHER_COLORS_ID,
+  DEFAULT_COLOR_WEIGHT,
 } from "shared/constants";
 import { readableColor } from "color2k";
 
@@ -23,7 +24,11 @@ export function setCssColor(
   const brandColorsEl = document.getElementById(COLORS_ID);
   const commonColorsEl = document.getElementById(BASE_COLORS_ID);
   const showcaseEl = document.getElementById(SHOWCASE_ID);
-  const themeColor = generateThemeColor(value, theme);
+  const themeColor = generateThemeColor(
+    value,
+    theme,
+    colorType === "default" ? DEFAULT_COLOR_WEIGHT : undefined
+  );
 
   if (!brandColorsEl || !commonColorsEl || !showcaseEl) return;
 
