@@ -1,5 +1,5 @@
-import ThemeProvider from "./ThemeProvider";
-import ConfigProvider from "./ConfigProvider";
+import ThemeProvider from "./theme";
+import ThemeBuilderProvider from "./theme-builder";
 
 interface ProvidersProps {
   children: React.ReactNode;
@@ -8,7 +8,7 @@ interface ProvidersProps {
 export default function Providers({ children }: ProvidersProps) {
   return (
     <ThemeProvider>
-      <ConfigProvider>{children}</ConfigProvider>;
+      <ThemeBuilderProvider>{children}</ThemeBuilderProvider>
     </ThemeProvider>
   );
 }
