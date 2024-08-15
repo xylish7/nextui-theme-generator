@@ -1,21 +1,56 @@
-import { ColorShades } from "shared/types";
+import { readableColor } from "color2k";
+import Values from "values.js";
 
-export default function hexToHsl(hex: string) {
+import {
+  ColorShades,
+  ThemeType,
+  ThemeColor,
+  ColorPickerType,
+} from "../shared/types";
+import {
+  colorWeight,
+  defaultDarkColorWeight,
+  defaultLightColorWeight,
+} from "../shared/constants";
+
+/**
+ * Convert color values to RGB
+ */
+export function colorValuesToRgb(value: Values) {
+  return `rgba(${value.rgb.join(", ")}, ${value.alpha})`;
+}
+
+/**
+ * Generate theme color
+ */
+export function generateThemeColor(
+  color: string,
+  theme: ThemeType,
+  weight: number
+): ThemeColor {
+  const values = new Values(color);
+  const colorValues = values.all(weight);
+  const shades = colorValues
+    .slice(0, colorValues.length - 1)
+    .reduce((acc, shadeValue, index) => {
+      (acc as any)[index === 0 ? 50 : index * 100] = rgbToHex(shadeValue.rgb);
+
+      return acc;
+    }, {} as ColorShades);
+
+  return {
+    ...((theme === "light" ? shades : swapColorValues(shades)) as ColorShades),
+    foreground: readableColor(shades[500]),
+    DEFAULT: shades[500],
+  };
+}
+
+/**
+ * Convert hex color to HSL
+ */
+export function hexToHsl(hex: string) {
   // Convert hex to RGB first
-  let r = 0,
-    g = 0,
-    b = 0;
-  if (hex.length === 4) {
-    r = parseInt(hex[1] + hex[1], 16);
-    g = parseInt(hex[2] + hex[2], 16);
-    b = parseInt(hex[3] + hex[3], 16);
-  } else if (hex.length === 7) {
-    r = parseInt(hex.slice(1, 3), 16);
-    g = parseInt(hex.slice(3, 5), 16);
-    b = parseInt(hex.slice(5, 7), 16);
-  } else {
-    throw new Error("Invalid hex color format");
-  }
+  const [r, g, b] = hexToRgb(hex);
 
   // Normalize RGB values
   const normalizedR = r / 255;
@@ -36,6 +71,7 @@ export default function hexToHsl(hex: string) {
 
   // Calculate the saturation
   let saturation = 0;
+
   if (lightness < 0.5) {
     saturation = (max - min) / (max + min);
   } else {
@@ -44,6 +80,7 @@ export default function hexToHsl(hex: string) {
 
   // Calculate the hue
   let hue;
+
   if (max === normalizedR) {
     hue = (normalizedG - normalizedB) / (max - min);
   } else if (max === normalizedG) {
@@ -55,7 +92,60 @@ export default function hexToHsl(hex: string) {
   hue *= 60;
   if (hue < 0) hue += 360;
 
-  return `${hue} ${saturation * 100}% ${lightness * 100}%`;
+  return `${hue.toFixed(2)} ${(saturation * 100).toFixed(2)}% ${(
+    lightness * 100
+  ).toFixed(2)}%`;
+}
+
+/**
+ * Get the color weight
+ */
+export function getColorWeight(colorType: ColorPickerType, theme: ThemeType) {
+  if (colorType === "default") {
+    return theme === "dark" ? defaultDarkColorWeight : defaultLightColorWeight;
+  }
+
+  return colorWeight;
+}
+
+/**
+ * Convert RGB value to hex
+ */
+function rgbValueToHex(c: number) {
+  const hex = c.toString(16);
+
+  return hex.length == 1 ? "0" + hex : hex;
+}
+
+/**
+ * Convert RGB to hex
+ */
+function rgbToHex([r, g, b]: number[]): string {
+  return "#" + rgbValueToHex(r) + rgbValueToHex(g) + rgbValueToHex(b);
+}
+
+/**
+ * Convert hex color to RGB
+ */
+function hexToRgb(hex: string): number[] {
+  // Convert hex to RGB first
+  let r = 0,
+    g = 0,
+    b = 0;
+
+  if (hex.length === 4) {
+    r = parseInt(hex[1] + hex[1], 16);
+    g = parseInt(hex[2] + hex[2], 16);
+    b = parseInt(hex[3] + hex[3], 16);
+  } else if (hex.length === 7) {
+    r = parseInt(hex.slice(1, 3), 16);
+    g = parseInt(hex.slice(3, 5), 16);
+    b = parseInt(hex.slice(5, 7), 16);
+  } else {
+    throw new Error("Invalid hex color format");
+  }
+
+  return [r, g, b];
 }
 
 export function swapColorValues(colors: ColorShades) {

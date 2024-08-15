@@ -1,7 +1,7 @@
-import { Layout } from "components/Layout";
-import Configuration from "./Configuration";
-import Showcase from "./Showcase";
-import Info from "./Info";
+import Configuration from "components/configuration";
+import Info from "components/info";
+import { Layout } from "components/layout";
+import { Showcase } from "components/showcase";
 
 export default function Home() {
   return (

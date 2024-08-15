@@ -1,6 +1,6 @@
 import { NextUIProvider } from "@nextui-org/react";
-import ErrorBoundary from "components/ErrorBoundary";
-import ErrorFallback from "components/ErrorFallback";
+import ErrorBoundary from "components/error-boundary";
+import ErrorFallback from "components/error-fallback";
 import Providers from "providers";
 import Home from "routes/Home";
 

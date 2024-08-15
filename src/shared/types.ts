@@ -1,3 +1,4 @@
+// Colors
 export interface ColorShades {
   50: string;
   100: string;
@@ -9,43 +10,6 @@ export interface ColorShades {
   700: string;
   800: string;
   900: string;
-}
-
-export type Theme = "light" | "dark";
-
-export interface ThemeColor extends ColorShades {
-  foreground: string;
-  DEFAULT: string;
-}
-
-export type NextUIColor =
-  | "default"
-  | "primary"
-  | "secondary"
-  | "success"
-  | "warning"
-  | "danger";
-
-export type NextUISize = "sm" | "md" | "lg";
-
-export type NextUIVariant =
-  | "dot"
-  | "solid"
-  | "faded"
-  | "bordered"
-  | "light"
-  | "flat"
-  | "ghost"
-  | "shadow"
-  | "underlined";
-
-export type NextUIRadius = "none" | "sm" | "md" | "lg" | "full";
-
-export interface Repo {
-  name: string;
-  owner: string;
-  stars: number;
-  updatedAt: string;
 }
 
 export type ColorPickerType =
@@ -65,13 +29,37 @@ export type ColorPickerType =
   | "success"
   | "warning";
 
-export interface Config {
-  light: ColorsConfig;
-  dark: ColorsConfig;
-  layout: LayoutConfig;
+// NextUI component props
+export type NextUIColor = "default" | "primary" | "secondary" | "success" | "warning" | "danger";
+export type NextUISize = "sm" | "md" | "lg";
+export type NextUIVariant =
+  | "dot"
+  | "solid"
+  | "faded"
+  | "bordered"
+  | "light"
+  | "flat"
+  | "ghost"
+  | "shadow"
+  | "underlined";
+export type NextUIRadius = "none" | "sm" | "md" | "lg" | "full";
+
+// Themes
+export type ThemeType = "light" | "dark";
+
+export interface ThemeColor extends ColorShades {
+  foreground: string;
+  DEFAULT: string;
 }
 
-export interface ColorsConfig {
+// Configuration
+export interface Config {
+  light: ConfigColors;
+  dark: ConfigColors;
+  layout: ConfigLayout;
+}
+
+export interface ConfigColors {
   brandColor: {
     default: string;
     primary: string;
@@ -95,7 +83,7 @@ export interface ColorsConfig {
   };
 }
 
-export interface LayoutConfig {
+export interface ConfigLayout {
   fontSize: {
     tiny: string;
     small: string;
@@ -124,3 +112,12 @@ export interface LayoutConfig {
     hoverOpacity: string;
   };
 }
+
+// Templates
+export interface Template {
+  label: string;
+  name: TemplateType;
+  value: Config;
+}
+
+export type TemplateType = "coffee" | "emerald" | "nextui";
