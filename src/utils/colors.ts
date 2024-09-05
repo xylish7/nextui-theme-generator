@@ -25,14 +25,16 @@ export function colorValuesToRgb(value: Values) {
  */
 export function generateThemeColor(
   color: string,
-  theme: ThemeType,
-  weight: number
+  type: ColorPickerType,
+  theme: ThemeType
 ): ThemeColor {
   const values = new Values(color);
-  const colorValues = values.all(weight);
+  const colorWeight = getColorWeight(type, theme);
+  const colorValues = values.all(colorWeight);
   const shades = colorValues
     .slice(0, colorValues.length - 1)
     .reduce((acc, shadeValue, index) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (acc as any)[index === 0 ? 50 : index * 100] = rgbToHex(shadeValue.rgb);
 
       return acc;
@@ -92,7 +94,7 @@ export function hexToHsl(hex: string) {
   hue *= 60;
   if (hue < 0) hue += 360;
 
-  return `${hue.toFixed(2)} ${(saturation * 100).toFixed(2)}% ${(
+  return `${Math.round(hue)} ${(saturation * 100).toFixed(2)}% ${(
     lightness * 100
   ).toFixed(2)}%`;
 }
