@@ -1,18 +1,24 @@
 import { useContext, useEffect, useState } from "react";
 import {
   Button,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@nextui-org/react";
+import { clsx } from "@nextui-org/shared-utils";
 import { HexColorInput, HexColorPicker } from "react-colorful";
 import Values from "values.js";
 import { readableColor } from "color2k";
 
-import { ColorPickerType } from "../shared/types";
+import { ColorPickerType, ThemeType } from "../shared/types";
 import { colorValuesToRgb, getColorWeight } from "../utils/colors";
 import { ThemeContext } from "providers/theme";
-import { Drop } from "@phosphor-icons/react";
+import { Check, Drop, Moon, Sun } from "@phosphor-icons/react";
+import { Copy } from "@phosphor-icons/react/dist/ssr";
 
 interface ColorPickerProps {
   hexColor: string;
@@ -21,6 +27,7 @@ interface ColorPickerProps {
   type: ColorPickerType;
   onChange: (hexColor: string) => void;
   onClose: (hexColor: string) => void;
+  onCopy: (theme: ThemeType) => void;
 }
 
 export function ColorPicker({
@@ -30,6 +37,7 @@ export function ColorPicker({
   type,
   onChange,
   onClose,
+  onCopy,
 }: ColorPickerProps) {
   const [selectedColor, setSelectedColor] = useState(hexColor);
   const [isOpen, setIsOpen] = useState(false);
@@ -52,7 +60,7 @@ export function ColorPicker({
   }, [hexColor, isOpen]);
 
   return (
-    <div>
+    <div className="flex items-end">
       <Popover
         isOpen={isOpen}
         placement="bottom"
@@ -62,7 +70,7 @@ export function ColorPicker({
         <PopoverTrigger>
           <Button
             fullWidth
-            className={getColor(type)}
+            className={clsx(getColor(type), "rounded-r-none")}
             size="sm"
             style={{
               color: ["background", "foreground", "focus", "overlay"].includes(
@@ -72,10 +80,11 @@ export function ColorPicker({
                 : undefined,
             }}
           >
-            <Drop size={18} />
+            <Drop className="flex-shrink-0" size={18} />
             {label} {icon}
           </Button>
         </PopoverTrigger>
+
         <PopoverContent>
           <div className="flex flex-col gap-2 max-w-48 my-2">
             <div className="grid grid-cols-5 gap-2">
@@ -107,7 +116,50 @@ export function ColorPicker({
           </div>
         </PopoverContent>
       </Popover>
+      <CopyButton onCopy={onCopy} className="rounded-l-none" />
     </div>
+  );
+}
+
+interface CopyColorConfigButtonProps {
+  className?: string;
+  onCopy: (theme: ThemeType) => void;
+}
+
+function CopyButton({ className, onCopy }: CopyColorConfigButtonProps) {
+  const [copied, setCopied] = useState(false);
+
+  function handleCopy(theme: ThemeType) {
+    onCopy(theme);
+
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  }
+
+  return (
+    <Dropdown>
+      <DropdownTrigger>
+        <Button className={className} variant="flat" isIconOnly size="sm">
+          {copied ? <Check size={20} /> : <Copy size={20} />}
+        </Button>
+      </DropdownTrigger>
+      <DropdownMenu aria-label="Static Actions">
+        <DropdownItem
+          startContent={<Sun size={18} />}
+          onPress={() => handleCopy("light")}
+          key="light"
+        >
+          Light config
+        </DropdownItem>
+        <DropdownItem
+          startContent={<Moon size={18} />}
+          onPress={() => handleCopy("dark")}
+          key="dark"
+        >
+          Dark config
+        </DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
   );
 }
 

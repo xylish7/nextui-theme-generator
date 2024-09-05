@@ -6,6 +6,7 @@ import { ThemeBuilderContext } from "providers/theme-builder";
 import { otherColorsId } from "shared/constants";
 import { Config, ThemeType } from "shared/types";
 import { setCssOtherColor } from "utils/css-vars";
+import { copyOtherColorConfig } from "utils/config";
 
 interface OtherColorsProps {
   config: Config;
@@ -33,6 +34,7 @@ export function OtherColors({
         onClose={(hexColor) =>
           setOtherColor({ focus: hexColor }, theme, syncThemes)
         }
+        onCopy={(theme) => copyOtherColorConfig(config, "focus", theme)}
       />
       <ColorPicker
         hexColor={config[theme].otherColor.overlay}
@@ -42,6 +44,7 @@ export function OtherColors({
         onClose={(hexColor) =>
           setOtherColor({ overlay: hexColor }, theme, false)
         }
+        onCopy={(theme) => copyOtherColorConfig(config, "overlay", theme)}
       />
       <ColorPicker
         hexColor={config[theme].otherColor.divider}
@@ -51,6 +54,7 @@ export function OtherColors({
         onClose={(hexColor) =>
           setOtherColor({ divider: hexColor }, theme, false)
         }
+        onCopy={(theme) => copyOtherColorConfig(config, "divider", theme)}
       />
     </ConfigSection>
   );

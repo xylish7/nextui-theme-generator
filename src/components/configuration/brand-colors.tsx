@@ -6,6 +6,7 @@ import { ThemeBuilderContext } from "providers/theme-builder";
 import { colorsId } from "shared/constants";
 import { Config, ThemeType } from "shared/types";
 import { setCssColor } from "utils/css-vars";
+import { copyBrandColorConfig } from "utils/config";
 
 interface BrandColorsProps {
   config: Config;
@@ -32,6 +33,7 @@ export function BrandColors({
         onClose={(hexColor) =>
           setBrandColor({ default: hexColor }, theme, false)
         }
+        onCopy={(theme) => copyBrandColorConfig(config, "default", theme)}
       />
       <ColorPicker
         hexColor={config[theme].brandColor.primary}
@@ -42,6 +44,7 @@ export function BrandColors({
         onClose={(hexColor) =>
           setBrandColor({ primary: hexColor }, theme, syncThemes)
         }
+        onCopy={(theme) => copyBrandColorConfig(config, "primary", theme)}
       />
       <ColorPicker
         hexColor={config[theme].brandColor.secondary}
@@ -52,6 +55,7 @@ export function BrandColors({
         onClose={(hexColor) =>
           setBrandColor({ secondary: hexColor }, theme, syncThemes)
         }
+        onCopy={(theme) => copyBrandColorConfig(config, "secondary", theme)}
       />
       <ColorPicker
         hexColor={config[theme].brandColor.success}
@@ -62,6 +66,7 @@ export function BrandColors({
         onClose={(hexColor) =>
           setBrandColor({ success: hexColor }, theme, syncThemes)
         }
+        onCopy={(theme) => copyBrandColorConfig(config, "success", theme)}
       />
       <ColorPicker
         hexColor={config[theme].brandColor.warning}
@@ -72,6 +77,7 @@ export function BrandColors({
         onClose={(hexColor) =>
           setBrandColor({ warning: hexColor }, theme, syncThemes)
         }
+        onCopy={(theme) => copyBrandColorConfig(config, "warning", theme)}
       />
       <ColorPicker
         hexColor={config[theme].brandColor.danger}
@@ -82,6 +88,7 @@ export function BrandColors({
         onClose={(hexColor) =>
           setBrandColor({ danger: hexColor }, theme, syncThemes)
         }
+        onCopy={(theme) => copyBrandColorConfig(config, "danger", theme)}
       />
     </ConfigSection>
   );

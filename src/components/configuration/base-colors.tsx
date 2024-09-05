@@ -10,6 +10,7 @@ import {
   setCssColor,
   setCssContentColor,
 } from "utils/css-vars";
+import { copyBaseColorConfig } from "utils/config";
 
 interface BaseColorsProps {
   config: Config;
@@ -27,6 +28,7 @@ export function BaseColors({ config, theme }: BaseColorsProps) {
         type="background"
         onChange={(hexColor) => setCssBackground(hexColor)}
         onClose={(hexColor) => setBaseColor({ background: hexColor }, theme)}
+        onCopy={(theme) => copyBaseColorConfig(config, "background", theme)}
       />
       <ColorPicker
         hexColor={config[theme].baseColor.foreground}
@@ -34,6 +36,7 @@ export function BaseColors({ config, theme }: BaseColorsProps) {
         type="foreground"
         onChange={(hexColor) => setCssColor("foreground", hexColor, theme)}
         onClose={(hexColor) => setBaseColor({ foreground: hexColor }, theme)}
+        onCopy={(theme) => copyBaseColorConfig(config, "foreground", theme)}
       />
       <ColorPicker
         hexColor={config[theme].baseColor.content1}
@@ -41,6 +44,7 @@ export function BaseColors({ config, theme }: BaseColorsProps) {
         type="content1"
         onChange={(hexColor) => setCssContentColor(1, hexColor)}
         onClose={(hexColor) => setBaseColor({ content1: hexColor }, theme)}
+        onCopy={(theme) => copyBaseColorConfig(config, "content1", theme)}
       />
       <ColorPicker
         hexColor={config[theme].baseColor.content2}
@@ -48,6 +52,7 @@ export function BaseColors({ config, theme }: BaseColorsProps) {
         type="content2"
         onChange={(hexColor) => setCssContentColor(2, hexColor)}
         onClose={(hexColor) => setBaseColor({ content2: hexColor }, theme)}
+        onCopy={(theme) => copyBaseColorConfig(config, "content2", theme)}
       />
       <ColorPicker
         hexColor={config[theme].baseColor.content3}
@@ -55,6 +60,7 @@ export function BaseColors({ config, theme }: BaseColorsProps) {
         type="content3"
         onChange={(hexColor) => setCssContentColor(3, hexColor)}
         onClose={(hexColor) => setBaseColor({ content3: hexColor }, theme)}
+        onCopy={(theme) => copyBaseColorConfig(config, "content3", theme)}
       />
       <ColorPicker
         hexColor={config[theme].baseColor.content4}
@@ -62,6 +68,7 @@ export function BaseColors({ config, theme }: BaseColorsProps) {
         type="content4"
         onChange={(hexColor) => setCssContentColor(4, hexColor)}
         onClose={(hexColor) => setBaseColor({ content4: hexColor }, theme)}
+        onCopy={(theme) => copyBaseColorConfig(config, "content4", theme)}
       />
     </ConfigSection>
   );

@@ -1,8 +1,9 @@
 import { NextUIPluginConfig } from "@nextui-org/theme";
 import { readableColor } from "color2k";
 
-import { Config } from "../shared/types";
+import { Config, ConfigColors, ThemeType } from "../shared/types";
 import { generateThemeColor } from "./colors";
+import { copyData, stringifyData } from "shared/utils";
 
 /**
  * Generate plugin configuration
@@ -159,4 +160,60 @@ export function generatePluginConfig(config: Config): NextUIPluginConfig {
     },
     layout,
   };
+}
+
+export function copyBrandColorConfig(
+  config: Config,
+  colorType: keyof ConfigColors["brandColor"],
+  theme: ThemeType
+) {
+  copyData(
+    `"${colorType}": ${stringifyData(
+      generateThemeColor(config[theme].brandColor[colorType], colorType, theme)
+    )}`
+  );
+}
+
+export function copyBaseColorConfig(
+  config: Config,
+  colorType: keyof ConfigColors["baseColor"],
+  theme: ThemeType
+) {
+  switch (colorType) {
+    case "background":
+      copyData(`"${colorType}": "${config[theme].baseColor[colorType]}"`);
+      break;
+    case "foreground":
+      copyData(
+        `"${colorType}": ${stringifyData(
+          generateThemeColor(
+            config[theme].baseColor[colorType],
+            colorType,
+            theme
+          )
+        )}`
+      );
+      break;
+    case "content1":
+    case "content2":
+    case "content3":
+    case "content4":
+      copyData(
+        `"${colorType}": {
+            "DEFAULT": "${config[theme].baseColor[colorType]}",
+            "foreground": "${readableColor(
+              config[theme].baseColor[colorType]
+            )}",
+        },`
+      );
+      break;
+  }
+}
+
+export function copyOtherColorConfig(
+  config: Config,
+  colorType: keyof ConfigColors["otherColor"],
+  theme: ThemeType
+) {
+  copyData(`"${colorType}": "${config[theme].otherColor[colorType]}"`);
 }
