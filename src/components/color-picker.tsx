@@ -1,10 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import {
   Button,
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownTrigger,
   Popover,
   PopoverContent,
   PopoverTrigger,
@@ -13,12 +9,12 @@ import { clsx } from "@nextui-org/shared-utils";
 import { HexColorInput, HexColorPicker } from "react-colorful";
 import Values from "values.js";
 import { readableColor } from "color2k";
+import { Drop } from "@phosphor-icons/react";
 
+import { ThemeContext } from "providers/theme";
 import { ColorPickerType, ThemeType } from "../shared/types";
 import { colorValuesToRgb, getColorWeight } from "../utils/colors";
-import { ThemeContext } from "providers/theme";
-import { Check, Drop, Moon, Sun } from "@phosphor-icons/react";
-import { Copy } from "@phosphor-icons/react/dist/ssr";
+import { CopyButton } from "./copy-button";
 
 interface ColorPickerProps {
   hexColor: string;
@@ -116,50 +112,13 @@ export function ColorPicker({
           </div>
         </PopoverContent>
       </Popover>
-      <CopyButton onCopy={onCopy} className="rounded-l-none" />
+      <CopyButton
+        className="rounded-l-none"
+        size="sm"
+        variant="flat"
+        onCopy={onCopy}
+      />
     </div>
-  );
-}
-
-interface CopyColorConfigButtonProps {
-  className?: string;
-  onCopy: (theme: ThemeType) => void;
-}
-
-function CopyButton({ className, onCopy }: CopyColorConfigButtonProps) {
-  const [copied, setCopied] = useState(false);
-
-  function handleCopy(theme: ThemeType) {
-    onCopy(theme);
-
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
-  }
-
-  return (
-    <Dropdown>
-      <DropdownTrigger>
-        <Button className={className} variant="flat" isIconOnly size="sm">
-          {copied ? <Check size={20} /> : <Copy size={20} />}
-        </Button>
-      </DropdownTrigger>
-      <DropdownMenu aria-label="Static Actions">
-        <DropdownItem
-          startContent={<Sun size={18} />}
-          onPress={() => handleCopy("light")}
-          key="light"
-        >
-          Light config
-        </DropdownItem>
-        <DropdownItem
-          startContent={<Moon size={18} />}
-          onPress={() => handleCopy("dark")}
-          key="dark"
-        >
-          Dark config
-        </DropdownItem>
-      </DropdownMenu>
-    </Dropdown>
   );
 }
 

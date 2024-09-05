@@ -1,32 +1,52 @@
 import { useState } from "react";
-import { Button, Tooltip } from "@nextui-org/react";
-import { CopyIcon, MoonIcon } from "@nextui-org/shared-icons";
+import {
+  Button,
+  ButtonProps,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+} from "@nextui-org/react";
+import { ThemeType } from "shared/types";
+import { Check, Copy, Moon, Sun } from "@phosphor-icons/react";
 
-interface CopyButtonProps {
-  getData: () => unknown;
+interface CopyButtonProps extends Omit<ButtonProps, "onCopy"> {
+  onCopy: (theme: ThemeType) => void;
 }
 
-export function CopyButton({ getData }: CopyButtonProps) {
+export function CopyButton({ onCopy, ...rest }: CopyButtonProps) {
   const [copied, setCopied] = useState(false);
 
-  function handleCopyConfig() {
-    navigator.clipboard.writeText(JSON.stringify(getData(), null, 2));
+  function handleCopy(theme: ThemeType) {
+    onCopy(theme);
 
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);
   }
 
   return (
-    <Tooltip content="Copy configuration">
-      <Button
-        isIconOnly
-        color="secondary"
-        size="sm"
-        variant="flat"
-        onClick={handleCopyConfig}
-      >
-        {copied ? <MoonIcon /> : <CopyIcon />}
-      </Button>
-    </Tooltip>
+    <Dropdown>
+      <DropdownTrigger>
+        <Button isIconOnly {...rest}>
+          {copied ? <Check size={20} /> : <Copy size={20} />}
+        </Button>
+      </DropdownTrigger>
+      <DropdownMenu aria-label="Copy configuration">
+        <DropdownItem
+          startContent={<Sun size={18} />}
+          onPress={() => handleCopy("light")}
+          key="light"
+        >
+          Light config
+        </DropdownItem>
+        <DropdownItem
+          startContent={<Moon size={18} />}
+          onPress={() => handleCopy("dark")}
+          key="dark"
+        >
+          Dark config
+        </DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
   );
 }
