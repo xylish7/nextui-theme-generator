@@ -83,7 +83,7 @@ export default function Configuration() {
   }
 
   return (
-    <Card className="max-w-md w-full rounded-t-none p-2 h-min relative mx-auto md:sticky md:top-28 z-30 md:h-[calc(100vh-12rem)]">
+    <Card className="max-w-md w-full p-2 h-min relative mx-auto md:sticky md:top-28 z-30 md:h-[calc(100vh-12rem)]">
       <CardBody className="flex flex-col">
         <div className="flex flex-col gap-6">
           <Actions
