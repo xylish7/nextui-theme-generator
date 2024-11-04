@@ -18,6 +18,7 @@ import { Select } from "./select";
 import { Slider } from "./slider";
 import { Switch } from "./switch";
 import { Tabs } from "./tabs";
+import { Table } from "./table";
 
 export function Showcase() {
   return (
@@ -39,6 +40,7 @@ export function Showcase() {
       <Select />
       <Switch />
       <Slider />
+      <Table />
       <Tabs />
       <FontSize />
     </div>

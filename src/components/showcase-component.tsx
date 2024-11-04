@@ -1,10 +1,16 @@
 import { Children, cloneElement, useState } from "react";
 import { Select, SelectItem } from "@nextui-org/react";
 
-import { NextUIRadius, NextUISize, NextUIVariant } from "../shared/types";
+import {
+  NextUIColor,
+  NextUIRadius,
+  NextUISize,
+  NextUIVariant,
+} from "../shared/types";
 
 interface ShowcaseComponentProps {
   children: React.ReactElement | React.ReactElement[];
+  colors?: NextUIColor[];
   defaultVariant?: NextUIVariant;
   id?: string;
   name: string;
@@ -15,6 +21,7 @@ interface ShowcaseComponentProps {
 
 export function ShowcaseComponent({
   children,
+  colors = [],
   defaultVariant,
   id,
   name,
@@ -22,6 +29,7 @@ export function ShowcaseComponent({
   sizes = [],
   variants = [],
 }: ShowcaseComponentProps) {
+  const [color, setColor] = useState<NextUIColor>("default");
   const [variant, setVariant] = useState<NextUIVariant | undefined>(
     defaultVariant
   );
@@ -35,6 +43,27 @@ export function ShowcaseComponent({
     >
       <span className="text-xl font-semibold">{name}</span>
       <div className="flex flex-wrap gap-2 mt-4">
+        {colors.length ? (
+          <Select
+            className="w-32"
+            defaultSelectedKeys={[color]}
+            label="Color"
+            labelPlacement="outside"
+            selectedKeys={[color]}
+            size="sm"
+            onChange={(e) =>
+              setColor((e.target.value as NextUIColor) || "default")
+            }
+          >
+            {defaultColors
+              .filter((color) => colors.includes(color.value))
+              .map((color) => (
+                <SelectItem key={color.value} value={color.value}>
+                  {color.label}
+                </SelectItem>
+              ))}
+          </Select>
+        ) : null}
         {variants.length ? (
           <Select
             className="w-32"
@@ -97,7 +126,12 @@ export function ShowcaseComponent({
       </div>
       <div className="flex flex-wrap gap-4 mt-8">
         {Children.map(children, (child) =>
-          cloneElement(child, { radius, size, variant })
+          cloneElement(child, {
+            ...(colors.length ? { color } : {}),
+            radius,
+            size,
+            variant,
+          })
         )}
       </div>
     </div>
@@ -128,4 +162,13 @@ const defaultSizes: { label: string; value: NextUISize }[] = [
   { label: "Small", value: "sm" },
   { label: "Medium", value: "md" },
   { label: "Large", value: "lg" },
+];
+
+const defaultColors: { label: string; value: NextUIColor }[] = [
+  { label: "Default", value: "default" },
+  { label: "Primary", value: "primary" },
+  { label: "Secondary", value: "secondary" },
+  { label: "Success", value: "success" },
+  { label: "Warning", value: "warning" },
+  { label: "Danger", value: "danger" },
 ];
