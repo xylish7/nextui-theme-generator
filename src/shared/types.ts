@@ -126,4 +126,9 @@ export interface Template {
   value: Config;
 }
 
-export type TemplateType = "autumn" | "coffee" | "emerald" | "nextui";
+export type TemplateType =
+  | "autumn"
+  | "coffee"
+  | "emerald"
+  | "nextui"
+  | "winter";
