@@ -30,7 +30,13 @@ export type ColorPickerType =
   | "warning";
 
 // NextUI component props
-export type NextUIColor = "default" | "primary" | "secondary" | "success" | "warning" | "danger";
+export type NextUIColor =
+  | "default"
+  | "primary"
+  | "secondary"
+  | "success"
+  | "warning"
+  | "danger";
 export type NextUISize = "sm" | "md" | "lg";
 export type NextUIVariant =
   | "dot"
@@ -120,4 +126,4 @@ export interface Template {
   value: Config;
 }
 
-export type TemplateType = "coffee" | "emerald" | "nextui";
+export type TemplateType = "autumn" | "coffee" | "emerald" | "nextui";
