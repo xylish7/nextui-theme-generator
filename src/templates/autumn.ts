@@ -22,7 +22,7 @@ export const autumn: Config = {
     },
     otherColor: {
       divider: "#111111",
-      focus: "#db924b",
+      focus: "#a02242",
       overlay: colors.black,
     },
   },
@@ -45,7 +45,7 @@ export const autumn: Config = {
     },
     otherColor: {
       divider: colors.white,
-      focus: "#790220",
+      focus: "#a02242",
       overlay: colors.white,
     },
   },
