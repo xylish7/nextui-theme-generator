@@ -1,4 +1,4 @@
-import { Link, colors } from "@nextui-org/react";
+import { Link, colors } from "@heroui/react";
 import indieDevLogo from "assets/indie-dev-logo.png";
 
 export default function Footer() {

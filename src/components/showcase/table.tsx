@@ -5,7 +5,7 @@ import {
   TableBody,
   TableRow,
   TableCell,
-} from "@nextui-org/react";
+} from "@heroui/react";
 import { ShowcaseComponent } from "components/showcase-component";
 import { NextUIColor } from "shared/types";
 

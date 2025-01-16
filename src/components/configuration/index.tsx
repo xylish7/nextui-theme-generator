@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Card, CardBody, Switch } from "@nextui-org/react";
+import { Card, CardBody, Switch } from "@heroui/react";
 import { ArrowsClockwise } from "@phosphor-icons/react";
 
 import { SelectTemplate } from "components/select-template";

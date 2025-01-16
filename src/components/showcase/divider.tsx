@@ -1,4 +1,4 @@
-import { Divider as NextUIDivider } from "@nextui-org/react";
+import { Divider as NextUIDivider } from "@heroui/react";
 import { ShowcaseComponent } from "components/showcase-component";
 
 export function Divider() {

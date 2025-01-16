@@ -32,13 +32,13 @@ export function setCssColor(
     const value = hexToHsl(themeColor[key as keyof ThemeColor]);
 
     if (key === "DEFAULT") {
-      brandColorsEl.style.setProperty(`--nextui-${colorType}`, value);
-      commonColorsEl.style.setProperty(`--nextui-${colorType}`, value);
-      showcaseEl.style.setProperty(`--nextui-${colorType}`, value);
+      brandColorsEl.style.setProperty(`--heroui-${colorType}`, value);
+      commonColorsEl.style.setProperty(`--heroui-${colorType}`, value);
+      showcaseEl.style.setProperty(`--heroui-${colorType}`, value);
     } else {
-      brandColorsEl.style.setProperty(`--nextui-${colorType}-${key}`, value);
-      commonColorsEl.style.setProperty(`--nextui-${colorType}-${key}`, value);
-      showcaseEl.style.setProperty(`--nextui-${colorType}-${key}`, value);
+      brandColorsEl.style.setProperty(`--heroui-${colorType}-${key}`, value);
+      commonColorsEl.style.setProperty(`--heroui-${colorType}-${key}`, value);
+      showcaseEl.style.setProperty(`--heroui-${colorType}-${key}`, value);
     }
   });
 }
@@ -48,8 +48,8 @@ export function setCssBackground(value: string) {
   const baseColor = document.getElementById(baseColorsId);
   const hslValue = hexToHsl(value);
 
-  baseColor?.style.setProperty("--nextui-background", hslValue);
-  showcaseEl?.style.setProperty("--nextui-background", hslValue);
+  baseColor?.style.setProperty("--heroui-background", hslValue);
+  showcaseEl?.style.setProperty("--heroui-background", hslValue);
 }
 
 export function setCssFontSize(
@@ -58,7 +58,7 @@ export function setCssFontSize(
 ) {
   const el = document.getElementById(showcaseId);
 
-  el?.style.setProperty(`--nextui-font-size-${type}`, `${value}rem`);
+  el?.style.setProperty(`--heroui-font-size-${type}`, `${value}rem`);
 }
 
 export function setCssLineHeight(
@@ -67,7 +67,7 @@ export function setCssLineHeight(
 ) {
   const el = document.getElementById(showcaseId);
 
-  el?.style.setProperty(`--nextui-line-height-${type}`, `${value}rem`);
+  el?.style.setProperty(`--heroui-line-height-${type}`, `${value}rem`);
 }
 
 export function setCssRadius(
@@ -76,7 +76,7 @@ export function setCssRadius(
 ) {
   const el = document.getElementById(showcaseId);
 
-  el?.style.setProperty(`--nextui-radius-${type}`, `${value}rem`);
+  el?.style.setProperty(`--heroui-radius-${type}`, `${value}rem`);
 }
 
 export function setCssBorderWidth(
@@ -85,7 +85,7 @@ export function setCssBorderWidth(
 ) {
   const el = document.getElementById(showcaseId);
 
-  el?.style.setProperty(`--nextui-border-width-${type}`, `${value}px`);
+  el?.style.setProperty(`--heroui-border-width-${type}`, `${value}px`);
 }
 
 export function setCssContentColor(level: 1 | 2 | 3 | 4, value: string) {
@@ -93,14 +93,14 @@ export function setCssContentColor(level: 1 | 2 | 3 | 4, value: string) {
   const baseColorEl = document.getElementById(baseColorsId);
   const hslValue = hexToHsl(value);
 
-  showcaseEl?.style.setProperty(`--nextui-content${level}`, hslValue);
+  showcaseEl?.style.setProperty(`--heroui-content${level}`, hslValue);
   showcaseEl?.style.setProperty(
-    `--nextui-content${level}-foreground`,
+    `--heroui-content${level}-foreground`,
     hexToHsl(readableColor(value))
   );
-  baseColorEl?.style.setProperty(`--nextui-content${level}`, hslValue);
+  baseColorEl?.style.setProperty(`--heroui-content${level}`, hslValue);
   baseColorEl?.style.setProperty(
-    `--nextui-content${level}-foreground`,
+    `--heroui-content${level}-foreground`,
     hexToHsl(readableColor(value))
   );
 }
@@ -113,8 +113,8 @@ export function setCssOtherColor(
   const otherColors = document.getElementById(otherColorsId);
   const hslValue = hexToHsl(value);
 
-  otherColors?.style.setProperty(`--nextui-${type}`, hslValue);
-  showcaseEl?.style.setProperty(`--nextui-${type}`, hslValue);
+  otherColors?.style.setProperty(`--heroui-${type}`, hslValue);
+  showcaseEl?.style.setProperty(`--heroui-${type}`, hslValue);
 }
 
 export function setOtherCssParams(
@@ -127,13 +127,13 @@ export function setOtherCssParams(
 
   switch (type) {
     case "disabledOpacity":
-      el.style.setProperty("--nextui-disabled-opacity", value);
+      el.style.setProperty("--heroui-disabled-opacity", value);
       break;
     case "dividerWeight":
-      el.style.setProperty("--nextui-divider-weight", `${value}px`);
+      el.style.setProperty("--heroui-divider-weight", `${value}px`);
       break;
     case "hoverOpacity":
-      el.style.setProperty("--nextui-hover-opacity", value);
+      el.style.setProperty("--heroui-hover-opacity", value);
       break;
   }
 }

@@ -1,4 +1,4 @@
-import { Button, Link } from "@nextui-org/react";
+import { Button, Link } from "@heroui/react";
 import { GithubLogo, Warning } from "@phosphor-icons/react";
 import { ArrowsClockwise } from "@phosphor-icons/react/dist/ssr";
 

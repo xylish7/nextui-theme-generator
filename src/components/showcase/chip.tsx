@@ -1,4 +1,4 @@
-import { Chip as NextUIChip } from "@nextui-org/react";
+import { Chip as NextUIChip } from "@heroui/react";
 
 import { ShowcaseComponent } from "components/showcase-component";
 import { NextUISize, NextUIVariant } from "shared/types";

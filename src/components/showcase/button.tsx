@@ -1,4 +1,4 @@
-import { Button as NextUIButton } from "@nextui-org/react";
+import { Button as NextUIButton } from "@heroui/react";
 
 import { ShowcaseComponent } from "components/showcase-component";
 import { NextUIRadius, NextUISize, NextUIVariant } from "shared/types";

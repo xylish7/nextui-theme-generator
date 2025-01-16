@@ -4,7 +4,7 @@ import {
   DropdownMenu,
   DropdownItem,
   Button,
-} from "@nextui-org/react";
+} from "@heroui/react";
 
 import { ShowcaseComponent } from "components/showcase-component";
 import { NextUIColor, NextUIVariant } from "shared/types";

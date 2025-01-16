@@ -5,7 +5,7 @@ import {
   NavbarContent,
   NavbarItem,
   Link,
-} from "@nextui-org/react";
+} from "@heroui/react";
 import { GithubLogo, Tree } from "@phosphor-icons/react";
 
 import logo from "assets/logo.png";

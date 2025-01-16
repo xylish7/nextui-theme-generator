@@ -1,4 +1,4 @@
-import { Link as NextUILink } from "@nextui-org/react";
+import { Link as NextUILink } from "@heroui/react";
 
 import { ShowcaseComponent } from "components/showcase-component";
 import { NextUISize } from "shared/types";

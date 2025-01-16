@@ -1,6 +1,6 @@
 import {useState} from "react";
-import {Button, Tooltip} from "@nextui-org/react";
-import {CopyIcon, MoonIcon} from "@nextui-org/shared-icons";
+import {Button, Tooltip} from "@heroui/react";
+import {CopyIcon, MoonIcon} from "@heroui/shared-icons";
 
 interface CopyButtonProps {
   getData: () => unknown;

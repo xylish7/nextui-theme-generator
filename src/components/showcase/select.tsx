@@ -1,4 +1,4 @@
-import { Select as NextUI, SelectItem } from "@nextui-org/react";
+import { Select as NextUI, SelectItem } from "@heroui/react";
 
 import { ShowcaseComponent } from "components/showcase-component";
 import {

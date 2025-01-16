@@ -1,4 +1,4 @@
-import { NextUIPluginConfig } from "@nextui-org/theme";
+import { HeroUIPluginConfig } from "@heroui/theme";
 import { readableColor } from "color2k";
 
 import { Config } from "../shared/types";
@@ -12,8 +12,8 @@ import { generateThemeColor } from "./colors";
 /**
  * Generate plugin configuration
  */
-export function generatePluginConfig(config: Config): NextUIPluginConfig {
-  const layout: NextUIPluginConfig["layout"] = {
+export function generatePluginConfig(config: Config): HeroUIPluginConfig {
+  const layout: HeroUIPluginConfig["layout"] = {
     fontSize: {
       tiny: `${config.layout.fontSize.tiny}rem`,
       small: `${config.layout.fontSize.small}rem`,

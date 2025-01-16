@@ -1,4 +1,4 @@
-import { Input as NextUIInput } from "@nextui-org/react";
+import { Input as NextUIInput } from "@heroui/react";
 
 import { ShowcaseComponent } from "components/showcase-component";
 import { NextUIColor, NextUISize, NextUIVariant } from "shared/types";

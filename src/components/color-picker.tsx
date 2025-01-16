@@ -4,7 +4,7 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@nextui-org/react";
+} from "@heroui/react";
 import { HexColorInput, HexColorPicker } from "react-colorful";
 import Values from "values.js";
 import { readableColor } from "color2k";

@@ -1,4 +1,4 @@
-import { CircularProgress as NextUICircularProgress } from "@nextui-org/react";
+import { CircularProgress as NextUICircularProgress } from "@heroui/react";
 
 import { ShowcaseComponent } from "components/showcase-component";
 import { NextUISize } from "shared/types";
