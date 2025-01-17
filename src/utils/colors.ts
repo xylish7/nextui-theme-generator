@@ -20,6 +20,19 @@ export function colorValuesToRgb(value: Values) {
   return `rgba(${value.rgb.join(", ")}, ${value.alpha})`;
 }
 
+export function generateShades(color: string, weight: number) {
+  const values = new Values(color);
+  const colorValues = values.all(weight);
+
+  return colorValues
+    .slice(0, colorValues.length - 1)
+    .reduce((acc, shadeValue, index) => {
+      (acc as any)[index === 0 ? 50 : index * 100] = rgbToHex(shadeValue.rgb);
+
+      return acc;
+    }, {} as ColorShades);
+}
+
 /**
  * Generate theme color
  */
@@ -28,21 +41,14 @@ export function generateThemeColor(
   theme: ThemeType,
   weight: number
 ): ThemeColor {
-  const values = new Values(color);
-  const colorValues = values.all(weight);
-  const shades = colorValues
-    .slice(0, colorValues.length - 1)
-    .reduce((acc, shadeValue, index) => {
-      (acc as any)[index === 0 ? 50 : index * 100] = rgbToHex(shadeValue.rgb);
-
-      return acc;
-    }, {} as ColorShades);
-  console.log("🚀 ~ shades:", color, theme, shades);
+  const lightShades = generateShades(color, weight);
+  const darkShades = swapColorValues(lightShades);
+  const baseColor = theme === "light" ? lightShades[500] : lightShades[500];
 
   return {
-    ...((theme === "light" ? shades : swapColorValues(shades)) as ColorShades),
-    foreground: readableColor(shades[500]),
-    DEFAULT: shades[500],
+    ...(theme === "light" ? lightShades : darkShades),
+    foreground: readableColor(baseColor),
+    DEFAULT: baseColor,
   };
 }
 
