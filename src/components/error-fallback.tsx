@@ -13,7 +13,7 @@ export default function ErrorFallback() {
       <div className="flex gap-4 mt-6">
         <Button
           color="primary"
-          onClick={() => {
+          onPress={() => {
             localStorage.clear();
             window.location.reload();
           }}

@@ -43,7 +43,7 @@ export function Actions({
           isIconOnly
           color="secondary"
           variant="flat"
-          onClick={onToggleTheme}
+          onPress={onToggleTheme}
         >
           {isLight ? <Moon size={20} /> : <Sun size={20} />}
         </Button>
@@ -53,7 +53,7 @@ export function Actions({
           isIconOnly
           color="secondary"
           variant="flat"
-          onClick={onResetTheme}
+          onPress={onResetTheme}
         >
           <ArrowCounterClockwise size={20} />
         </Button>
@@ -63,7 +63,7 @@ export function Actions({
           isIconOnly
           color="secondary"
           variant="flat"
-          onClick={handleCopyConfig}
+          onPress={handleCopyConfig}
         >
           {copied ? <Check size={20} /> : <Copy size={20} />}
         </Button>

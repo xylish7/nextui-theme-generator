@@ -1,12 +1,12 @@
-import {useState} from "react";
-import {Button, Tooltip} from "@heroui/react";
-import {CopyIcon, MoonIcon} from "@heroui/shared-icons";
+import { useState } from "react";
+import { Button, Tooltip } from "@heroui/react";
+import { CopyIcon, MoonIcon } from "@heroui/shared-icons";
 
 interface CopyButtonProps {
   getData: () => unknown;
 }
 
-export function CopyButton({getData}: CopyButtonProps) {
+export function CopyButton({ getData }: CopyButtonProps) {
   const [copied, setCopied] = useState(false);
 
   function handleCopyConfig() {
@@ -18,7 +18,13 @@ export function CopyButton({getData}: CopyButtonProps) {
 
   return (
     <Tooltip content="Copy configuration">
-      <Button isIconOnly color="secondary" size="sm" variant="flat" onClick={handleCopyConfig}>
+      <Button
+        isIconOnly
+        color="secondary"
+        size="sm"
+        variant="flat"
+        onPress={handleCopyConfig}
+      >
         {copied ? <MoonIcon /> : <CopyIcon />}
       </Button>
     </Tooltip>

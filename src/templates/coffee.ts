@@ -38,7 +38,7 @@ export const coffee: Config = {
     },
     baseColor: {
       foreground: "#c59f60",
-      background: "#20161F",
+      background: "#0a080a",
       content1: "#2c1f2b",
       content2: "#3e2b3c",
       content3: "#50374d",

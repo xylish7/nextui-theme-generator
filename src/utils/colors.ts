@@ -37,6 +37,7 @@ export function generateThemeColor(
 
       return acc;
     }, {} as ColorShades);
+  console.log("🚀 ~ shades:", color, theme, shades);
 
   return {
     ...((theme === "light" ? shades : swapColorValues(shades)) as ColorShades),
