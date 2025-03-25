@@ -1,4 +1,4 @@
-import { Select as NextUI, SelectItem } from "@heroui/react";
+import { Select as NextUISelect, SelectItem } from "@heroui/react";
 
 import { ShowcaseComponent } from "components/showcase-component";
 import {
@@ -18,7 +18,7 @@ export function Select() {
       variants={variants}
     >
       {colors.map((color) => (
-        <NextUI
+        <NextUISelect
           key={color}
           className="max-w-xs"
           color={color}
@@ -27,11 +27,9 @@ export function Select() {
           placeholder="Select an animal"
         >
           {animals.map((animal) => (
-            <SelectItem key={animal.value} value={animal.value}>
-              {animal.label}
-            </SelectItem>
+            <SelectItem key={animal.value}>{animal.label}</SelectItem>
           ))}
-        </NextUI>
+        </NextUISelect>
       ))}
     </ShowcaseComponent>
   );

@@ -26,11 +26,10 @@ export function SelectTemplate({ name, onChange }: SelectTemplateProps) {
       selectedKeys={name === null ? [] : [name]}
       onChange={handleChange}
     >
-      {templates.map((template, index) => (
+      {templates.map((template) => (
         <SelectItem
           key={template.name}
           startContent={<Swatch colors={template.value.light.brandColor} />}
-          value={index}
         >
           {template.label}
         </SelectItem>

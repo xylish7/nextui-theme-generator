@@ -58,9 +58,7 @@ export function ShowcaseComponent({
             {defaultColors
               .filter((color) => colors.includes(color.value))
               .map((color) => (
-                <SelectItem key={color.value} value={color.value}>
-                  {color.label}
-                </SelectItem>
+                <SelectItem key={color.value}>{color.label}</SelectItem>
               ))}
           </Select>
         ) : null}
@@ -79,9 +77,7 @@ export function ShowcaseComponent({
             {defaultVariants
               .filter((variant) => variants.includes(variant.value))
               .map((variant) => (
-                <SelectItem key={variant.value} value={variant.value}>
-                  {variant.label}
-                </SelectItem>
+                <SelectItem key={variant.value}>{variant.label}</SelectItem>
               ))}
           </Select>
         ) : null}
@@ -98,9 +94,7 @@ export function ShowcaseComponent({
             {defaultSizes
               .filter((size) => sizes.includes(size.value))
               .map((size) => (
-                <SelectItem key={size.value} value={size.value}>
-                  {size.label}
-                </SelectItem>
+                <SelectItem key={size.value}>{size.label}</SelectItem>
               ))}
           </Select>
         ) : null}
@@ -117,9 +111,7 @@ export function ShowcaseComponent({
             {defaultRadiuses
               .filter((radius) => radiuses.includes(radius.value))
               .map((radius) => (
-                <SelectItem key={radius.value} value={radius.value}>
-                  {radius.label}
-                </SelectItem>
+                <SelectItem key={radius.value}>{radius.label}</SelectItem>
               ))}
           </Select>
         ) : null}
