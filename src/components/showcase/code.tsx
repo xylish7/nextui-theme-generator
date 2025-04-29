@@ -1,7 +1,7 @@
-import { Code as NextUICode } from "@heroui/react";
+import { Code as HeroUICode } from "@heroui/react";
 
 import { ShowcaseComponent } from "components/showcase-component";
-import { NextUIRadius, NextUISize } from "shared/types";
+import { HeroUIRadius, HeroUISize } from "shared/types";
 
 export function Code() {
   return (
@@ -11,15 +11,15 @@ export function Code() {
       radiuses={radiuses}
       sizes={sizes}
     >
-      <NextUICode color="default">npm install @heroui/react</NextUICode>
-      <NextUICode color="primary">npm install @heroui/react</NextUICode>
-      <NextUICode color="secondary">npm install @heroui/react</NextUICode>
-      <NextUICode color="success">npm install @heroui/react</NextUICode>
-      <NextUICode color="warning">npm install @heroui/react</NextUICode>
-      <NextUICode color="danger">npm install @heroui/react</NextUICode>
+      <HeroUICode color="default">npm install @heroui/react</HeroUICode>
+      <HeroUICode color="primary">npm install @heroui/react</HeroUICode>
+      <HeroUICode color="secondary">npm install @heroui/react</HeroUICode>
+      <HeroUICode color="success">npm install @heroui/react</HeroUICode>
+      <HeroUICode color="warning">npm install @heroui/react</HeroUICode>
+      <HeroUICode color="danger">npm install @heroui/react</HeroUICode>
     </ShowcaseComponent>
   );
 }
 
-const radiuses: NextUIRadius[] = ["none", "sm", "md", "lg", "full"];
-const sizes: NextUISize[] = ["sm", "md", "lg"];
+const radiuses: HeroUIRadius[] = ["none", "sm", "md", "lg", "full"];
+const sizes: HeroUISize[] = ["sm", "md", "lg"];

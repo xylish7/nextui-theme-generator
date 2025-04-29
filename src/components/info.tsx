@@ -9,7 +9,7 @@ export default function Info() {
         <p className="mt-3">
           This is a theme generator for the{" "}
           <Link href="https://nextui.org/" isExternal>
-            NextUI
+            HeroUI
           </Link>{" "}
           component library.
         </p>

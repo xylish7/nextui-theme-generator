@@ -1,11 +1,11 @@
-import { Select as NextUISelect, SelectItem } from "@heroui/react";
+import { Select as HeroUISelect, SelectItem } from "@heroui/react";
 
 import { ShowcaseComponent } from "components/showcase-component";
 import {
-  NextUIColor,
-  NextUIRadius,
-  NextUISize,
-  NextUIVariant,
+  HeroUIColor,
+  HeroUIRadius,
+  HeroUISize,
+  HeroUIVariant,
 } from "shared/types";
 
 export function Select() {
@@ -18,7 +18,7 @@ export function Select() {
       variants={variants}
     >
       {colors.map((color) => (
-        <NextUISelect
+        <HeroUISelect
           key={color}
           className="max-w-xs"
           color={color}
@@ -29,7 +29,7 @@ export function Select() {
           {animals.map((animal) => (
             <SelectItem key={animal.value}>{animal.label}</SelectItem>
           ))}
-        </NextUISelect>
+        </HeroUISelect>
       ))}
     </ShowcaseComponent>
   );
@@ -57,7 +57,7 @@ const animals: { label: string; value: string }[] = [
     value: "rabbit",
   },
 ];
-const colors: NextUIColor[] = [
+const colors: HeroUIColor[] = [
   "default",
   "primary",
   "secondary",
@@ -65,6 +65,6 @@ const colors: NextUIColor[] = [
   "warning",
   "danger",
 ];
-const radiuses: NextUIRadius[] = ["none", "sm", "md", "lg", "full"];
-const sizes: NextUISize[] = ["sm", "md", "lg"];
-const variants: NextUIVariant[] = ["faded", "bordered", "flat", "underlined"];
+const radiuses: HeroUIRadius[] = ["none", "sm", "md", "lg", "full"];
+const sizes: HeroUISize[] = ["sm", "md", "lg"];
+const variants: HeroUIVariant[] = ["faded", "bordered", "flat", "underlined"];

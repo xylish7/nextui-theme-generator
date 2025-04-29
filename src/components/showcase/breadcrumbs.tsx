@@ -1,18 +1,18 @@
 import {
   BreadcrumbItem,
-  Breadcrumbs as NextUIBreadcrumbs,
+  Breadcrumbs as HeroUIBreadcrumbs,
 } from "@heroui/react";
 
 import { ShowcaseComponent } from "components/showcase-component";
 import {
-  NextUIColor,
-  NextUIRadius,
-  NextUISize,
-  NextUIVariant,
+  HeroUIColor,
+  HeroUIRadius,
+  HeroUISize,
+  HeroUIVariant,
 } from "shared/types";
 
 export function Breadcrumbs() {
-  const colors: NextUIColor[] = [
+  const colors: HeroUIColor[] = [
     "default",
     "primary",
     "secondary",
@@ -30,7 +30,7 @@ export function Breadcrumbs() {
       variants={variants}
     >
       {colors.map((color) => (
-        <NextUIBreadcrumbs
+        <HeroUIBreadcrumbs
           key={color}
           color={color === "default" ? "foreground" : color}
         >
@@ -39,12 +39,12 @@ export function Breadcrumbs() {
           <BreadcrumbItem>Artist</BreadcrumbItem>
           <BreadcrumbItem>Album</BreadcrumbItem>
           <BreadcrumbItem>Song</BreadcrumbItem>
-        </NextUIBreadcrumbs>
+        </HeroUIBreadcrumbs>
       ))}
     </ShowcaseComponent>
   );
 }
 
-const radiuses: NextUIRadius[] = ["none", "sm", "md", "lg", "full"];
-const sizes: NextUISize[] = ["sm", "md", "lg"];
-const variants: NextUIVariant[] = ["solid", "bordered", "light"];
+const radiuses: HeroUIRadius[] = ["none", "sm", "md", "lg", "full"];
+const sizes: HeroUISize[] = ["sm", "md", "lg"];
+const variants: HeroUIVariant[] = ["solid", "bordered", "light"];

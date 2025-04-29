@@ -1,5 +1,5 @@
 import {
-  Dropdown as NextUIDropdown,
+  Dropdown as HeroUIDropdown,
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
@@ -7,7 +7,7 @@ import {
 } from "@heroui/react";
 
 import { ShowcaseComponent } from "components/showcase-component";
-import { NextUIColor, NextUIVariant } from "shared/types";
+import { HeroUIColor, HeroUIVariant } from "shared/types";
 
 export function Dropdown() {
   return (
@@ -24,16 +24,16 @@ export function Dropdown() {
 }
 
 interface DropdownContentProps {
-  color: NextUIColor;
+  color: HeroUIColor;
   variant?: Extract<
-    NextUIVariant,
+    HeroUIVariant,
     "solid" | "faded" | "bordered" | "light" | "flat" | "shadow"
   >;
 }
 
 function DropdownContent({ color, variant }: DropdownContentProps) {
   return (
-    <NextUIDropdown>
+    <HeroUIDropdown>
       <DropdownTrigger>
         <Button className="capitalize" color={color} variant={variant}>
           {color}
@@ -51,11 +51,11 @@ function DropdownContent({ color, variant }: DropdownContentProps) {
           Delete file
         </DropdownItem>
       </DropdownMenu>
-    </NextUIDropdown>
+    </HeroUIDropdown>
   );
 }
 
-const colors: NextUIColor[] = [
+const colors: HeroUIColor[] = [
   "default",
   "primary",
   "secondary",
@@ -63,7 +63,7 @@ const colors: NextUIColor[] = [
   "warning",
   "danger",
 ];
-const variants: NextUIVariant[] = [
+const variants: HeroUIVariant[] = [
   "solid",
   "faded",
   "bordered",

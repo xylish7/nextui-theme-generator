@@ -1,11 +1,11 @@
-import { Tab, Tabs as NextUITabs } from "@heroui/react";
+import { Tab, Tabs as HeroUITabs } from "@heroui/react";
 
 import { ShowcaseComponent } from "components/showcase-component";
 import {
-  NextUIColor,
-  NextUIRadius,
-  NextUISize,
-  NextUIVariant,
+  HeroUIColor,
+  HeroUIRadius,
+  HeroUISize,
+  HeroUIVariant,
 } from "shared/types";
 
 export function Tabs() {
@@ -18,7 +18,7 @@ export function Tabs() {
       variants={variants}
     >
       {colors.map((color) => (
-        <NextUITabs
+        <HeroUITabs
           key={color}
           aria-label="Tabs colors"
           color={color}
@@ -27,13 +27,13 @@ export function Tabs() {
           <Tab key="photos" title="Photos" />
           <Tab key="music" title="Music" />
           <Tab key="videos" title="Videos" />
-        </NextUITabs>
+        </HeroUITabs>
       ))}
     </ShowcaseComponent>
   );
 }
 
-const colors: NextUIColor[] = [
+const colors: HeroUIColor[] = [
   "default",
   "primary",
   "secondary",
@@ -41,6 +41,6 @@ const colors: NextUIColor[] = [
   "warning",
   "danger",
 ];
-const radiuses: NextUIRadius[] = ["none", "sm", "md", "lg", "full"];
-const sizes: NextUISize[] = ["sm", "md", "lg"];
-const variants: NextUIVariant[] = ["solid", "bordered", "light", "underlined"];
+const radiuses: HeroUIRadius[] = ["none", "sm", "md", "lg", "full"];
+const sizes: HeroUISize[] = ["sm", "md", "lg"];
+const variants: HeroUIVariant[] = ["solid", "bordered", "light", "underlined"];

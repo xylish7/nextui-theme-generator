@@ -29,16 +29,16 @@ export type ColorPickerType =
   | "success"
   | "warning";
 
-// NextUI component props
-export type NextUIColor =
+// HeroUI component props
+export type HeroUIColor =
   | "default"
   | "primary"
   | "secondary"
   | "success"
   | "warning"
   | "danger";
-export type NextUISize = "sm" | "md" | "lg";
-export type NextUIVariant =
+export type HeroUISize = "sm" | "md" | "lg";
+export type HeroUIVariant =
   | "dot"
   | "solid"
   | "faded"
@@ -48,7 +48,7 @@ export type NextUIVariant =
   | "ghost"
   | "shadow"
   | "underlined";
-export type NextUIRadius = "none" | "sm" | "md" | "lg" | "full";
+export type HeroUIRadius = "none" | "sm" | "md" | "lg" | "full";
 
 // Themes
 export type ThemeType = "light" | "dark";

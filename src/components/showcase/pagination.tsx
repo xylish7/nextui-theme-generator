@@ -1,7 +1,7 @@
-import { Pagination as NextUIPagination } from "@heroui/react";
+import { Pagination as HeroUIPagination } from "@heroui/react";
 
 import { ShowcaseComponent } from "components/showcase-component";
-import { NextUIRadius, NextUISize, NextUIVariant } from "shared/types";
+import { HeroUIRadius, HeroUISize, HeroUIVariant } from "shared/types";
 
 export function Pagination() {
   return (
@@ -12,28 +12,28 @@ export function Pagination() {
       sizes={sizes}
       variants={variants}
     >
-      <NextUIPagination color="default" page={1} total={10}>
+      <HeroUIPagination color="default" page={1} total={10}>
         Default
-      </NextUIPagination>
-      <NextUIPagination color="primary" page={1} total={10}>
+      </HeroUIPagination>
+      <HeroUIPagination color="primary" page={1} total={10}>
         Primary
-      </NextUIPagination>
-      <NextUIPagination color="secondary" page={1} total={10}>
+      </HeroUIPagination>
+      <HeroUIPagination color="secondary" page={1} total={10}>
         Secondary
-      </NextUIPagination>
-      <NextUIPagination color="success" page={1} total={10}>
+      </HeroUIPagination>
+      <HeroUIPagination color="success" page={1} total={10}>
         Success
-      </NextUIPagination>
-      <NextUIPagination color="warning" page={1} total={10}>
+      </HeroUIPagination>
+      <HeroUIPagination color="warning" page={1} total={10}>
         Warning
-      </NextUIPagination>
-      <NextUIPagination color="danger" page={1} total={10}>
+      </HeroUIPagination>
+      <HeroUIPagination color="danger" page={1} total={10}>
         Danger
-      </NextUIPagination>
+      </HeroUIPagination>
     </ShowcaseComponent>
   );
 }
 
-const radiuses: NextUIRadius[] = ["none", "sm", "md", "lg", "full"];
-const sizes: NextUISize[] = ["sm", "md", "lg"];
-const variants: NextUIVariant[] = ["faded", "bordered", "light", "flat"];
+const radiuses: HeroUIRadius[] = ["none", "sm", "md", "lg", "full"];
+const sizes: HeroUISize[] = ["sm", "md", "lg"];
+const variants: HeroUIVariant[] = ["faded", "bordered", "light", "flat"];

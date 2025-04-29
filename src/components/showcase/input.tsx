@@ -1,7 +1,7 @@
-import { Input as NextUIInput } from "@heroui/react";
+import { Input as HeroUIInput } from "@heroui/react";
 
 import { ShowcaseComponent } from "components/showcase-component";
-import { NextUIColor, NextUISize, NextUIVariant } from "shared/types";
+import { HeroUIColor, HeroUISize, HeroUIVariant } from "shared/types";
 
 export function Input() {
   return (
@@ -12,7 +12,7 @@ export function Input() {
       variants={variants}
     >
       {colors.map((color) => (
-        <NextUIInput
+        <HeroUIInput
           key={color}
           className="max-w-[220px]"
           color={color}
@@ -26,7 +26,7 @@ export function Input() {
   );
 }
 
-const colors: NextUIColor[] = [
+const colors: HeroUIColor[] = [
   "default",
   "primary",
   "secondary",
@@ -34,5 +34,5 @@ const colors: NextUIColor[] = [
   "warning",
   "danger",
 ];
-const sizes: NextUISize[] = ["sm", "md", "lg"];
-const variants: NextUIVariant[] = ["flat", "bordered", "underlined", "faded"];
+const sizes: HeroUISize[] = ["sm", "md", "lg"];
+const variants: HeroUIVariant[] = ["flat", "bordered", "underlined", "faded"];

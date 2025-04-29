@@ -1,7 +1,7 @@
-import { CircularProgress as NextUICircularProgress } from "@heroui/react";
+import { CircularProgress as HeroUICircularProgress } from "@heroui/react";
 
 import { ShowcaseComponent } from "components/showcase-component";
-import { NextUISize } from "shared/types";
+import { HeroUISize } from "shared/types";
 
 export function CircularProgress() {
   return (
@@ -10,26 +10,26 @@ export function CircularProgress() {
       name="CircularProgress"
       sizes={sizes}
     >
-      <NextUICircularProgress aria-label="default" color="default">
+      <HeroUICircularProgress aria-label="default" color="default">
         Default
-      </NextUICircularProgress>
-      <NextUICircularProgress aria-label="primary" color="primary">
+      </HeroUICircularProgress>
+      <HeroUICircularProgress aria-label="primary" color="primary">
         Primary
-      </NextUICircularProgress>
-      <NextUICircularProgress aria-label="secondary" color="secondary">
+      </HeroUICircularProgress>
+      <HeroUICircularProgress aria-label="secondary" color="secondary">
         Secondary
-      </NextUICircularProgress>
-      <NextUICircularProgress aria-label="success" color="success">
+      </HeroUICircularProgress>
+      <HeroUICircularProgress aria-label="success" color="success">
         Success
-      </NextUICircularProgress>
-      <NextUICircularProgress aria-label="warning" color="warning">
+      </HeroUICircularProgress>
+      <HeroUICircularProgress aria-label="warning" color="warning">
         Warning
-      </NextUICircularProgress>
-      <NextUICircularProgress aria-label="danger" color="danger">
+      </HeroUICircularProgress>
+      <HeroUICircularProgress aria-label="danger" color="danger">
         Danger
-      </NextUICircularProgress>
+      </HeroUICircularProgress>
     </ShowcaseComponent>
   );
 }
 
-const sizes: NextUISize[] = ["sm", "md", "lg"];
+const sizes: HeroUISize[] = ["sm", "md", "lg"];

@@ -1,31 +1,31 @@
-import { Switch as NextUISwitch } from "@heroui/react";
+import { Switch as HeroUISwitch } from "@heroui/react";
 
 import { ShowcaseComponent } from "components/showcase-component";
-import { NextUISize } from "shared/types";
+import { HeroUISize } from "shared/types";
 
 export function Switch() {
   return (
     <ShowcaseComponent defaultVariant="solid" name="Switch" sizes={sizes}>
-      <NextUISwitch defaultSelected color="default">
+      <HeroUISwitch defaultSelected color="default">
         Default
-      </NextUISwitch>
-      <NextUISwitch defaultSelected color="primary">
+      </HeroUISwitch>
+      <HeroUISwitch defaultSelected color="primary">
         Primary
-      </NextUISwitch>
-      <NextUISwitch defaultSelected color="secondary">
+      </HeroUISwitch>
+      <HeroUISwitch defaultSelected color="secondary">
         Secondary
-      </NextUISwitch>
-      <NextUISwitch defaultSelected color="success">
+      </HeroUISwitch>
+      <HeroUISwitch defaultSelected color="success">
         Success
-      </NextUISwitch>
-      <NextUISwitch defaultSelected color="warning">
+      </HeroUISwitch>
+      <HeroUISwitch defaultSelected color="warning">
         Warning
-      </NextUISwitch>
-      <NextUISwitch defaultSelected color="danger">
+      </HeroUISwitch>
+      <HeroUISwitch defaultSelected color="danger">
         Danger
-      </NextUISwitch>
+      </HeroUISwitch>
     </ShowcaseComponent>
   );
 }
 
-const sizes: NextUISize[] = ["sm", "md", "lg"];
+const sizes: HeroUISize[] = ["sm", "md", "lg"];

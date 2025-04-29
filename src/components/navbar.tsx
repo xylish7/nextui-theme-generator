@@ -1,6 +1,6 @@
 import {
   Button,
-  Navbar as NextUINavbar,
+  Navbar as HeroUINavbar,
   NavbarBrand,
   NavbarContent,
   NavbarItem,
@@ -15,14 +15,14 @@ export default function Navbar() {
   const stars = useRepo("xylish7", "nextui-theme-generator") ?? 0;
 
   return (
-    <NextUINavbar maxWidth="xl">
+    <HeroUINavbar maxWidth="xl">
       <NavbarBrand className="flex items-center">
         <img
           className="w-9 h-auto mr-2 border-2 border-white rounded-lg"
           src={logo}
         />
         <span className="font-bold text-inherit text-xl mb-0.5">
-          NextUI <span className="hidden sm:inline">ThemeGen</span>
+          HeroUI <span className="hidden sm:inline">ThemeGen</span>
           <span className="sm:hidden">TG</span>
         </span>
       </NavbarBrand>
@@ -52,6 +52,6 @@ export default function Navbar() {
           </Button>
         </NavbarItem>
       </NavbarContent>
-    </NextUINavbar>
+    </HeroUINavbar>
   );
 }

@@ -1,7 +1,7 @@
-import { Checkbox as NextUICheckbox } from "@heroui/react";
+import { Checkbox as HeroUICheckbox } from "@heroui/react";
 
 import { ShowcaseComponent } from "components/showcase-component";
-import { NextUIRadius, NextUISize } from "shared/types";
+import { HeroUIRadius, HeroUISize } from "shared/types";
 
 export function Checkbox() {
   return (
@@ -11,27 +11,27 @@ export function Checkbox() {
       radiuses={radiuses}
       sizes={sizes}
     >
-      <NextUICheckbox defaultSelected color="default">
+      <HeroUICheckbox defaultSelected color="default">
         Default
-      </NextUICheckbox>
-      <NextUICheckbox defaultSelected color="primary">
+      </HeroUICheckbox>
+      <HeroUICheckbox defaultSelected color="primary">
         Primary
-      </NextUICheckbox>
-      <NextUICheckbox defaultSelected color="secondary">
+      </HeroUICheckbox>
+      <HeroUICheckbox defaultSelected color="secondary">
         Secondary
-      </NextUICheckbox>
-      <NextUICheckbox defaultSelected color="success">
+      </HeroUICheckbox>
+      <HeroUICheckbox defaultSelected color="success">
         Success
-      </NextUICheckbox>
-      <NextUICheckbox defaultSelected color="warning">
+      </HeroUICheckbox>
+      <HeroUICheckbox defaultSelected color="warning">
         Warning
-      </NextUICheckbox>
-      <NextUICheckbox defaultSelected color="danger">
+      </HeroUICheckbox>
+      <HeroUICheckbox defaultSelected color="danger">
         Danger
-      </NextUICheckbox>
+      </HeroUICheckbox>
     </ShowcaseComponent>
   );
 }
 
-const radiuses: NextUIRadius[] = ["none", "sm", "md", "lg", "full"];
-const sizes: NextUISize[] = ["sm", "md", "lg"];
+const radiuses: HeroUIRadius[] = ["none", "sm", "md", "lg", "full"];
+const sizes: HeroUISize[] = ["sm", "md", "lg"];

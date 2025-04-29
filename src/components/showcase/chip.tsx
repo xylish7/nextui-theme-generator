@@ -1,7 +1,7 @@
-import { Chip as NextUIChip } from "@heroui/react";
+import { Chip as HeroUIChip } from "@heroui/react";
 
 import { ShowcaseComponent } from "components/showcase-component";
-import { NextUISize, NextUIVariant } from "shared/types";
+import { HeroUISize, HeroUIVariant } from "shared/types";
 
 export function Chip() {
   return (
@@ -11,18 +11,18 @@ export function Chip() {
       sizes={sizes}
       variants={variants}
     >
-      <NextUIChip color="default">Default</NextUIChip>
-      <NextUIChip color="primary">Primary</NextUIChip>
-      <NextUIChip color="secondary">Secondary</NextUIChip>
-      <NextUIChip color="success">Success</NextUIChip>
-      <NextUIChip color="warning">Warning</NextUIChip>
-      <NextUIChip color="danger">Danger</NextUIChip>
+      <HeroUIChip color="default">Default</HeroUIChip>
+      <HeroUIChip color="primary">Primary</HeroUIChip>
+      <HeroUIChip color="secondary">Secondary</HeroUIChip>
+      <HeroUIChip color="success">Success</HeroUIChip>
+      <HeroUIChip color="warning">Warning</HeroUIChip>
+      <HeroUIChip color="danger">Danger</HeroUIChip>
     </ShowcaseComponent>
   );
 }
 
-const sizes: NextUISize[] = ["sm", "md", "lg"];
-const variants: NextUIVariant[] = [
+const sizes: HeroUISize[] = ["sm", "md", "lg"];
+const variants: HeroUIVariant[] = [
   "solid",
   "bordered",
   "light",

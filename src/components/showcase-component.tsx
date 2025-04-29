@@ -2,21 +2,21 @@ import { Children, cloneElement, useState } from "react";
 import { Select, SelectItem } from "@heroui/react";
 
 import {
-  NextUIColor,
-  NextUIRadius,
-  NextUISize,
-  NextUIVariant,
+  HeroUIColor,
+  HeroUIRadius,
+  HeroUISize,
+  HeroUIVariant,
 } from "../shared/types";
 
 interface ShowcaseComponentProps {
   children: React.ReactElement | React.ReactElement[];
-  colors?: NextUIColor[];
-  defaultVariant?: NextUIVariant;
+  colors?: HeroUIColor[];
+  defaultVariant?: HeroUIVariant;
   id?: string;
   name: string;
-  radiuses?: NextUIRadius[];
-  sizes?: NextUISize[];
-  variants?: NextUIVariant[];
+  radiuses?: HeroUIRadius[];
+  sizes?: HeroUISize[];
+  variants?: HeroUIVariant[];
 }
 
 export function ShowcaseComponent({
@@ -29,12 +29,12 @@ export function ShowcaseComponent({
   sizes = [],
   variants = [],
 }: ShowcaseComponentProps) {
-  const [color, setColor] = useState<NextUIColor>("default");
-  const [variant, setVariant] = useState<NextUIVariant | undefined>(
+  const [color, setColor] = useState<HeroUIColor>("default");
+  const [variant, setVariant] = useState<HeroUIVariant | undefined>(
     defaultVariant
   );
-  const [size, setSize] = useState<NextUISize>("md");
-  const [radius, setRadius] = useState<NextUIRadius>("md");
+  const [size, setSize] = useState<HeroUISize>("md");
+  const [radius, setRadius] = useState<HeroUIRadius>("md");
 
   return (
     <div
@@ -52,7 +52,7 @@ export function ShowcaseComponent({
             selectedKeys={[color]}
             size="sm"
             onChange={(e) =>
-              setColor((e.target.value as NextUIColor) || "default")
+              setColor((e.target.value as HeroUIColor) || "default")
             }
           >
             {defaultColors
@@ -71,7 +71,7 @@ export function ShowcaseComponent({
             selectedKeys={variant ? [variant] : variant}
             size="sm"
             onChange={(e) =>
-              setVariant((e.target.value as NextUIVariant) || "solid")
+              setVariant((e.target.value as HeroUIVariant) || "solid")
             }
           >
             {defaultVariants
@@ -89,7 +89,7 @@ export function ShowcaseComponent({
             labelPlacement="outside"
             selectedKeys={[size]}
             size="sm"
-            onChange={(e) => setSize((e.target.value as NextUISize) || "md")}
+            onChange={(e) => setSize((e.target.value as HeroUISize) || "md")}
           >
             {defaultSizes
               .filter((size) => sizes.includes(size.value))
@@ -106,7 +106,7 @@ export function ShowcaseComponent({
             labelPlacement="outside"
             selectedKeys={[radius]}
             size="sm"
-            onChange={(e) => setRadius((e.target.value as NextUISize) || "md")}
+            onChange={(e) => setRadius((e.target.value as HeroUISize) || "md")}
           >
             {defaultRadiuses
               .filter((radius) => radiuses.includes(radius.value))
@@ -130,7 +130,7 @@ export function ShowcaseComponent({
   );
 }
 
-const defaultRadiuses: { label: string; value: NextUIRadius }[] = [
+const defaultRadiuses: { label: string; value: HeroUIRadius }[] = [
   { label: "None", value: "none" },
   { label: "Small", value: "sm" },
   { label: "Medium", value: "md" },
@@ -138,7 +138,7 @@ const defaultRadiuses: { label: string; value: NextUIRadius }[] = [
   { label: "Full", value: "full" },
 ];
 
-const defaultVariants: { label: string; value: NextUIVariant }[] = [
+const defaultVariants: { label: string; value: HeroUIVariant }[] = [
   { label: "Dot", value: "dot" },
   { label: "Solid", value: "solid" },
   { label: "Faded", value: "faded" },
@@ -150,13 +150,13 @@ const defaultVariants: { label: string; value: NextUIVariant }[] = [
   { label: "Underlined", value: "underlined" },
 ];
 
-const defaultSizes: { label: string; value: NextUISize }[] = [
+const defaultSizes: { label: string; value: HeroUISize }[] = [
   { label: "Small", value: "sm" },
   { label: "Medium", value: "md" },
   { label: "Large", value: "lg" },
 ];
 
-const defaultColors: { label: string; value: NextUIColor }[] = [
+const defaultColors: { label: string; value: HeroUIColor }[] = [
   { label: "Default", value: "default" },
   { label: "Primary", value: "primary" },
   { label: "Secondary", value: "secondary" },

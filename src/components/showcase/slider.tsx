@@ -1,7 +1,7 @@
-import { Slider as NextUISlider } from "@heroui/react";
+import { Slider as HeroUISlider } from "@heroui/react";
 
 import { ShowcaseComponent } from "components/showcase-component";
-import { NextUIColor, NextUIRadius, NextUISize } from "shared/types";
+import { HeroUIColor, HeroUIRadius, HeroUISize } from "shared/types";
 
 export function Slider() {
   return (
@@ -12,7 +12,7 @@ export function Slider() {
       sizes={sizes}
     >
       {colors.map((color) => (
-        <NextUISlider
+        <HeroUISlider
           key={color}
           aria-label="Temperature"
           className="max-w-md"
@@ -27,7 +27,7 @@ export function Slider() {
   );
 }
 
-const colors: NextUIColor[] = [
+const colors: HeroUIColor[] = [
   "default",
   "primary",
   "secondary",
@@ -35,5 +35,5 @@ const colors: NextUIColor[] = [
   "warning",
   "danger",
 ];
-const radiuses: NextUIRadius[] = ["none", "sm", "md", "lg", "full"];
-const sizes: NextUISize[] = ["sm", "md", "lg"];
+const radiuses: HeroUIRadius[] = ["none", "sm", "md", "lg", "full"];
+const sizes: HeroUISize[] = ["sm", "md", "lg"];

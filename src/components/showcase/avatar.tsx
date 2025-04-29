@@ -1,7 +1,7 @@
-import { Avatar as NextUIAvatar } from "@heroui/react";
+import { Avatar as HeroUIAvatar } from "@heroui/react";
 
 import { ShowcaseComponent } from "components/showcase-component";
-import { NextUIRadius, NextUISize } from "shared/types";
+import { HeroUIRadius, HeroUISize } from "shared/types";
 
 export function Avatar() {
   return (
@@ -11,51 +11,51 @@ export function Avatar() {
       radiuses={radiuses}
       sizes={sizes}
     >
-      <NextUIAvatar
+      <HeroUIAvatar
         isBordered
         color="default"
         src="https://i.pravatar.cc/150?u=a04258114e29026708c"
       >
         Default
-      </NextUIAvatar>
-      <NextUIAvatar
+      </HeroUIAvatar>
+      <HeroUIAvatar
         isBordered
         color="primary"
         src="https://i.pravatar.cc/150?u=a04258114e29026708c"
       >
         Primary
-      </NextUIAvatar>
-      <NextUIAvatar
+      </HeroUIAvatar>
+      <HeroUIAvatar
         isBordered
         color="secondary"
         src="https://i.pravatar.cc/150?u=a04258114e29026708c"
       >
         Secondary
-      </NextUIAvatar>
-      <NextUIAvatar
+      </HeroUIAvatar>
+      <HeroUIAvatar
         isBordered
         color="success"
         src="https://i.pravatar.cc/150?u=a04258114e29026708c"
       >
         Success
-      </NextUIAvatar>
-      <NextUIAvatar
+      </HeroUIAvatar>
+      <HeroUIAvatar
         isBordered
         color="warning"
         src="https://i.pravatar.cc/150?u=a04258114e29026708c"
       >
         Warning
-      </NextUIAvatar>
-      <NextUIAvatar
+      </HeroUIAvatar>
+      <HeroUIAvatar
         isBordered
         color="danger"
         src="https://i.pravatar.cc/150?u=a04258114e29026708c"
       >
         Danger
-      </NextUIAvatar>
+      </HeroUIAvatar>
     </ShowcaseComponent>
   );
 }
 
-const radiuses: NextUIRadius[] = ["sm", "md", "lg", "full"];
-const sizes: NextUISize[] = ["sm", "md", "lg"];
+const radiuses: HeroUIRadius[] = ["sm", "md", "lg", "full"];
+const sizes: HeroUISize[] = ["sm", "md", "lg"];

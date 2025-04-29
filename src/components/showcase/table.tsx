@@ -1,5 +1,5 @@
 import {
-  Table as NextUITable,
+  Table as HeroUITable,
   TableHeader,
   TableColumn,
   TableBody,
@@ -7,13 +7,13 @@ import {
   TableCell,
 } from "@heroui/react";
 import { ShowcaseComponent } from "components/showcase-component";
-import { NextUIColor } from "shared/types";
+import { HeroUIColor } from "shared/types";
 
 export function Table() {
   return (
     <div className="flex flex-col gap-3">
       <ShowcaseComponent colors={colors} name="Table">
-        <NextUITable
+        <HeroUITable
           selectionMode="single"
           defaultSelectedKeys={["2"]}
           aria-label="Example static collection table"
@@ -45,13 +45,13 @@ export function Table() {
               <TableCell>Vacation</TableCell>
             </TableRow>
           </TableBody>
-        </NextUITable>
+        </HeroUITable>
       </ShowcaseComponent>
     </div>
   );
 }
 
-const colors: NextUIColor[] = [
+const colors: HeroUIColor[] = [
   "default",
   "primary",
   "secondary",

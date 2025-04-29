@@ -1,31 +1,31 @@
-import { Link as NextUILink } from "@heroui/react";
+import { Link as HeroUILink } from "@heroui/react";
 
 import { ShowcaseComponent } from "components/showcase-component";
-import { NextUISize } from "shared/types";
+import { HeroUISize } from "shared/types";
 
 export function Link() {
   return (
     <ShowcaseComponent defaultVariant="solid" name="Link" sizes={sizes}>
-      <NextUILink color="foreground" href="#">
+      <HeroUILink color="foreground" href="#">
         Default
-      </NextUILink>
-      <NextUILink color="primary" href="#">
+      </HeroUILink>
+      <HeroUILink color="primary" href="#">
         Primary
-      </NextUILink>
-      <NextUILink color="secondary" href="#">
+      </HeroUILink>
+      <HeroUILink color="secondary" href="#">
         Secondary
-      </NextUILink>
-      <NextUILink color="success" href="#">
+      </HeroUILink>
+      <HeroUILink color="success" href="#">
         Success
-      </NextUILink>
-      <NextUILink color="warning" href="#">
+      </HeroUILink>
+      <HeroUILink color="warning" href="#">
         Warning
-      </NextUILink>
-      <NextUILink color="danger" href="#">
+      </HeroUILink>
+      <HeroUILink color="danger" href="#">
         Danger
-      </NextUILink>
+      </HeroUILink>
     </ShowcaseComponent>
   );
 }
 
-const sizes: NextUISize[] = ["sm", "md", "lg"];
+const sizes: HeroUISize[] = ["sm", "md", "lg"];
