@@ -6,9 +6,10 @@ import {
   NavbarItem,
   Link,
 } from "@heroui/react";
-import { GithubLogo, Tree } from "@phosphor-icons/react";
+import { GithubLogo } from "@phosphor-icons/react";
 
 import logo from "assets/logo.png";
+import me from "assets/me.png";
 import useRepo from "hooks/use-repo";
 
 export default function Navbar() {
@@ -48,7 +49,7 @@ export default function Navbar() {
             isIconOnly
             variant="light"
           >
-            <Tree size={24} />
+            <img src={me} className="w-8 h-8 rounded-full" />
           </Button>
         </NavbarItem>
       </NavbarContent>
