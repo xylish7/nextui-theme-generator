@@ -13,7 +13,7 @@ export default function Footer() {
         <span className="text-default-600">
           Made by{" "}
           <Link
-            href="https://indiedev.pro"
+            href="https://filipf.com"
             style={{ color: colors.purple[500] }}
             isExternal
           >

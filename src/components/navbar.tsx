@@ -43,7 +43,7 @@ export default function Navbar() {
         <NavbarItem>
           <Button
             as={Link}
-            href="https://indiedev.pro"
+            href="https://filipf.com"
             isExternal
             isIconOnly
             variant="light"
