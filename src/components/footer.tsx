@@ -3,7 +3,7 @@ import meLogo from "assets/me.png";
 
 export default function Footer() {
   return (
-    <footer className="container mx-auto max-w-7xl my-20 px-6 flex-grow">
+    <footer className="container mx-auto max-w-7xl my-20 px-6 grow">
       <div className="flex items-center justify-center mt-8">
         <img
           alt="Indie Dev logo"

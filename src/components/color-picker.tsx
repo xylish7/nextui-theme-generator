@@ -94,7 +94,7 @@ export function ColorPicker({
                 ))}
             </div>
             <HexColorPicker
-              className="!w-full"
+              className="w-full!"
               color={selectedColor}
               onChange={handleChange}
             />
