@@ -8,8 +8,15 @@ import {
   HeroUIVariant,
 } from "../shared/types";
 
+interface ChildProps {
+  radius?: HeroUIRadius;
+  size?: HeroUISize;
+  variant?: HeroUIVariant;
+  color?: HeroUIColor;
+}
+
 interface ShowcaseComponentProps {
-  children: React.ReactElement | React.ReactElement[];
+  children: React.ReactElement<ChildProps> | React.ReactElement<ChildProps>[];
   colors?: HeroUIColor[];
   defaultVariant?: HeroUIVariant;
   id?: string;
